@@ -12,7 +12,7 @@
     <body>
         <h1>Register:</h1>
         <form action="Login.html" method="post">
-            <img src="blank-pfp.png" for="pfp" ></img>
+            <img src="..\blank-pfp.png" for="pfp" ></img>
             <input type="file" id="chngPic" accept="image/*">
 
             <label for="uid">User-ID:</label>
