@@ -31,8 +31,9 @@
             <input type="number" name="mobno" required>
 
             <label for="pass">Password: </label>
-            <input type="password" name="pass" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
-            
+            <input type="password" id="typepass" name="pass" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+            <div id="hidepass" onclick="togglePass()">hide</div>
+
             <input type="radio" name="utype" value="student">Student
             <input type="radio" name="utype" value="faculty">Faculty
 
@@ -45,4 +46,20 @@
             <input type="submit" value="Register">
         </form>
     </body>
+
+    <script>
+        function togglePass() {
+            let temp = document.getElementById("typepass");
+            let hide = document.getElementById("hidepass");
+
+            if (temp.type === "password") {
+                temp.type = "text";
+                hide.innerHTML = "show";
+            }
+            else {
+                temp.type = "password";
+                hide.innerHTML = "hide";
+            }
+        }
+    </script>
 </html>

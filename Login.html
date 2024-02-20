@@ -7,13 +7,30 @@
         <form action="" method="post">
             <label for="uname">UserID: </label>
             <input type="text" name="uid" required>
-            <input type="text" name="">
+
             <label for="pass">Password: </label>
-            <input type="password" name="pass" required>
+            <input type="password" id="typepass" name="pass" value="something" required>
+            <div id="hidepass" onclick="togglePass()">hide</div>
+
             <input type="radio" name="utype" value="student">Student
             <input type="radio" name="utype" value="faculty">Faculty
 
             <a href="">forget password?</a><input type="submit" value="Login">
         </form>
     </body>
+    <script>
+        function togglePass() {
+            let temp = document.getElementById("typepass");
+            let hide = document.getElementById("hidepass");
+
+            if (temp.type === "password") {
+                temp.type = "text";
+                hide.innerHTML = "show";
+            }
+            else {
+                temp.type = "password";
+                hide.innerHTML = "hide";
+            }
+        }
+    </script>
 </html>
