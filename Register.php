@@ -11,7 +11,10 @@
     </style>
     <body>
         <h1>Register:</h1>
-        <form action="" method="post">
+        <form action="Login.html" method="post">
+            <img src="blank-pfp.png" for="pfp" ></img>
+            <input type="file" id="chngPic" accept="image/*">
+
             <label for="uid">User-ID:</label>
             <input type="text" name="uid">
 
@@ -43,7 +46,7 @@
             <label for="post">Post:</label>
             <input type="text" name="post">
 
-            <input type="submit" value="Register">
+            <input type="img" src="" value="Register">
         </form>
     </body>
 
