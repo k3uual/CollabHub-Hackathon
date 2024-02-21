@@ -2,48 +2,148 @@
     <head>
         <title>Register</title>
     </head>
+
+    <style>
+        *{
+            font-family: "Nunito Sans", sans-serif;
+            
+        }
+
+        body{
+            background-color: #f5f7f7;
+            display: relative;
+        }
+
+        .regcontain{
+            background-color: #ffffff;
+            height: fit-content;
+            width: 350px;
+            margin: auto;
+            border: 2px solid black;
+
+        }
+
+        form{
+            display: flex;
+            flex-direction: column;
+        }
+
+        .element{
+            
+            
+            left: 1000px;
+            padding: 5px 0 5px 0;
+            display: flex;
+            display: inline-grid;
+            grid-template-columns: auto auto;
+
+        }
+
+        .subele{
+            border: 2px solid blue;
+        }
+
+        .inp{
+            justify-content: right;
+            align-items: left;
+            border: 2px solid red;
+            width: 100px;
+            right: 0%;
+        }
+
+        /* .subele{
+            flex: 1 0 auto;
+            align-items: center;
+            justify-items: center;
+            width: fit-content;
+        } */
+
+        #pfp{
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+        }
+
+        #openimg{
+            display: none;
+        }
+    </style>
     
     <body>
-        <h1>Register:</h1>
-        <form action="Login.html" method="post">
-            <img src="blank-pfp.png" for="pfp" ></img>
-            <input type="file" id="chngPic" accept="image/*">
+        <div class="regcontain">
+            <div id="head">
+                <h1>Register:</h1>
+            </div>
+            <form action="Login.html" method="post">
 
-            <label for="uid">User-ID:</label>
-            <input type="text" name="uid">
+                <div class="element">
+                    <img id="pfp" src="blank-pfp.png" for="pfp" ></img>
+                    <div class="chngpic">change</div>
+                    <input type="file" id="openimg" accept="image/*">
+                </div>
+                
 
-            <label for="uname">Name: </label>
-            <input type="text" name="uname" required>
-            
-            <label for="inst">Institute Name:</label>
-            <input type="text" name="inst" required>
+                <div id="uid" class="element">
+                    <label class="subele" for="uid">User-ID:</label>
+                    <input class="inp" type="text" name="uid">
+                </div>
+                
+                <div id="uname" class="element">
+                    <label class="subele" for="uname">Name: </label>
+                    <input class="inp" type="text" name="uname" required>
+                </div>
+                
+                <div id="inst" class="element">
+                    <label class="subele" for="inst">Institute Name:</label>
+                    <input class="inp" type="text" name="inst" required>
+                </div>
+                
+                <div id="branch" class="element">
+                    <label class="subele" for="branch">Branch Name:</label>
+                    <input class="inp" type="text" name="branch" required>
+                </div>
+                
+                <div id="email" class="element">
+                    <label class="subele" for="email">Email:</label>
+                    <input class="inp" type="email" name="email" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$">
+                </div>
+                
+                <div id="mobno" class="element">
+                    <label class="subele" for="mobno">Mobile No.:</label>
+                    <input class="inp" type="tel" name="mobno" required>
+                </div>
+                
+                <div id="pass" class="element">
+                    <label class="subele" for="pass">Password: </label>
+                    <input class="inp" type="password" id="typepass" name="pass" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+                    <div id="hidepass" onclick="togglePass()">hide</div>
+                </div>
+                
+                <div id="utype" class="element">
+                    <input class="subele" type="radio" name="utype" value="student">Student
+                    <input class="subele" type="radio" name="utype" value="faculty">Faculty
+                </div>
+                
 
-            <label for="branch">Branch Name:</label>
-            <input type="text" name="branch" required>
-
-            <label for="email">Email:</label>
-            <input type="email" name="email" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$">
-
-            <label for="mobno">Mobile No.:</label>
-            <input type="tel" name="mobno" required>
-
-            <label for="pass">Password: </label>
-            <input type="password" id="typepass" name="pass" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
-            <div id="hidepass" onclick="togglePass()">hide</div>
-
-            <input type="radio" name="utype" value="student">Student
-            <input type="radio" name="utype" value="faculty">Faculty
-
-            <label for="sem">Semester:</label>
-            <input type="number" name="sem">
-
-            <label for="post">Post:</label>
-            <input type="text" name="post">
-
-            <input type="submit" value="Register">
-        </form>
+                <div id="sem" class="element">
+                    <label class="subele" for="sem">Semester:</label>
+                    <input class="inp" type="number" name="sem">
+                </div>
+                
+                <div id="post" class="element">
+                    <label class="subele" for="post">Post:</label>
+                    <input class="inp" type="text" name="post">
+                </div>
+                
+                <div id="register" class="element">
+                    <input type="submit" value="Register">
+                </div>
+            </form>
+        </div>
+        
     </body>
 
+    
     <script>
         function togglePass() {
             let temp = document.getElementById("typepass");
@@ -58,5 +158,15 @@
                 hide.innerHTML = "hide";
             }
         }
+
+        $(function(){
+            $('#openimg').change( function(e) {
+                var img = URL.createObjectURL(e.target.files[0]);
+                $('#pfp').attr('src', img);
+            });
+            $("#chngpic").on('click', function() {
+	        		    $("#openimg").click();
+	        });
+        });
     </script>
 </html>
