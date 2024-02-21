@@ -1,64 +1,45 @@
 <html>
     <head>
-        <title>Register</title>
+        <title>Register - CollabHub</title>
     </head>
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <style>
-        *{
+        * {
             font-family: "Nunito Sans", sans-serif;
-            
         }
 
-        body{
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        body {
             background-color: #f5f7f7;
-            display: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .regcontain{
+        .form {
             background-color: #ffffff;
             height: fit-content;
             width: 350px;
-            margin: auto;
-            border: 2px solid black;
-
-        }
-
-        form{
-            display: flex;
-            flex-direction: column;
-        }
-
-        .element{
+            padding: 20px 20px 0 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             
-            
-            left: 1000px;
-            padding: 5px 0 5px 0;
+        }
+
+        .pfpcontain {
             display: flex;
-            display: inline-grid;
-            grid-template-columns: auto auto;
-
-        }
-
-        .subele{
-            border: 2px solid blue;
-        }
-
-        .inp{
-            justify-content: right;
-            align-items: left;
-            border: 2px solid red;
-            width: 100px;
-            right: 0%;
-        }
-
-        /* .subele{
-            flex: 1 0 auto;
+            justify-content: center;
             align-items: center;
-            justify-items: center;
-            width: fit-content;
-        } */
+            padding-bottom: 10px;
+        }
 
-        #pfp{
+        #pfp {
             width: 100px;
             height: 100px;
             border-radius: 50%;
@@ -67,106 +48,133 @@
         #openimg{
             display: none;
         }
+
+        
+
+        .bi {
+            
+            border-radius: 50%;
+            padding: 5px;
+            background-color: #f8f8f8;
+            transform: rotate(270deg);
+            color: rgb(102, 102, 102);
+        }
+
+        #chngpic{
+            position: absolute;
+            top: 22.5%;
+            left: 52%;
+        }
+
+        .inp {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0 5px 0;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .radios {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #sem {
+            transition: all 0.5s;
+        }
+
+        #sem.semselect {
+            transform: translate(50px, 50px);
+        }
+        #btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: all 0.5s;
+        }
+
+        #btn:hover {
+            transform: translate(0, -2px);
+            background-color: #45a049;
+        }
     </style>
-    
+
     <body>
-        <div class="regcontain">
-            <div id="head">
-                <h1>Register:</h1>
-            </div>
-            <form action="Login.html" method="post">
-
-                <div class="element">
+        <div class="form">
+            <form action="" method="post">
+                <div class="pfpcontain">
                     <img id="pfp" src="blank-pfp.png" for="pfp" ></img>
-                    <div class="chngpic">change</div>
-                    <input type="file" id="openimg" accept="image/*">
+                    <div class="bi bi-pencil-fill" id="chngpic" onclick="openfile()"></div>
+                    <input type="file" id="openimg" accept="image/*" onchange="loadFile(event)">
                 </div>
                 
-
-                <div id="uid" class="element">
-                    <label class="subele" for="uid">User-ID:</label>
-                    <input class="inp" type="text" name="uid">
+                <input class="inp" type="text" placeholder="User ID" name="uid">
+                
+                <input class="inp" type="text" placeholder="User Name" name="uname" required>
+                
+                <input class="inp" type="text" placeholder="Institute Name" name="inst" required>
+                
+                <input class="inp" type="text" placeholder="Department Name" name="dept" required>
+                
+                <input class="inp" type="email" placeholder="Email" name="email" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$">
+                
+                <input class="inp" type="number" placeholder="Mobile No." name="mobno" required>
+                
+                <input class="inp" type="password" placeholder="Password" id="typepass" name="pass" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+                
+                <div class="radios">
+                    <label class="radele" for="student">
+                        <input class="type" id="student" type="radio" name="utype" value="student" checked>Student
+                    </label>
+                    <label class="radele" for="faculty">
+                        <input class="type" id="faculty" type="radio" name="utype" value="faculty">Faculty
+                    </label>
                 </div>
                 
-                <div id="uname" class="element">
-                    <label class="subele" for="uname">Name: </label>
-                    <input class="inp" type="text" name="uname" required>
-                </div>
+                <input class="inp" id="sem" placeholder="Semester" type="number" name="sem">
                 
-                <div id="inst" class="element">
-                    <label class="subele" for="inst">Institute Name:</label>
-                    <input class="inp" type="text" name="inst" required>
-                </div>
+                <input class="inp" id="post" placeholder="Post" type="text" name="post" style="display: none;">
                 
-                <div id="branch" class="element">
-                    <label class="subele" for="branch">Branch Name:</label>
-                    <input class="inp" type="text" name="branch" required>
-                </div>
-                
-                <div id="email" class="element">
-                    <label class="subele" for="email">Email:</label>
-                    <input class="inp" type="email" name="email" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$">
-                </div>
-                
-                <div id="mobno" class="element">
-                    <label class="subele" for="mobno">Mobile No.:</label>
-                    <input class="inp" type="tel" name="mobno" required>
-                </div>
-                
-                <div id="pass" class="element">
-                    <label class="subele" for="pass">Password: </label>
-                    <input class="inp" type="password" id="typepass" name="pass" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
-                    <div id="hidepass" onclick="togglePass()">hide</div>
-                </div>
-                
-                <div id="utype" class="element">
-                    <input class="subele" type="radio" name="utype" value="student">Student
-                    <input class="subele" type="radio" name="utype" value="faculty">Faculty
-                </div>
-                
-
-                <div id="sem" class="element">
-                    <label class="subele" for="sem">Semester:</label>
-                    <input class="inp" type="number" name="sem">
-                </div>
-                
-                <div id="post" class="element">
-                    <label class="subele" for="post">Post:</label>
-                    <input class="inp" type="text" name="post">
-                </div>
-                
-                <div id="register" class="element">
-                    <input type="submit" value="Register">
-                </div>
+                <input class="inp" id="btn" type="submit" value="Register">
             </form>
         </div>
         
     </body>
 
-    
     <script>
-        function togglePass() {
-            let temp = document.getElementById("typepass");
-            let hide = document.getElementById("hidepass");
+        const student = document.getElementById('student');
+        const faculty = document.getElementById('faculty');
+        const sem = document.getElementById('sem');
+        const post = document.getElementById('post');
 
-            if (temp.type === "password") {
-                temp.type = "text";
-                hide.innerHTML = "show";
+        student.addEventListener('change', function() {
+            if (student.checked) {
+                sem.style.display = 'block';
+                post.style.display = 'none';
+                post.value = "";
             }
-            else {
-                temp.type = "password";
-                hide.innerHTML = "hide";
-            }
-        }
-
-        $(function(){
-            $('#openimg').change( function(e) {
-                var img = URL.createObjectURL(e.target.files[0]);
-                $('#pfp').attr('src', img);
-            });
-            $("#chngpic").on('click', function() {
-	        		    $("#openimg").click();
-	        });
         });
+    
+        faculty.addEventListener('change', function() {
+            if (faculty.checked) {
+                post.style.display = 'block';
+                sem.style.display = 'none';
+                sem.value = "";
+            }
+        });
+
+        
+        const fileUploadDiv = document.getElementById('chngpic');
+        const fileInput = document.getElementById('openimg');
+        fileUploadDiv.addEventListener('click', function() {
+            fileInput.click();
+        });
+
+        let loadFile = function (event) {
+            let image = document.getElementById("pfp");
+            image.src = URL.createObjectURL(event.target.files[0]);
+        };
     </script>
 </html>
