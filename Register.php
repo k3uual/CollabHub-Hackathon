@@ -46,7 +46,7 @@
             <label for="post">Post:</label>
             <input type="text" name="post">
 
-            <input type="img" src="" value="Register">
+            <input type="submit" value="Register">
         </form>
     </body>
 
