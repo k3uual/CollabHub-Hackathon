@@ -18,6 +18,11 @@ body {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+#title {
+    color: #666666;
+    margin-top: -1px;
+}
+
 .inp {
     width: 100%;
     padding: 8px;
@@ -66,7 +71,6 @@ body {
     color: white;
     border: none;
     cursor: pointer;
-    
     transition: all 1s;
 }
 
