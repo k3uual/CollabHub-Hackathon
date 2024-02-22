@@ -2,21 +2,69 @@
     <head>
         <title>Login</title>
     </head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="form.css">
+
+    <style>
+
+        #title {
+            color: #666666;
+            margin-top: -1px;
+        }
+
+        .end {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .radios {
+            margin: 5px 0;
+        }
+
+        .radios>label {
+            padding: 2px 0 0 0;
+        }
+
+        #forget {
+            font-size: 12px;
+        }
+
+        #btn {
+            margin-left: 10px;
+            width: 300px;
+        }
+    </style>
+
     <body>
-        <h1>Login:</h1>
-        <form action="" method="post">
-            <label for="uname">UserID: </label>
-            <input type="text" name="uid" required>
+        
+        <div class="form">
+            <h1 id="title">Login:</h1>
+            <form action="" method="post">
+                <input class="inp" type="text" placeholder="User ID" name="uid" required>
 
-            <label for="pass">Password: </label>
-            <input type="password" id="typepass" name="pass" value="something" required>
-            <div id="hidepass" onclick="togglePass()">hide</div>
+                <div class="passcontain">
+                    <input class="inp" type="password" placeholder="Password" id="typepass" name="pass" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+                    <div id="hidepass" onclick="togglePass()"><i id="eye" class="bi-eye-slash"></i></div>
+                </div>
 
-            <input type="radio" name="utype" value="student">Student
-            <input type="radio" name="utype" value="faculty">Faculty
-
-            <a href="">forget password?</a><input type="submit" value="Login">
-        </form>
+                <div class="radios">
+                    <label class="radele" for="student">
+                        <input class="type" id="student" type="radio" name="utype" value="student" checked>Student
+                    </label>
+                    <label class="radele" for="faculty">
+                        <input class="type" id="faculty" type="radio" name="utype" value="faculty">Faculty
+                    </label>
+                </div>
+                <div class="end">
+                    <input class="inp" id="btn" type="submit" value="Login">
+                    <a id="forget" href="">forget password?</a>
+                </div>
+                
+            </form>
+        </div>
+        
     </body>
     <script>
         function togglePass() {
@@ -25,11 +73,11 @@
 
             if (temp.type === "password") {
                 temp.type = "text";
-                hide.innerHTML = "show";
+                hide.innerHTML = `<i class="bi-eye" id="eye"></i>`;
             }
             else {
                 temp.type = "password";
-                hide.innerHTML = "hide";
+                hide.innerHTML = `<i class="bi-eye-slash" id="eye"></i>`;
             }
         }
     </script>
