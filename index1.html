@@ -2,16 +2,98 @@
     <head>
         <title>CollabHub</title>
     </head>
+    <style>
+        * {
+            font-family: "Nunito Sans", sans-serif;
+        }
+
+        body {
+            background-color: #f5f7f7;
+            
+        }
+
+        .cardcontain {
+            border: 2px solid red;
+            width: 150vh;
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            /* left: 400px; */
+        }
+
+        .card {
+            background-color: white;
+            margin: auto;
+            border: 2px solid black;
+            width: 100vh;
+            border-radius: 8px;
+            height: fit-content;
+            display: flex;
+        }
+
+        .section {
+            border: 2px solid;
+        }
+
+        .imgsec {
+            flex: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .detsec {
+            flex: 5;
+        }
+
+        .details {
+            display: inline-grid;
+            grid-template-columns: auto auto;
+        }
+        
+        .extrasec {
+            flex: 3;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .eimg {
+            width: 150px;
+            height: 150px;
+        }
+
+        .ename {
+            font-size: 24px;
+            padding: 10px;
+        }
+    </style>
     <body>
-        <div>
-            <ul>
-                <li>Event Name</li>
-                <li>Event type</li>
-                <li>Event Detail</li>
-                <li>Online/Offline</li>
-                <li>Starts 00/00/0000</li>
-                <li><button onclick="">Apply now</button></li>
-            </ul>
+        <div class="cardcontain">
+            
+            <div class="card">
+                <div class="section imgsec">
+                    <div class="ele" ><img class="eimg" src="blank-pfp.png" alt=""></div>
+                </div>
+                <div class="section detsec">
+                    <div class="ele ename">Event Name</div>
+                    <div class="details">
+                        <div class="ele etype">Event type</div>
+                        <div class="ele mode">Online/Offline</div>
+                        <div class="ele left">0 days left</div>
+                        <div class="ele prize">$10000</div>
+                    </div>
+                </div>
+                <div class="section extrasec">
+                    <div class="ele eby">Some org</div>
+                    <div class="ele date">Starts 00/00/0000</div>
+                    <div>0000 Participating</div>
+                </div>
+            </div>
+            
+            
+
         </div>
     </body>
 </html>
