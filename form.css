@@ -26,7 +26,7 @@ body {
 .inp {
     width: 100%;
     padding: 8px;
-    margin: 5px 0 5px 0;
+    margin: 6px 0 6px 0;
     box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -38,8 +38,7 @@ body {
 
 .inp:focus{
     outline: none;
-    outline: solid #6ac770 1px;
-    
+    outline: solid rgb(55 112 255) 2px;
 }
 
 .passcontain {
@@ -67,7 +66,7 @@ body {
 }
 
 #btn {
-    background-color: #4CAF50;
+    background-color: rgb(55 112 255);
     color: white;
     border: none;
     cursor: pointer;
@@ -76,6 +75,6 @@ body {
 
 #btn:hover {
     transform: translate(0, -3px);
-    background-color: #2f9434;
+    background-color: rgb(33, 83, 209);
     transition: all 0.5s;
 }
