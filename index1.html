@@ -2,6 +2,8 @@
     <head>
         <title>CollabHub</title>
     </head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
     <style>
         * {
             font-family: "Nunito Sans", sans-serif;
@@ -14,25 +16,35 @@
 
         .cardcontain {
             border: 2px solid red;
-            width: 150vh;
+            width: 80%;
             display: flex;
             flex-direction: column;
-            position: absolute;
+            position: relative;
+            left: 20%;
             /* left: 400px; */
         }
 
         .card {
             background-color: white;
             margin: auto;
-            border: 2px solid black;
-            width: 100vh;
+            width: 90%;
             border-radius: 8px;
             height: fit-content;
             display: flex;
+            padding: 10px;
+            margin-top: 20px;
         }
 
-        .section {
-            border: 2px solid;
+        .card:hover {
+            outline: solid rgb(55 112 255) 2px;
+            box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            
+        }
+
+        .ele {
+            
+            margin: 10px;
+            font-size: 20px;
         }
 
         .imgsec {
@@ -44,11 +56,14 @@
 
         .detsec {
             flex: 5;
+            border-left: 2px solid #bababa;
         }
 
         .details {
             display: inline-grid;
             grid-template-columns: auto auto;
+            width: 80%;
+            margin: 10px;
         }
         
         .extrasec {
@@ -57,17 +72,34 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            border-left: 2px solid #bababa;
         }
 
         .eimg {
             width: 150px;
             height: 150px;
         }
+        
+        .ele:not(b) {
+            color: #808689;
+        }
+
+        i {
+            color: #233136;
+        }
+
+        b {
+            color: black;
+        }
 
         .ename {
             font-size: 24px;
-            padding: 10px;
+            padding: 5px;
+            margin: 10px 0 0 15px;
+            color: rgb(55 112 255);
         }
+        
+        
     </style>
     <body>
         <div class="cardcontain">
@@ -77,22 +109,40 @@
                     <div class="ele" ><img class="eimg" src="blank-pfp.png" alt=""></div>
                 </div>
                 <div class="section detsec">
-                    <div class="ele ename">Event Name</div>
+                    <div class="ele ename"><b>Event Name</b></div>
                     <div class="details">
                         <div class="ele etype">Event type</div>
-                        <div class="ele mode">Online/Offline</div>
-                        <div class="ele left">0 days left</div>
-                        <div class="ele prize">$10000</div>
+                        <div class="ele mode"><i class="bi-geo-alt-fill"></i> Online/Offline</div>
+                        <div class="ele left"><i class="bi-clock-fill"></i> 0 days left</div>
+                        <div class="ele prize"><i class="bi-trophy-fill"></i><b> $10000</b></div>
                     </div>
                 </div>
                 <div class="section extrasec">
-                    <div class="ele eby">Some org</div>
-                    <div class="ele date">Starts 00/00/0000</div>
-                    <div>0000 Participating</div>
+                    <div class="ele eby"><i class="bi-flag-fill"></i> Some org</div>
+                    <div class="ele date"><i class="bi-calendar-fill"></i> 00 jan - 00 july</div>
+                    <div class="ele epart"><i class="bi-people-fill"></i><b> 0000</b> Participating</div>
                 </div>
             </div>
             
-            
+            <div class="card">
+                <div class="section imgsec">
+                    <div class="ele" ><img class="eimg" src="blank-pfp.png" alt=""></div>
+                </div>
+                <div class="section detsec">
+                    <div class="ele ename"><b>Event Name</b></div>
+                    <div class="details">
+                        <div class="ele etype">Event type</div>
+                        <div class="ele mode"><i class="bi-geo-alt-fill"></i> Online/Offline</div>
+                        <div class="ele left"><i class="bi-clock-fill"></i> 0 days left</div>
+                        <div class="ele prize"><i class="bi-trophy-fill"></i> $10000</div>
+                    </div>
+                </div>
+                <div class="section extrasec">
+                    <div class="ele eby"><i class="bi-flag-fill"></i> Some org</div>
+                    <div class="ele date"><i class="bi-calendar-fill"></i> Starts 00/00/0000</div>
+                    <div class="ele epart"><i class="bi-people-fill"></i> 0000 Participating</div>
+                </div>
+            </div>
 
         </div>
     </body>

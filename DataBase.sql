@@ -407,7 +407,7 @@ CREATE TABLE IF NOT EXISTS `students` (
 INSERT INTO `students` (`S_id`, `S_password`, `S_name`, `S_pic`, `S_email`, `S_mob`, `S_inst`, `S_course`, `S_dep`, `S_sem`, `S_desc`) VALUES
 (1003001, 'Aakash@001', 'Aakash', NULL, 'Aakash001@gmail.com', 1234567890, 'L.D. Patel Institute', 'BE', 'Computer Eng.', 2, 'Hi I am Aakash.'),
 (1003002, 'Binal@002', 'Binal', NULL, 'Binal002@gmail.com', 1234567891, 'B.P.T.I.', 'BE', 'Information Eng.', 4, 'Hi I am Binal.'),
-(1003003, 'Chaman@003', 'Chaman', NULL, 'Chaman003@gmail.com', 1234567892, 'B.P.T.I.', 'Diploma', 'Information Eng.', 4, 'Hi I am Chaman.'),
+(1003003, 'Better@003', 'Better', NULL, 'Better003@gmail.com', 1234567892, 'B.P.T.I.', 'Diploma', 'Information Eng.', 4, 'Hi I am Better.'),
 (1003004, 'Dipak@004', 'Dipak', NULL, 'Dipak004@gmail.com', 1234567893, 'L.E., Morbi', 'BE', 'Information Eng.', 5, 'Hi I am Dipak.'),
 (1003005, 'Fenil@005', 'Fenil', NULL, 'Fenil005@gmail.com', 1234567894, 'L.E., Morbi', 'BE', 'Computer Eng.', 5, NULL),
 (1003006, 'Gunjan@006', 'Gunjan', NULL, 'Gunjan006@gmail.com', 1234567895, 'GEC, Bhavnagar', 'BE', 'Computer Eng.', 5, 'Hi I am Gunjan.'),
