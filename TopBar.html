@@ -8,7 +8,7 @@
             border-bottom: 2px solid #f5f7f7;
             display: flex;
             position: relative;
-            justify-content: space-around;
+            /* justify-content: space-around; */
             align-items: center;
             width: 98.35%;
             padding: 20px;
@@ -19,20 +19,30 @@
         #left, #right {
             display: flex;
             align-items: center;
-            
             position: relative;
         }
 
-        #left {
-            left: -10%;
+        #right {
+            position: relative;
+            right: 10%;
+            margin-left: auto;
             cursor: pointer;
         }
 
-        #right {
-            right: -10%;
+        #left {
             cursor: pointer;
+            left: 5%;
         }
         
+        #navcontain {
+            position: relative;
+            left: 12%;
+            display: flex;
+            justify-content: space-between;
+            background-color: #f5f7f7;
+            border-radius: 10px;
+        }
+
         #right:hover>.username,#right:hover>.pfparrow {
             color: rgb(55 112 255);
             text-decoration: underline;
@@ -40,6 +50,47 @@
 
         #right:hover>.pfp {
             outline: solid rgb(55 112 255) 1px;
+        }
+
+        .nav {
+            font-size: 18px;
+            
+            position: relative;
+            padding: 10px 25px 10px 25px;
+        }
+
+        .nav:hover {
+            text-decoration: underline;
+            color: rgb(55 112 255);
+            
+        }
+
+        .lnav {
+            cursor: pointer;
+            border-radius: 10px 0 0 10px;
+        }
+
+        .rnav {
+            cursor: pointer;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .midnav {
+            cursor: pointer;
+            border-left: 2px solid #ccc;
+            border-right: 2px solid #ccc;
+        }
+
+        .selectednav {
+            background-color: rgb(55 112 255);
+            color: white;
+            cursor: default;
+        }
+
+        .selectednav:hover {
+            text-decoration: none;
+            color: white;
+            
         }
 
         .webnametop {
@@ -50,6 +101,7 @@
         }
 
         .pfparrow, .username {
+            font-size: 18px;
             margin-left: 5px;
         }
 
@@ -112,6 +164,12 @@
                 <img class="logotop" src="Logo.png" alt="Logo">
                 <span class="webnametop"><b>CollabHub</b></span>
             </div>
+            <div id="navcontain">
+                <div class="nav lnav ">Events</div>
+                <div class="nav midnav ">Collabs</div>
+                <div class="nav rnav selectednav">Issues</div>
+            </div>
+            
             <div id="right">
                 <img class="pfp" src="blank-pfp.png" alt="pfp">
                 <span class="username">Name</span>
