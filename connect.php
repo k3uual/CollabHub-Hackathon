@@ -1,4 +1,7 @@
 <?php
-    $con = mysqli_connect("localhost","root");
-    $db = mysqli_select_db($con,"collab_hub");
+    $con = mysqli_connect("localhost","root","","collab_hub");
+
+    if ($con->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
 ?>
