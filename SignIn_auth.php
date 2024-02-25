@@ -3,15 +3,15 @@
 
     $uid = $_POST['uid'];
     $pass = $_POST['pass'];
-    $query = "select s_id from students where s_id=$uid AND s_pass = '$pass'";
+    $query = "select id, name from students where id=$uid AND pass = '$pass'";
     $cmd = mysqli_query($con,$query);
     $row = mysqli_fetch_array($cmd);
     if(!$row) {
-        header("location:SignIn.html");
+        header("location:SignIn2.php?status=incorrect");
     }
     else {
-        setcookie("user",$_POST['uid'],time() + (10 * 365 * 24 * 60 * 60));
-        echo $_COOKIE['user'];
+        setcookie("userid",$_POST['uid'],time() + (10 * 365 * 24 * 60 * 60));
+        setcookie("username",$row['name'],time() + (10 * 365 * 24 * 60 * 60));
         //header("location:check.php");
     }
 ?>

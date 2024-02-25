@@ -75,6 +75,11 @@
         
     </body>
     <script>
+        <?php
+            if(isset($_GET['status'])) {
+        ?>
+            alert("Incorrect Password or UserID");
+        <?php }?>
         function togglePass() {
             let temp = document.getElementById("typepass");
             let hide = document.getElementById("hidepass");
