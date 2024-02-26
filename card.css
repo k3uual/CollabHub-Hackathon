@@ -1,0 +1,91 @@
+:root {
+    font-family: "Nunito Sans", sans-serif;
+}
+
+body {
+    background-color: #f5f7f7;
+    
+}
+
+.cardcontain {
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    left: 20%;
+}
+
+.card {
+    background-color: white;
+    margin: auto;
+    width: 90%;
+    border-radius: 8px;
+    height: fit-content;
+    display: flex;
+    padding: 10px;
+    margin: 20px 0 20px 0;
+}
+
+.card:hover {
+    outline: solid rgb(55 112 255) 2px;
+    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    cursor: pointer;
+}
+
+.ele {
+    
+    margin: 10px;
+    font-size: 20px;
+}
+
+.imgsec {
+    flex: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.detsec {
+    flex: 5;
+    border-left: 2px solid #bababa;
+}
+
+.details {
+    display: inline-grid;
+    grid-template-columns: auto auto;
+    width: 80%;
+    margin: 10px;
+}
+
+.extrasec {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-left: 2px solid #bababa;
+}
+
+.eimg {
+    width: 150px;
+    height: 150px;
+}
+
+.ele:not(b) {
+    color: #808689;
+}
+
+i {
+    color: #233136;
+}
+
+b {
+    color: black;
+}
+
+.ename {
+    font-size: 24px;
+    padding: 5px;
+    margin: 10px 0 0 15px;
+    color: rgb(55 112 255);
+}

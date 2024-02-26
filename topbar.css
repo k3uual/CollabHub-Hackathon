@@ -1,0 +1,339 @@
+body {
+    font-family: "Nunito Sans", sans-serif;
+}
+
+.topbar {
+    background-color: white;
+    border-bottom: 2px solid #f5f7f7;
+    display: flex;
+    position: relative;
+    /* justify-content: space-around; */
+    align-items: center;
+    width: 98.35%;
+    padding: 20px;
+    top: -10px;
+    left: -10px;
+}
+
+#left, #right {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+#right {
+    position: relative;
+    right: 10%;
+    margin-left: auto;
+    cursor: pointer;
+}
+
+#left {
+    cursor: pointer;
+    left: 5%;
+}
+
+#navcontain {
+    position: relative;
+    left: 12%;
+    display: flex;
+    justify-content: space-between;
+    background-color: #f5f7f7;
+    border-radius: 10px;
+}
+
+#right:hover>.username,#right:hover>.pfparrow {
+    color: rgb(55 112 255);
+    text-decoration: underline;
+}
+
+#right:hover>.pfp {
+    outline: solid rgb(55 112 255) 1px;
+}
+
+#rightauth {
+    position: relative;
+    margin-left: auto;
+    display: flex;
+}
+
+#signinopt, #signupopt {
+    font-size: 20px;
+    padding: 20px;
+    color: #ccc;
+}
+
+#signinopt:hover, #signupopt:hover {
+    text-decoration: underline;
+    color: rgb(55 112 255);
+    cursor: pointer;
+}
+
+#signinopt {
+    border-right: 2px solid #f5f7f7;
+}
+
+.nav {
+    font-size: 18px;
+    position: relative;
+    padding: 10px 25px 10px 25px;
+}
+
+.nav:hover {
+    color: rgb(55 112 255);
+    background-color: #cbd9ff;
+}
+
+.lnav {
+    cursor: pointer;
+    border-radius: 10px 0 0 10px;
+}
+
+.rnav {
+    cursor: pointer;
+    border-radius: 0 10px 10px 0;
+}
+
+.midnav {
+    cursor: pointer;
+    border-left: 2px solid #ccc;
+    border-right: 2px solid #ccc;
+}
+
+.selectednav {
+    background-color: rgb(55 112 255);
+    color: white;
+    cursor: default;
+}
+
+.selectednav:hover {
+    text-decoration: none;
+    color: white;
+    background-color: rgb(55 112 255);
+}
+
+.webnametop {
+    position: relative;
+    left: 10px;
+    font-size: 24px;
+    color: rgb(55 112 255);
+}
+
+.pfparrow, .username {
+    font-size: 18px;
+    margin-left: 5px;
+}
+
+.logotop, .pfp {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+#menu {
+    display: none;
+}
+
+#menu.open {
+    display: block;
+    box-shadow: 0px 7px 11px -1px #999999;
+    width: 150px;
+    position: relative;
+    left: 80.25%;
+    top: -10px;
+}
+
+.menuopt {
+    list-style-type: none;
+    padding: 10px 0 10px 30px;
+    font-size: 18px;
+    transition: all 0.5s;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+}
+
+.menuopt:not(.lastopt) {
+    border-bottom: 2px solid #f5f7f7;
+}
+
+.menuopt:hover {
+    transform: translate(0,3px);
+    background-color: rgb(55 112 255);
+    color: white;
+    border: none;
+}
+
+.opttxt {
+    margin-right: auto;
+}.topbar {
+    border-bottom: 2px solid #f5f7f7;
+    display: flex;
+    position: relative;
+    /* justify-content: space-around; */
+    align-items: center;
+    width: 98.35%;
+    padding: 20px;
+    top: -10px;
+    left: -10px;
+}
+
+#left, #right {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+#right {
+    position: relative;
+    right: 10%;
+    margin-left: auto;
+    cursor: pointer;
+}
+
+#left {
+    cursor: pointer;
+    left: 5%;
+}
+
+#navcontain {
+    position: relative;
+    left: 12%;
+    display: flex;
+    justify-content: space-between;
+    background-color: #f5f7f7;
+    border-radius: 10px;
+}
+
+#right:hover>.username,#right:hover>.pfparrow {
+    color: rgb(55 112 255);
+    text-decoration: underline;
+}
+
+#right:hover>.pfp {
+    outline: solid rgb(55 112 255) 1px;
+}
+
+#rightauth {
+    position: relative;
+    margin-left: auto;
+    display: flex;
+}
+
+#signinopt, #signupopt {
+    font-size: 20px;
+    padding: 20px;
+    color: #ccc;
+}
+
+#signinopt:hover, #signupopt:hover {
+    text-decoration: underline;
+    color: rgb(55 112 255);
+    cursor: pointer;
+}
+
+#signinopt {
+    border-right: 2px solid #f5f7f7;
+}
+
+.nav {
+    font-size: 18px;
+    position: relative;
+    padding: 10px 25px 10px 25px;
+}
+
+.nav:hover {
+    color: rgb(55 112 255);
+    background-color: #cbd9ff;
+}
+
+.lnav {
+    cursor: pointer;
+    border-radius: 10px 0 0 10px;
+}
+
+.rnav {
+    cursor: pointer;
+    border-radius: 0 10px 10px 0;
+}
+
+.midnav {
+    cursor: pointer;
+    border-left: 2px solid #ccc;
+    border-right: 2px solid #ccc;
+}
+
+.selectednav {
+    background-color: rgb(55 112 255);
+    color: white;
+    cursor: default;
+}
+
+.selectednav:hover {
+    text-decoration: none;
+    color: white;
+    background-color: rgb(55 112 255);
+}
+
+.webnametop {
+    position: relative;
+    left: 10px;
+    font-size: 24px;
+    color: rgb(55 112 255);
+}
+
+.pfparrow, .username {
+    font-size: 18px;
+    margin-left: 5px;
+}
+
+.logotop, .pfp {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+#menu {
+    display: none;
+}
+
+#menu.open {
+    display: block;
+    box-shadow: 0px 7px 11px -1px #999999;
+    width: 150px;
+    position: absolute;
+    left: 80.25%;
+    top: 88px;
+    z-index: 1;
+    background-color: white;
+}
+
+.menuopt {
+    list-style-type: none;
+    padding: 10px 0 10px 30px;
+    font-size: 18px;
+    transition: all 0.5s;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+}
+
+.menuopt:not(.lastopt) {
+    border-bottom: 2px solid #f5f7f7;
+}
+
+.menuopt:hover {
+    transform: translate(0,3px);
+    background-color: rgb(55 112 255);
+    color: white;
+    border: none;
+}
+
+.micon {
+    position: relative;
+    left: -20px;
+}
+
+.opttxt {
+    margin-right: auto;
+}
