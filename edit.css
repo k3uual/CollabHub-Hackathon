@@ -1,0 +1,156 @@
+input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        body {
+            background-color: #f5f7f7;
+            font-family: "Nunito Sans", sans-serif;
+        }
+        
+        .infosection {
+            display: flex;
+            justify-content: space-around;
+            position: relative;
+            top: 30px;
+            width: 100%;
+            margin-bottom: 100px;
+            height: 120vh;
+        }
+
+        .pfpcontain {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-bottom: 20px;
+        }
+
+        #pfp {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+        }
+
+        #openimg{
+            display: none;
+        }
+
+        .bi {
+            border-radius: 50%;
+            padding: 5px;
+            background-color: #f8f8f8;
+            transform: rotate(270deg);
+            color: rgb(102, 102, 102);
+        }
+
+        #chngpic{
+            position: absolute;
+            top: 13%;
+            left: 54%;
+            transition: all .5s;
+        }
+
+        #chngpic:hover {
+            background-color: #ededed;
+            transform: rotate(270deg) translate(3px,0);
+        }
+        
+        .leftinfo, .rightinfo{
+            position: relative;
+            display: flex;
+            width: 44%;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+            border-radius: 10px;
+        }
+
+        .leftinfo {
+            left: 20px;
+        }
+
+        .rightinfo {
+            right: 20px;
+        }
+        
+        .containinfo {
+            position: relative;
+            width: 80%;
+            border-radius: 10px;
+            border: 2px solid #dddfdd;
+        }
+
+        legend {
+            color: #929292;
+        }
+        
+        .containinfo:not(.bioinfo) {
+            /* display: inline-grid;
+            grid-template-columns: auto auto; */
+            
+            font-size: 20px;
+            /* padding: 0 40px 0 40px; */
+        }
+
+        .bioinfo {
+            position: relative;
+            font-size: 20px;
+            bottom: -30px;
+        }
+
+        .cntinfo {
+            position: relative;
+            top: -30px;
+        }
+
+        .inp {
+            width: 100%;
+            padding: 8px;
+            margin: 6px 0 6px 0;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 20px;
+            background-color: #fcfcfc;
+            margin-bottom: 10px;
+        }
+
+        .inp:hover:not(#btn, .readonly) {
+            border: 1px solid #757575;
+        }
+
+        .inp:focus:not(.readonly){
+            outline: none;
+            outline: solid rgb(55 112 255) 2px;
+            background-color: white;
+        }
+
+        .readonly {
+            color: rgb(151, 151, 151);
+        }
+
+        .readonly:hover {
+            cursor: not-allowed;
+        }
+
+        .readonly:focus {
+            border-color: #ccc;
+            background-color: #fcfcfc;
+        }
+
+        #bioarea {
+            height: 315px;
+            width: 100%;
+            font-size: 20px;
+        }
+
+        .label {
+            position: relative;
+            margin-right: auto;
+        }
+
+        .infotxt, .label {
+            padding: 20px 0 0 0;
+        }

@@ -3,61 +3,114 @@
         <title>CollabHub - Profile</title>
     </head>
     <style>
-        .gnrinfo, .cntinfo {
-            display: flex;
+        body {
+            background-color: #f5f7f7;
+            font-family: "Nunito Sans", sans-serif;
         }
+        
+        .infosection {
+            display: flex;
+            justify-content: center;
+            position: relative;
+            top: 50px;
+            width: 100%;
+            border: 2px solid;
+            
+        }
+
+        .containinfo {
+            
+            position: relative;
+            width: 50%;
+            
+        }
+
+        .leftinfo, .rightinfo{
+            display: flex;
+            border: 2px solid green;
+            width: 50%;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* .gnrinfo, .cntinfo {
+            display: flex;
+            font-size: 20px;
+            justify-content: space-around;
+            align-items: left;
+        } */
+
+        .containinfo:not(.bioinfo) {
+            display: inline-grid;
+            border: 2px solid red;
+            grid-template-columns: auto auto;
+            font-size: 20px;
+        }
+
+        .bioinfo {
+            font-size: 20px;
+        }
+
+        .label {
+            position: relative;
+            margin-right: auto;
+        }
+
+        .infotxt {
+            position: relative;
+            margin-right: auto;
+        }
+
+        .infotxt, .label {
+            padding: 20px 0 0 0;
+        }
+        
     </style>
     <body>
-        <div>
-            <img id="pfp" src="/blank-pfp.png" for="pfp" ></img>
+        <div class="infosection">
+            <div class="leftinfo">
+                <div>
+                    <img id="pfp" src="../blank-pfp.png" for="pfp" ></img>
+                </div>
+                
+                <fieldset class="containinfo gnrinfo">
+                    <legend>General</legend>
+                
+                    <div class="label firsttxt">Name: </div>
+                    <div class="infotxt firsttxt">SomeName</div>
+                    
+                    <div class="label">Institute Name: </div>
+                    <div class="infotxt">Some Inst</div>
+                
+                    <div class="label">Department Name: </div>
+                    <div class="infotxt">Some Dept</div>
+                
+                    <div class="label">State: </div>
+                    <div class="infotxt">Some State</div>
+                
+                    <div class="label lasttxt">City: </div>
+                    <div class="infotxt lasttxt">Some City</div>
+                </fieldset>
+            </div>
+            <div class="rightinfo">
+                <fieldset  class="containinfo cntinfo">
+                    <legend>Contact</legend>
+                    
+                    <div class="label firsttxt">Email: </div>
+                    <div class="infotxt firsttxt">Some Email</div>
+                
+                    <div class="label lasttxt">Mobile No.: </div>
+                    <div class="infotxt lasttxt">Some No.</div>
+                    
+                </fieldset>
+            
+                <fieldset class="containinfo bioinfo">
+                    <legend>About you</legend>
+                        <div class="label firsttxt">Bio: </div>
+                        <div class="infotxt lasttxt">Add a Bio .</div>
+                </fieldset>
+            </div>
         </div>
-        <fieldset>
-            <legend>General</legend>
-            <div class="gnrinfo">
-                <div>Name: </div>
-                <div> SomeName</div>
-            </div>
-
-            <div class="gnrinfo">
-                <div class="inp">Institute Name: </div>
-                <div>Some Inst</div>
-            </div>
-            
-            <div class="gnrinfo">
-                <div class="inp">Department Name: </div>
-                <div>Some Dept</div>
-            </div>
-            
-            <div class="gnrinfo">
-                <div class="inp">State: </div>
-                <div>Some State</div>
-            </div>
-            
-            <div class="gnrinfo">
-                <div class="inp">City: </div>
-                <div>Some City</div>
-            </div>
-        </fieldset>
-
-        <fieldset>
-            <legend>Contact</legend>
-            <div class="cntinfo">
-                <div class="inp">Email: </div>
-                <div>Some Email</div>
-            </div>
-
-            <div class="cntinfo">
-                <div class="inp">Mobile No.: </div>
-                <div>Some No.</div>
-            </div>
-        </fieldset>
-
-        <fieldset>
-            <legend>Bio</legend>
-            <div class="bioinfo">
-                <div class="inp">About you: </div>
-                <div>Some About you</div>
-            </div>
-        </fieldset>
     </body>
 </html>
