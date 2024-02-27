@@ -35,31 +35,33 @@
     
         // Read file contents
         if ($image["error"] === UPLOAD_ERR_OK) {
-            $imageData = file_get_contents($image["tmp_name"]);
+            $imageData = file_get_contents($_FILES["uimg"]["tmp_name"]);
+            $fileType = $_FILES["uimg"]["type"];
             echo "image uploaded";
         }
         else {
             $imageData = NULL;
+            $fileType = NULL;
             echo "image not uploaded";
         }
         
         // Prepare and bind the INSERT statement
-        $stmt = $con->prepare("INSERT INTO $table (pic,id,name,inst,dep,email,mob,state,city,pass,$udata) 
-        VALUES (?,$uid,'$uname','$inst','$dept','$email',$mobno,'$state','$city','$pass','$uinfo')");
-        $stmt->bind_param("s", $imageData);
+        $stmt = $con->prepare("INSERT INTO $table (pic,imgType,id,name,inst,dep,email,mob,state,city,pass,$udata) 
+        VALUES (?,?,$uid,'$uname','$inst','$dept','$email',$mobno,'$state','$city','$pass','$uinfo')");
+        $stmt->bind_param("ss", $imageData, $fileType);
 
         // Execute the statement
         if ($stmt->execute()) {
-            echo "data uploaded successfully.";
+            setcookie("userid",$uid,time() + (10 * 365 * 24 * 60 * 60));
+            setcookie("username",$uname,time() + (10 * 365 * 24 * 60 * 60));
+            //header('location:index1.html');
         } else {
-            echo "Error uploading data: " . $stmt->error;
+            $stmt->close();
+            $con->close();
+            //header('location:SignUp.html');
         }
-
         // Close statement and database connection
         $stmt->close();
         $con->close();
-
-    setcookie("userid",$uid,time() + (10 * 365 * 24 * 60 * 60));
-    setcookie("username",$uname,time() + (10 * 365 * 24 * 60 * 60));
     
 ?>

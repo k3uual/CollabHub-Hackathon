@@ -9,7 +9,7 @@
         <?php
             
             if(!isset($_COOKIE['userid'])){
-                header('location:index1.html');
+                //header('location:../index1.html');
             }
             else{
                 $id = $_COOKIE['userid'];
@@ -68,7 +68,7 @@
                 <div class="menuopt"><i class="bi-people micon"></i><div class="opttxt">My Collabs</div></div>
                 <div class="menuopt"><i class="bi-person-add micon"></i><div class="opttxt">My Team</div></div>
                 <div class="menuopt"><i class="bi-plus-circle micon"></i><div class="opttxt">Organize</div></div>
-                <div class="menuopt lastopt"><i class="bi-box-arrow-right micon"></i><div class="opttxt">Sign Out</div></div>
+                <div class="menuopt lastopt" onclick="document.location.href = '../SignOut.php'"><i class="bi-box-arrow-right micon"></i><div class="opttxt">Sign Out</div></div>
             </div>
         </div>
         <form action="Login.html" method="post" class="infosection" enctype="multipart/form-data">
@@ -77,7 +77,7 @@
                     <?php 
                     if($flag){
                     ?>
-                    <img class="pfp" src="../display_img.php?userid=<?php echo $_COOKIE['userid'];?>&usertype=students" alt="pfp">
+                    <img id="pfp" src="../display_img.php?userid=<?php echo $_COOKIE['userid'];?>&usertype=students" alt="pfp">
                     <?php }
                     else{
                     ?>

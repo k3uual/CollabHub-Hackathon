@@ -15,7 +15,7 @@ input[type="number"]::-webkit-inner-spin-button,
             position: relative;
             top: 30px;
             width: 100%;
-            margin-bottom: 100px;
+            margin-bottom: 50px;
             height: 120vh;
         }
 
@@ -46,7 +46,7 @@ input[type="number"]::-webkit-inner-spin-button,
 
         #chngpic{
             position: absolute;
-            top: 13%;
+            top: 10%;
             left: 54%;
             transition: all .5s;
         }
