@@ -111,7 +111,9 @@
         student.addEventListener('change', function() {
             if (student.checked) {
                 sem.style.display = 'block';
+                sem.setAttribute('required','');
                 post.style.display = 'none';
+                post.removeAttribute('required','');
                 post.value = "";
             }
         });
@@ -119,7 +121,9 @@
         faculty.addEventListener('change', function() {
             if (faculty.checked) {
                 post.style.display = 'block';
+                post.setAttribute('required','');
                 sem.style.display = 'none';
+                sem.removeAttribute('required','');
                 sem.value = "";
             }
         });

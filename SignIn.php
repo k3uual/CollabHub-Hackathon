@@ -59,10 +59,10 @@
 
                 <div class="radios">
                     <label class="radele" for="student">
-                        <input class="type" id="student" type="radio" name="utype" value="student" checked>Student
+                        <input class="type" id="student" type="radio" name="utype" value="students" checked>Student
                     </label>
                     <label class="radele" for="faculty">
-                        <input class="type" id="faculty" type="radio" name="utype" value="faculty">Faculty
+                        <input class="type" id="faculty" type="radio" name="utype" value="faculties">Faculty
                     </label>
                 </div>
                 <div class="end">

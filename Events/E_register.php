@@ -30,10 +30,10 @@
                     <div class="nav rnav">Issues</div>
                 </div>
                 
-                <!-- <div id="rightauth">
+                <div id="rightauth">
                     <div id="signinopt" onclick="document.location.href = 'SignIn.php'">Sign In</div>
                     <div id="signupopt" onclick="document.location.href = 'SignUp.html'">Sign Up</div>
-                </div> -->
+                </div>
 
                 <div id="right">
                     <img class="pfp" src="../blank-pfp.png" alt="pfp">
@@ -50,7 +50,7 @@
                 <div class="menuopt lastopt"><i class="bi-box-arrow-right micon"></i><div class="opttxt">Sign Out</div></div>
             </div>
         </div>
-        <form action="E_insert.php" method="post" enctype="multipart/form-data">
+        <div action="Login.html" method="post" enctype="multipart/form-data">
         <div class="infosection" >
             <div class="leftinfo">
                 <div class="pfpcontain">
@@ -77,28 +77,23 @@
                     <div class="label">Mininmum number of members:</div>
                     <input type="number" class="inp" name="min">
 
-                    <div class="label">Organized By:</div>
-                    <input type="text" class="inp" name="org">
-
                     <div class="label">Venue of Event:</div>
                     <div class="radios">
                         <label class="radele" for="online">
-                            <input class="type" id="online" type="radio" name="venue" value="online" checked>Online
+                            <input class="type" id="online" type="radio" name="utype" value="online" checked>Online
                         </label>
                         <label class="radele" for="offline">
-                            <input class="type" id="offline" type="radio" name="venue" value="offline">Offline
+                            <input class="type" id="offline" type="radio" name="utype" value="offline">Offline
                         </label>
                     </div>
-                    <div id="city" style="display: none;">
-                        <div class="label">City:</div>
-                        <input type="text" class="inp" name="city">
-                    </div>
                     
-                    <div id="state" style="display: none;">
-                        <div class="label">State:</div>
-                        <input type="text" class="inp" name="state">
-                    </div>
+                    <div class="label">City:</div>
+                    <input type="text" class="inp" name="city">
+                
+                    <div class="label">State:</div>
+                    <input type="text" class="inp" name="state">
                     
+
                 </fieldset>
             
             
@@ -124,13 +119,13 @@
                     <input type="datetime-local" class="inp" name="regstart">
         
                     <div class="label">Registration Ends At:</div>
-                    <input type="datetime-local" class="inp" name="regend">
+                    <input type="datetime-local" class="inp" name="regends">
         
                     <div class="label">Event Starts At:</div>
-                    <input type="datetime-local" class="inp" name="eventstart">
+                    <input type="datetime-local" class="inp" name="eventstarts">
         
                     <div class="label">Event Ends At:</div>
-                    <input type="datetime-local" class="inp" name="eventend">
+                    <input type="datetime-local" class="inp" name="eventends">
                 </fieldset>
 
                 <fieldset class="containinfo introinfo">
@@ -152,6 +147,8 @@
         </div>
             
         </form>
+        
+        
         
     </body>
 
@@ -177,31 +174,6 @@
             let image = document.getElementById("pfp");
             image.src = URL.createObjectURL(event.target.files[0]);
         };
-
-        const online = document.getElementById('online');
-        const offline = document.getElementById('offline');
-        const city = document.getElementById('city');
-        const state = document.getElementById('state');
-
-        online.addEventListener('change', function() {
-            if (online.checked) {
-                city.style.display = 'none';
-                city.removeAttribute('required','');
-                state.style.display = 'none';
-                state.removeAttribute('required','');
-                city.value = "";
-                state.value = "";
-            }
-        });
-    
-        offline.addEventListener('change', function() {
-            if (offline.checked) {
-                city.style.display = 'block';
-                city.setAttribute('required','');
-                state.style.display = 'block';
-                state.setAttribute('required','');
-            }
-        });
         
     </script>
 </html>

@@ -1,6 +1,7 @@
-<?php 
+<?php
     include("connect.php");
 
+    $id = $_POST['uid'];
     $uname = $_POST['uname'];
     $inst = $_POST['inst'];
     $dept = $_POST['dept'];
@@ -8,9 +9,10 @@
     $mobno = $_POST['mobno'];
     $state = $_POST['state'];
     $city = $_POST['city'];
-    $pass = $_POST['pass'];
+    $bio = $_POST['bio'];
     $utype = $_POST['utype'];
-    if($utype == 'student') {
+    echo $utype;
+    if($utype == 'students') {
         $uinfo = $_POST['sem'];
         $udata = 'sem';
         $table = 'students';
@@ -38,29 +40,17 @@
             $imageData = file_get_contents($_FILES["uimg"]["tmp_name"]);
             $fileType = $_FILES["uimg"]["type"];
         }
-        else {
-            $imageData = NULL;
-            $fileType = NULL;
-        }
         
         // Prepare and bind the INSERT statement
-        $stmt = $con->prepare("INSERT INTO $table (pic,imgType,id,name,inst,dep,email,mob,state,city,pass,$udata) 
-        VALUES (?,?,$uid,'$uname','$inst','$dept','$email',$mobno,'$state','$city','$pass','$uinfo')");
-        $stmt->bind_param("ss", $imageData, $fileType);
-
-        // Execute the statement
-        if ($stmt->execute()) {
-            setcookie("userid",$uid,time() + (10 * 365 * 24 * 60 * 60));
-            setcookie("username",$uname,time() + (10 * 365 * 24 * 60 * 60));
-            setcookie("usertype",$utype,time() + (10 * 365 * 24 * 60 * 60));
-            //header('location:index1.html');
-        } else {
-            $stmt->close();
-            $con->close();
-            //header('location:SignUp.html');
+        if($image['name'] == ''){
+            $stmt = $con->prepare("UPDATE $utype SET name = '$uname', state = '$state', city = '$city', inst = '$inst', dep = '$dept', 
+            email = '$email', mob = $mobno, $udata = '$uinfo', `desc` = '$bio' WHERE id = $id");
         }
-        // Close statement and database connection
+        else{
+            $stmt = $con->prepare("UPDATE $utype SET pic = ?, imgType = ?, name = '$uname', state = '$state', city = '$city', inst = '$inst', dep = '$dept', 
+            email = '$email', mob = $mobno, $udata = '$uinfo', `desc` = '$bio' WHERE id = $id");
+            $stmt->bind_param("ss", $imageData, $fileType);
+        }
+        $stmt->execute();
         $stmt->close();
-        $con->close();
-    
 ?>

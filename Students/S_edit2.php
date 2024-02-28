@@ -7,14 +7,14 @@
     <link rel="stylesheet" href="../topbar.css">
     <body>
         <?php
-            
             if(!isset($_COOKIE['userid'])){
                 //header('location:../index1.html');
             }
             else{
                 $id = $_COOKIE['userid'];
+                $utype = $_COOKIE['usertype'];
                 include('connect.php');
-                $query = "Select * from students where id=$id";
+                $query = "Select * from $utype where id=$id";
                 $cmd = mysqli_query($con,$query);
                 $row = mysqli_fetch_array($cmd);
             }
@@ -56,7 +56,7 @@
                     ?>
                     <img class="pfp" src="../blank-pfp.png" alt="pfp">
                     <?php }?>
-                    <span class="username">Name</span>
+                    <span class="username"><?php echo $_COOKIE['username'];?></span>
                     <i class="bi-caret-down-fill pfparrow"></i>
                 </div>
                 <?php
@@ -71,7 +71,8 @@
                 <div class="menuopt lastopt" onclick="document.location.href = '../SignOut.php'"><i class="bi-box-arrow-right micon"></i><div class="opttxt">Sign Out</div></div>
             </div>
         </div>
-        <form action="Login.html" method="post" class="infosection" enctype="multipart/form-data">
+        <form action="../DoEdit.php" method="post" enctype="multipart/form-data">
+        <div class="infosection">
             <div class="leftinfo">
                 <div class="pfpcontain">
                     <?php 
@@ -89,25 +90,26 @@
 
                 <fieldset class="containinfo gnrinfo">
                     <legend>General</legend>
-
+                    
                     <div class="label firsttxt">User-ID: </div>
                     <input class="inp readonly" type="text" name="uid" value="<?php echo $row['id'];?>" readonly>
-
+                    
                     <div class="label firsttxt">Name: </div>
                     <input class="inp" type="text" placeholder="User Name" value="<?php echo $row['name'];?>" name="uname" >
-
+                    
                     <div class="label">Institute Name: </div>
                     <input class="inp" type="text" placeholder="Institute Name" value="<?php echo $row['inst'];?>" name="inst" >
-
+                    
                     <div class="label">Department Name: </div>
                     <input class="inp" type="text" placeholder="Department Name" value="<?php echo $row['dep'];?>" name="dept" >
-
+                    
                     <div class="label">State: </div>
                     <input class="inp" type="text" placeholder="State" value="<?php echo $row['state'];?>" name="state">
-
+                    
                     <div class="label lasttxt">City: </div>
                     <input class="inp" type="text" placeholder="City" value="<?php echo $row['city'];?>" name="city">
-
+                    
+                    <input type="button" onclick="document.location.href = '?uid='" class="btn" id="chng" value="Change Password">
                 </fieldset>
             </div>
             <div class="rightinfo">
@@ -124,14 +126,25 @@
             
                 <fieldset class="containinfo bioinfo">
                     <legend>About you</legend>
-                    
+                        <div class="label lasttxt">Semester: </div>
+                        <input class="inp" type="number" placeholder="Semester" value="<?php echo $row['sem'];?>" name="sem">
+                        
                         <div class="label firsttxt">Bio: </div>
                         <textarea name="bio" id="bioarea" cols="30" rows="10" placeholder="Add a Bio."><?php echo $row['desc'];?></textarea>
                 </fieldset>
             </div>
-
+        </div>
+        <div class="btncontain">
+            <input type="hidden" name="utype" value="<?php echo $utype;?>">
+            <input type="submit" class="btn" id="edit" value='Edit Profile'>
         </form>
     </body>
+
+        <form action="">
+            <input type="hidden" name="userid" value="">
+            <input type="submit" class="btn" id="delete" value="Delete Profile">
+        </form>
+    </div>
 
     <script>
         let profile = document.getElementById("right");

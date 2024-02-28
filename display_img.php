@@ -5,7 +5,7 @@ include('connect.php');
 // Fetch image data from database
     if (isset($_GET['userid'])) {
         $type = $_GET['usertype'];
-        $sql = "SELECT imgType,pic FROM students WHERE id=?";
+        $sql = "SELECT imgType,pic FROM $type WHERE id=?";
         $statement = $con->prepare($sql);
         $id = $_GET['userid'];
         $statement->bind_param("i", $id);

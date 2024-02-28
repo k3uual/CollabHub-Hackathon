@@ -16,20 +16,14 @@ input[type="number"]::-webkit-inner-spin-button,
             top: 30px;
             width: 100%;
             margin-bottom: 50px;
-            height: 120vh;
-        }
-
-        .pfpcontain {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding-bottom: 20px;
+            height: 195vh;
         }
 
         #pfp {
             width: 100px;
             height: 100px;
-            border-radius: 50%;
+            border-radius: 20px;
+            
         }
 
         #openimg{
@@ -46,8 +40,8 @@ input[type="number"]::-webkit-inner-spin-button,
 
         #chngpic{
             position: absolute;
-            top: 10%;
-            left: 54%;
+            top: 7.5%;
+            left: 56%;
             transition: all .5s;
         }
 
@@ -80,18 +74,15 @@ input[type="number"]::-webkit-inner-spin-button,
             width: 80%;
             border-radius: 10px;
             border: 2px solid #dddfdd;
+            
         }
 
         legend {
             color: #929292;
         }
         
-        .containinfo:not(.bioinfo) {
-            /* display: inline-grid;
-            grid-template-columns: auto auto; */
-            
-            font-size: 20px;
-            /* padding: 0 40px 0 40px; */
+        .containinfo:not(.gnrinfo) {
+            margin-top: 30px;
         }
 
         .bioinfo {
@@ -127,27 +118,25 @@ input[type="number"]::-webkit-inner-spin-button,
             background-color: white;
         }
 
-        .readonly {
-            color: rgb(151, 151, 151);
+        .radios {
+            display: flex;
+            color: #7e7e7e;
+            padding: 5px;
+            justify-content: space-around;
+            width: 40%;
+            font-size: 20px;
         }
 
-        .readonly:hover {
-            cursor: not-allowed;
-        }
 
-        .readonly:focus {
-            border-color: #ccc;
-            background-color: #fcfcfc;
-        }
-
-        #bioarea {
+        #rule, #overview {
             border-radius: 4px;
-            height: 315px;
+            height: 300px;
             width: 100%;
             font-size: 20px;
         }
 
         .label {
+            font-size: 20px;
             position: relative;
             margin-right: auto;
         }
@@ -171,37 +160,21 @@ input[type="number"]::-webkit-inner-spin-button,
             position: relative;
         }
 
-        #chng {
-            background-color: rgb(55 112 255);
-            width: 100%;
-            margin: 10px 0 0 0;
+        .btncontain {
+            display: flex;
+            justify-content: center;
+            
         }
         
         .btn:hover {
             transform: translate(0, -3px);
             transition: all 0.5s;
+            
         }
-        
-        #edit {
-            height: 40px;
+        #post {
             background-color: rgb(55 112 255);
         }
-        
-        #edit:hover, #chng:hover {
+
+        #post:hover {
             background-color: rgb(11, 21, 165);
-        }
-        
-        #delete {
-            /* top: -69px; */
-            /* left: 64%; */
-            background-color: rgb(255, 71, 71);
-        }
-
-        .btncontain {
-            display: flex;
-            justify-content: space-around;
-        }
-
-        #delete:hover {
-            background-color: rgb(185, 0, 0);
         }
