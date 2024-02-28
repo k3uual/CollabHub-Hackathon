@@ -9,8 +9,9 @@
 
 <?php
     if(isset($_POST['dte'])){
-        $str = strtotime($_POST['dte']);
-        $newformat = date('d M Y',$str);
-        echo $newformat;
+        $date = strtotime($_POST['dte']);
+        $darr = getdate($date);
+        var_dump($darr).'<br>';
+        echo cal_days_in_month(CAL_GREGORIAN, $darr['mon'], $darr['year']);
     }
 ?>

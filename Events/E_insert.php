@@ -24,10 +24,12 @@
     if($_POST['venue'] == 'offline') {
         $state = $_POST['state'];
         $city = $_POST['city'];
-        $venue = $state . ', ' . $city;
+        $loc = $_POST['loc'];
     }
     else {
-        $venue = 'online';
+        $state = 'online';
+        $city = 'online';
+        $loc = 'online';
     }
 
     if($max == '' || $min == ''){
@@ -60,8 +62,8 @@
         }
         
         // Prepare and bind the INSERT statement
-        $stmt = $con->prepare("INSERT INTO events (pic,imgType,id,`name`,`type`,reg_cost,`start`,`end`,reg_start,reg_end,prize1,prize2,prize3,loc,org,`min`,`max`,`desc`,rules,want_reg,is_big,f_id) 
-        VALUES (?,?,$id,'$name','$etype','$rcost','$estart','$eend','$rstart','$rend','$prize1','$prize2','$prize3','$venue','$org',$min,$max,'$overview','$rule',1,'$is_big',$fid)");
+        $stmt = $con->prepare("INSERT INTO events (pic,imgType,id,`name`,`type`,reg_cost,`start`,`end`,reg_start,reg_end,prize1,prize2,prize3,`state`,city,loc,org,`min`,`max`,`desc`,rules,want_reg,is_big,f_id) 
+        VALUES (?,?,$id,'$name','$etype','$rcost','$estart','$eend','$rstart','$rend','$prize1','$prize2','$prize3','$state','$city','$loc','$org',$min,$max,'$overview','$rule',1,'$is_big',$fid)");
         $stmt->bind_param("ss", $imageData, $fileType);
 
         if($stmt->execute())

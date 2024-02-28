@@ -15,6 +15,19 @@
             -webkit-appearance: none;
             margin: 0;
         }
+
+        .member {
+            display: flex;
+            
+        }
+
+        #mininp, #maxinp {
+            width: 90%;
+        }
+
+        .max {
+            margin-right: auto;
+        }
     </style>
     
     <body>
@@ -70,13 +83,19 @@
 
                     <div class="label">Registration Cost:</div>
                     <input type="number" class="inp" name="regcost">
-
-                    <div class="label">Maximum number of members:</div>
-                    <input type="number" class="inp" name="max">
+                    <div class="member">
+                        <div class="min">
+                            <div class="label">Mininmum no. of members:</div>
+                            <input type="number" id="mininp" class="inp" name="min">
+                        </div>
+                        
+                        <div class="max">
+                            <div class="label">Maximum no. of members:</div>
+                            <input type="number" id="maxinp" class="inp" name="max">
+                        </div>
+                    </div>
                     
-                    <div class="label">Mininmum number of members:</div>
-                    <input type="number" class="inp" name="min">
-
+                    
                     <div class="label">Organized By:</div>
                     <input type="text" class="inp" name="org">
 
@@ -97,6 +116,11 @@
                     <div id="state" style="display: none;">
                         <div class="label">State:</div>
                         <input type="text" class="inp" name="state">
+                    </div>
+
+                    <div id="loc" style="display: none;">
+                        <div class="label">Address:</div>
+                        <input type="text" class="inp" name="loc">
                     </div>
                     
                 </fieldset>
@@ -182,6 +206,8 @@
         const offline = document.getElementById('offline');
         const city = document.getElementById('city');
         const state = document.getElementById('state');
+        const loc = document.getElementById('loc');
+
 
         online.addEventListener('change', function() {
             if (online.checked) {
@@ -189,8 +215,11 @@
                 city.removeAttribute('required','');
                 state.style.display = 'none';
                 state.removeAttribute('required','');
+                loc.style.display = 'none';
+                loc.removeAttribute('required','');
                 city.value = "";
                 state.value = "";
+                loc.value = "";
             }
         });
     
@@ -200,6 +229,8 @@
                 city.setAttribute('required','');
                 state.style.display = 'block';
                 state.setAttribute('required','');
+                loc.style.display = 'block';
+                loc.setAttribute('required','');
             }
         });
         
