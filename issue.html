@@ -1,24 +1,22 @@
 <html>
     <head>
-        <title>
-            Manage area - CollabHub
-        </title>
+        <title>Issue - CollabHub</title>
     </head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="../topbar.css">
-    <link rel="stylesheet" href="../iedit.css">
+    <link rel="stylesheet" href="icard.css">
+    <link rel="stylesheet" href="topbar.css">
 
     <body>
         <div id="topsection">
             <div class="topbar">
                 <div id="left">
-                    <img class="logotop" src="../Logo.png" alt="Logo">
+                    <img class="logotop" src="Logo.png" alt="Logo">
                     <span class="webnametop"><b>CollabHub</b></span>
                 </div>
                 <div id="navcontain">
                     <div class="nav lnav ">Events</div>
                     <div class="nav midnav ">Collabs</div>
-                    <div class="nav rnav">Issues</div>
+                    <div class="nav rnav selectednav">Issues</div>
                 </div>
                 
                 <!-- <div id="rightauth">
@@ -27,7 +25,7 @@
                 </div> -->
 
                 <div id="right">
-                    <img class="pfp" src="../blank-pfp.png" alt="pfp">
+                    <img class="pfp" src="blank-pfp.png" alt="pfp">
                     <span class="username">Name</span>
                     <i class="bi-caret-down-fill pfparrow"></i>
                 </div>
@@ -41,24 +39,17 @@
                 <div class="menuopt lastopt"><i class="bi-box-arrow-right micon"></i><div class="opttxt">Sign Out</div></div>
             </div>
         </div>
-        <form action="" method="post">
-            <div class="icontain">
-                <fieldset>
-                    <legend>Title</legend>
-                    <input class="inp" type="text" name="ititle">
-                </fieldset>
-
-                <fieldset class="infocontain">
-                    <legend>Description</legend>
-                    <textarea name="idesc" id="info" cols="30" rows="10"></textarea>
-                </fieldset>
-
+        <div class="icardcontain">
+            <div class="icard" onclick="document.location.href = 'index1.html'">
+                <div class="titlecontain">
+                    <div class="title">fadfasdfasasdfassad</div>
+                </div>
+                <div class="posted">
+                    <div class="txt">Posted on:</div>
+                    <div class="postdate">00 May, 2004</div>
+                </div>
             </div>
-            <div class="btncontain">
-                <input class="btn" type="submit" value="Post">
-            </div>
-            
-        </form>
+        </div>
     </body>
     <script>
         let profile = document.getElementById("right");
@@ -72,4 +63,5 @@
             profile2.classList.toggle("open");
         });
     </script>
+
 </html>

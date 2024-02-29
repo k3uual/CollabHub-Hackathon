@@ -1,0 +1,73 @@
+:root {
+    font-family: "Nunito Sans", sans-serif;
+}
+
+body {
+    background-color: #f5f7f7;
+}
+
+.titlecontain {
+    border-left: 2px solid #bababa;
+    flex: 4;
+    position: relative;
+    left: 5%;
+    height: 44px;
+    display: flex;
+    align-items: center;
+}
+
+.title {
+    font-size: 25px;
+    position: relative;
+    left: 20px;
+}
+
+.icardcontain {
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+}
+
+.icard {
+    background-color: white;
+    margin: auto;
+    width: 90%;
+    border-radius: 8px;
+    height: fit-content;
+    display: flex;
+    padding: 20px;
+    margin: 20px 0 20px 0;
+    align-items: center;
+}
+
+.icard:hover {
+    outline: solid rgb(55 112 255) 2px;
+    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    cursor: pointer;
+}
+
+.posted {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: auto;
+    flex: 1;
+    /* border: 2px solid; */
+    border-left: 2px solid #bababa;
+}
+
+.txt {
+    font-weight: bold;
+    font-size: 18px;
+    
+}
+
+.postdate {
+    color: #808689;
+    font-size: 20px;
+}

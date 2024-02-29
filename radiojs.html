@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Convert Divs to Radio Buttons</title>
+</head>
+<body>
+
+<div id="div1">Option 1</div>
+<div id="div2">Option 2</div>
+
+<script>
+  // Get the div elements
+  var div1 = document.getElementById("div1");
+  var div2 = document.getElementById("div2");
+
+  // Create radio input elements
+  var radio1 = document.createElement("input");
+  radio1.type = "radio";
+  radio1.name = "options";
+  radio1.value = "option1";
+  radio1.id = "radio1";
+
+  var radio2 = document.createElement("input");
+  radio2.type = "radio";
+  radio2.name = "options";
+  radio2.value = "option2";
+  radio2.id = "radio2";
+
+  // Add event listeners to the radio buttons
+  radio1.addEventListener("click", function() {
+    div1.style.backgroundColor = "lightblue";
+    div2.style.backgroundColor = "";
+  });
+
+  radio2.addEventListener("click", function() {
+    div2.style.backgroundColor = "lightblue";
+    div1.style.backgroundColor = "";
+  });
+
+  // Hide the original divs
+  div1.style.display = "none";
+  div2.style.display = "none";
+
+  // Insert the radio buttons before the original divs
+  div1.parentNode.insertBefore(radio1, div1);
+  div1.parentNode.insertBefore(document.createElement("br"), div1);
+  div2.parentNode.insertBefore(radio2, div2);
+  div2.parentNode.insertBefore(document.createElement("br"), div2);
+</script>
+
+</body>
+</html>

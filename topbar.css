@@ -141,6 +141,7 @@ body {
     position: relative;
     left: 80.25%;
     top: -10px;
+    z-index: 100;
 }
 
 .menuopt {

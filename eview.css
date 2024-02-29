@@ -1,0 +1,159 @@
+
+body {
+    background-color: #f5f7f7;
+    font-family: "Nunito Sans", sans-serif;
+}
+.toptitle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    position: relative;
+    width: 98.35%;
+    padding: 20px;
+    top: -10px;
+    left: -10px;
+}
+.name {
+    left: 20px;
+    font-size: 28px;
+    text-decoration: underline;
+}
+
+#epic {
+    position: relative;
+    right: 20px;
+    height: 100px;
+    width: 100px;
+    border-radius: 20px;
+    left: -30px;
+}
+
+.enroll {
+    position: fixed;
+    display: flex;
+    background-color: white;
+    flex-direction: column;
+    left: 80%;
+    top: 40%;
+    padding: 10px 40px 40px 40px;
+    border-radius: 20px;
+    z-index: 10;
+}
+
+.ensec {
+    margin-top: 20px;
+}
+
+.entxt {
+    font-weight: 700;
+    font-size: 22px;
+}
+
+.entxt2 {
+    font-weight: 700;
+    color: rgb(55 112 255);
+    font-size: 24px;
+}
+
+.enbtn {
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: all 1s;
+    width: 100%;
+    padding: 8px;
+    margin: 6px 0 6px 0;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 20px;
+    position: relative;
+    top: 20px;
+    height: 40px;
+    background-color: rgb(55 112 255);
+}
+
+.enbtn:hover {
+    background-color: rgb(11, 21, 165);
+    transform: translate(0, -3px);
+    transition: all 0.5s;
+}
+
+.infosec, .cmtcontain {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 30px;
+    width: 100%;
+    margin-bottom: 50px;
+    height: fit-content;
+    background-color: white;
+    width: 70%;
+    left: 5%;
+    padding: 40px 0 50px 0;
+    border-radius: 20px;
+}
+
+fieldset {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    width: 80%;
+    border-radius: 10px;
+    border: 2px solid #dddfdd;
+    margin-bottom: 20px;
+}
+
+.member {
+    display: flex;
+    width: 30%;
+    justify-content: space-between;
+}
+
+.label, .info {
+    position: relative;
+    left: 20px;
+}
+
+legend {
+    font-size: 17px;
+    color: #929292;
+}
+
+.label {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.info {
+    font-size: 20px;
+    padding-bottom: 20px;
+}
+
+.comment {
+    width: 80%;
+}
+
+.cmttop {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    border: 2px solid black;
+}
+
+.pfp{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.vote {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    left: -5px;
+}

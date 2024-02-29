@@ -1,0 +1,137 @@
+<html>
+    <head>
+        <title>Some JS</title>
+    </head>
+    <style>
+        #up, #down {
+            width: 100px;
+            height: 100px;
+        }
+        #up.unfill, #down.unfill {
+            background-color: red;
+        }
+        #up.fill, #down.fill {
+            background-color: green;
+        }
+    </style>
+    <body>
+        <div id="vote">
+            <div id="up" class="unfill">upvote</div>
+            <div id="down" class="unfill">downvote</div>
+        </div>
+        <div>
+            <div id="upcount">0</div>
+            <div id="downcount">0</div>
+        </div>
+        
+    </body>
+    <script>
+        let vote = document.getElementById("vote");
+        let up = document.getElementById("up");
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            var up = document.getElementById("up");
+            var down = document.getElementById("down");
+            let call = "operate.php";
+            // Add event listeners to the buttons
+            var dcount = document.getElementById("downcount");
+            var ucount = document.getElementById("upcount");
+            // Get the current number inside the div
+            var dcurrent = parseInt(dcount.textContent);
+            var ucurrent = parseInt(ucount.textContent);
+            // Increment the number
+            
+            up.addEventListener('click', function() {
+                if (up.classList.contains("unfill")) {
+                    up.classList.add("fill");
+                    up.classList.remove("unfill");
+                    var incrementup = ucurrent + 1;
+                    ucount.textContent = decrementup;
+                    call = 'operate.php?id=upvote&opr=insert';
+                    if (down.classList.contains("fill")){
+                        down.classList.remove("fill");
+                        down.classList.add("unfill");
+                        call = 'operate.php?id=upvote&opr=update';
+                        var decrementdown = dcurrent - 1;
+                        dcount.textContent = decrementdown;
+                    }
+                } 
+                else if(up.classList.contains("fill")) {
+                    up.classList.add("unfill");
+                    up.classList.remove("fill");
+                    call = 'operate.php?id=upvote&opr=delete';
+                    var decrementup = ucurrent - 1;
+                    ucount.textContent = decrementup;
+                }
+                fetch(call)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    console.log(data);
+                })
+                .catch(error => {
+                    console.error('There was a problem with the fetch operation:', error);
+                });
+            });
+
+            down.addEventListener('click', function() {
+                if (down.classList.contains("unfill")) {
+                    down.classList.add("fill");
+                    down.classList.remove("unfill");
+                    call = 'operate.php?id=downvote&opr=insert';
+                    var incrementdown = dcurrent + 1;
+                    dcount.textContent = incrementdown;
+                    if (up.classList.contains("fill")){
+                        up.classList.remove("fill");
+                        up.classList.add("unfill");
+                        call = 'operate.php?id=downvote&opr=update';
+                        var decrementup = ucurrent - 1;
+                        ucount.textContent = decrementup;
+                    }
+                } 
+                else if(down.classList.contains("fill")) {
+                    down.classList.add("unfill");
+                    down.classList.remove("fill");
+                    call = 'operate.php?id=downvote&opr=delete';
+                    var decrementdown = dcurrent - 1;
+                    dcount.textContent = decrementdown;
+                }
+                fetch(call)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                  console.log(data); // Response from PHP file
+                  // You can process the response data here
+                })
+                .catch(error => {
+                    console.error('There was a problem with the fetch operation:', error);
+                });
+            });
+            
+        });
+        function callPHP() {
+            fetch('test.php')
+            .then(response => {
+                if (!response.ok) {
+                throw new Error('Network response was not ok');
+                }
+                return response.text();
+            })
+            .then(data => {
+                console.log(data); // Response from PHP file
+                // You can process the response data here
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+            });
+        }
+    </script>
+</html>
