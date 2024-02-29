@@ -31,28 +31,61 @@
     </style>
     
     <body>
+    <?php
+            if(!isset($_COOKIE['userid'])){
+                //header('location:../index1.html');
+            }
+            else{
+                $id = $_COOKIE['userid'];
+                $utype = $_COOKIE['usertype'];
+                include('connect.php');
+                $topq = "Select * from $utype where id=$id";
+                $topcmd = mysqli_query($con,$topq);
+                $toprow = mysqli_fetch_array($topcmd);
+            }
+        ?>
         <div id="topsection">
             <div class="topbar">
                 <div id="left">
                     <img class="logotop" src="../Logo.png" alt="Logo">
+                    
                     <span class="webnametop"><b>CollabHub</b></span>
                 </div>
                 <div id="navcontain">
-                    <div class="nav lnav selectednav">Events</div>
+                    <div class="nav lnav">Events</div>
                     <div class="nav midnav ">Collabs</div>
                     <div class="nav rnav">Issues</div>
                 </div>
-                
-                <!-- <div id="rightauth">
+                <?php
+                if(!$id){
+                    ?>
+                <div id="rightauth">
                     <div id="signinopt" onclick="document.location.href = 'SignIn.php'">Sign In</div>
                     <div id="signupopt" onclick="document.location.href = 'SignUp.html'">Sign Up</div>
-                </div> -->
-
+                </div>
+                <?php 
+                }
+                else {
+                    ?>
                 <div id="right">
+
+                    <?php
+                    if($toprow['pic'] != NULL){
+                        $flag = 1;
+                    ?>
+                    <img class="pfp" src="../display_img.php?userid=<?php echo $_COOKIE['userid'];?>&usertype=students" alt="pfp">
+                    <?php 
+                    }
+                    else {
+                        $flag = 0;
+                    ?>
                     <img class="pfp" src="../blank-pfp.png" alt="pfp">
-                    <span class="username">Name</span>
+                    <?php }?>
+                    <span class="username"><?php echo $_COOKIE['username'];?></span>
                     <i class="bi-caret-down-fill pfparrow"></i>
                 </div>
+                <?php
+                } ?>
             </div>
             <div id="menu">
                 <div class="menuopt"><i class="bi-person micon"></i><div class="opttxt">My Profile</div></div>
@@ -60,14 +93,33 @@
                 <div class="menuopt"><i class="bi-people micon"></i><div class="opttxt">My Collabs</div></div>
                 <div class="menuopt"><i class="bi-person-add micon"></i><div class="opttxt">My Team</div></div>
                 <div class="menuopt"><i class="bi-plus-circle micon"></i><div class="opttxt">Organize</div></div>
-                <div class="menuopt lastopt"><i class="bi-box-arrow-right micon"></i><div class="opttxt">Sign Out</div></div>
+                <div class="menuopt lastopt" onclick="document.location.href = '../SignOut.php'"><i class="bi-box-arrow-right micon"></i><div class="opttxt">Sign Out</div></div>
             </div>
         </div>
-        <form action="E_insert.php" method="post" enctype="multipart/form-data">
+        <?php
+            //include("connect.php");
+            $id = $_GET['id'];
+            //$id = 8001001;
+            
+            include('connect.php');
+            $query = "Select * from `events` where id = $id";
+            $cmd = mysqli_query($con,$query);
+            $row = mysqli_fetch_array($cmd);
+        ?>
+        <form action="E_update.php" method="post" enctype="multipart/form-data">
         <div class="infosection" >
             <div class="leftinfo">
                 <div class="pfpcontain">
-                    <img id="pfp" src="../blank-pfp.png" for="pfp" ></img>
+                    <?php
+                    if($row['pic'] != NULL){
+                    ?>
+                    <img id="pfp" src="../display_img.php?userid=<?php echo $id;?>&usertype=events" alt="pfp">
+                    <?php 
+                    }
+                    else {
+                    ?>
+                    <img id="pfp" src="../blank-pfp.png" alt="pfp">
+                    <?php }?>
                     <div class="bi bi-pencil-fill" id="chngpic" onclick="openfile()"></div>
                     <input type="file" id="openimg" accept="image/*" name="uimg" onchange="loadFile(event)">
                 </div>
@@ -76,52 +128,57 @@
                     <legend>General</legend>
 
                     <div class="label">Name of Event:</div>
-                    <input type="text" class="inp" name="ename">
+                    <input type="text" class="inp" name="ename" value="<?php echo $row['name'];?>">
 
                     <div class="label">Type of Event:</div>
-                    <input type="text" class="inp" name="etype">
+                    <input type="text" class="inp" name="etype" value="<?php echo $row['type'];?>">
 
                     <div class="label">Registration Cost:</div>
-                    <input type="number" class="inp" name="regcost">
+                    <input type="number" class="inp" name="regcost" value="<?php echo $row['reg_cost'];?>">
                     <div class="member">
                         <div class="min">
                             <div class="label">Mininmum no. of members:</div>
-                            <input type="number" id="mininp" class="inp" name="min">
+                            <input type="number" id="mininp" class="inp" name="min" value="<?php echo $row['min'];?>">
                         </div>
                         
                         <div class="max">
                             <div class="label">Maximum no. of members:</div>
-                            <input type="number" id="maxinp" class="inp" name="max">
+                            <input type="number" id="maxinp" class="inp" name="max" value="<?php echo $row['max'];?>">
                         </div>
                     </div>
                     
                     
                     <div class="label">Organized By:</div>
-                    <input type="text" class="inp" name="org">
-
+                    <input type="text" class="inp" name="org" value="<?php echo $row['org'];?>">
+                    <?php
+                    $online = 0;
+                    if($row['state'] == 'online'){
+                        $online = 1;
+                    }
+                    ?>
                     <div class="label">Venue of Event:</div>
                     <div class="radios">
                         <label class="radele" for="online">
-                            <input class="type" id="online" type="radio" name="venue" value="online" checked>Online
+                            <input class="type" id="online" type="radio" name="venue" value="online" <?php if($online == 1){ ?>checked<?php } ?>>Online
                         </label>
                         <label class="radele" for="offline">
-                            <input class="type" id="offline" type="radio" name="venue" value="offline">Offline
+                            <input class="type" id="offline" type="radio" name="venue" value="offline" <?php if($online == 0){ ?>checked<?php } ?>>Offline
                         </label>
                     </div>
                     
-                    <div id="state" style="display: none;">
+                    <div id="state" <?php if($online == 1){ ?>style="display: none;"<?php } ?>>
                         <div class="label">State:</div>
-                        <input type="text" class="inp" name="state">
+                        <input type="text" class="inp" name="state" value="<?php echo $row['state']; if($online == 0){?>" required <?php }?>>
                     </div>
                     
-                    <div id="city" style="display: none;">
+                    <div id="city" <?php if($online == 1){ ?>style="display: none;"<?php } ?>>
                         <div class="label">City:</div>
-                        <input type="text" class="inp" name="city">
+                        <input type="text" class="inp" name="city" value="<?php echo $row['city']; if($online == 0){?>" required <?php }?>>
                     </div>
-                    
-                    <div id="loc" style="display: none;">
+
+                    <div id="loc" <?php if($online == 1){ ?>style="display: none;"<?php } ?>>
                         <div class="label">Address:</div>
-                        <input type="text" class="inp" name="loc">
+                        <input type="text" class="inp" name="loc" value="<?php echo $row['loc']; if($online == 0){?>" required <?php }?>>
                     </div>
                     
                 </fieldset>
@@ -131,13 +188,13 @@
                     <legend>Prizes</legend>
                     
                     <div class="label">First Prize:</div>
-                    <input type="text" class="inp" name="fprize">
+                    <input type="text" class="inp" name="fprize" value="<?php echo $row['prize1'];?>">
 
                     <div class="label">Second Prize:</div>
-                    <input type="text" class="inp" name="sprize">
+                    <input type="text" class="inp" name="sprize" value="<?php echo $row['prize2'];?>">
 
                     <div class="label">Third Prize:</div>
-                    <input type="text" class="inp" name="tprize">
+                    <input type="text" class="inp" name="tprize" value="<?php echo $row['prize3'];?>">
                     
                 </fieldset>
             </div>
@@ -146,37 +203,42 @@
                     <legend>Dates</legend>
                     
                     <div class="label">Registration Starts At:</div>
-                    <input type="datetime-local" class="inp" name="regstart">
+                    <input type="datetime-local" class="inp" name="regstart" value="<?php echo $row['reg_start'];?>">
         
                     <div class="label">Registration Ends At:</div>
-                    <input type="datetime-local" class="inp" name="regend">
+                    <input type="datetime-local" class="inp" name="regend" value="<?php echo $row['reg_end'];?>">
         
                     <div class="label">Event Starts At:</div>
-                    <input type="datetime-local" class="inp" name="eventstart">
+                    <input type="datetime-local" class="inp" name="eventstart" value="<?php echo $row['start'];?>">
         
                     <div class="label">Event Ends At:</div>
-                    <input type="datetime-local" class="inp" name="eventend">
+                    <input type="datetime-local" class="inp" name="eventend" value="<?php echo $row['end'];?>">
                 </fieldset>
 
                 <fieldset class="containinfo introinfo">
                     <legend>Overview</legend>
                     <div class="label">Overview of Event:</div>
-                    <textarea name="overview" id="overview" cols="30" rows="10"></textarea>
+                    <textarea name="overview" id="overview" cols="30" rows="10"><?php echo $row['desc'];?></textarea>
                 </fieldset>
 
                 <fieldset class="containinfo ruleinfo">
                     <legend>Rules</legend>
                     <div class="label">Rules of Event:</div>
-                    <textarea name="rule" id="rule" cols="30" rows="10"></textarea>
+                    <textarea name="rule" id="rule" cols="30" rows="10"><?php echo $row['rules'];?></textarea>
                 </fieldset>
             </div>
         </div>
         <div class="btncontain">
-            <input type="hidden" name="utype" value="">
-            <input type="submit" class="btn" id="post" value='Post'>
-        </div>
-            
+            <input type="hidden" name="id" value="<?php $row['id'];?>">
+            <input type="submit" class="btn" id="edit" value='Edit Event'>
         </form>
+    
+            <form action="../delete.php" method="post">
+                <input type="hidden" name="id" value="<?php echo $row['id'];?>">
+                <input type="hidden" name="table" value="events">
+                <input type="submit" class="btn" id="delete" value="Delete Event">
+            </form>
+        </div>
         
     </body>
 

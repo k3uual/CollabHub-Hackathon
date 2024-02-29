@@ -1,6 +1,6 @@
 <?php 
     include("connect.php");
-
+    $id = $_POST['id'];
     $name = $_POST['ename'];
     $etype = $_POST['etype'];
     $rcost = $_POST['regcost'];
@@ -17,8 +17,6 @@
     $overview = $_POST['overview'];
     $rule = $_POST['rule'];
     $org = $_POST['org'];
-    $fid = $_COOKIE['userid'];
-
     
 
     if($_POST['venue'] == 'offline') {
@@ -42,13 +40,6 @@
     else
         $is_big = 0;
 
-    $query = "select id from events order by id";
-    $cmd = mysqli_query($con,$query);
-
-    while($row = mysqli_fetch_array($cmd)) {
-        $id = $row['id'];
-    }
-    $id = $id + 1;
     
     $image = $_FILES["uimg"];
 
@@ -62,15 +53,18 @@
         }
         
         // Prepare and bind the INSERT statement
-        $stmt = $con->prepare("INSERT INTO events (pic,imgType,id,`name`,`type`,reg_cost,`start`,`end`,reg_start,reg_end,prize1,prize2,prize3,`state`,city,loc,org,`min`,`max`,`desc`,rules,want_reg,is_big,f_id) 
-        VALUES (?,?,$id,'$name','$etype','$rcost','$estart','$eend','$rstart','$rend','$prize1','$prize2','$prize3','$state','$city','$loc','$org',$min,$max,'$overview','$rule',1,'$is_big',$fid)");
-        $stmt->bind_param("ss", $imageData, $fileType);
-
-        if($stmt->execute())
-            echo 'alert("Posted successfully")';
-        else
-            echo 'alert(Error in posting)';
+        if($_FILES['uimg']['type'] == ''){
+            $stmt = $con->prepare("UPDATE `events` SET `name` = '$name', `type` = '$etype', `reg_cost` = '$rcost', `start` = '$estart', 
+            `end` = '$eend', reg_start = '$rstart', reg_end = '$rend', `state` = '$state', city = '$city', `loc` = '$loc', `org` = '$org',
+            prize1 = '$prize1', prize2 = '$prize2', prize3 = '$prize3', `min` = '$min', `max` = '$max', `desc` = '$overview', rules = '$rule', is_big = $is_big WHERE id = $id;");
+        }
+        else{
+            $stmt = $con->prepare("UPDATE events SET pic = ?, imgType = ?, `name` = '$name', `type` = '$etype', `reg_cost` = '$rcost', `start` = '$estart', 
+            `end` = '$eend', reg_start = '$rstart', reg_end = '$rend', `state` = '$state', city = '$city', `loc` = '$loc', `org` = '$org',
+            prize1 = '$prize1', prize2 = '$prize2', prize3 = '$prize3', `min` = '$min', `max` = '$max', `desc` = '$overview', rules = '$rule', is_big = $is_big WHERE id = $id;");
+            $stmt->bind_param("ss", $imageData, $fileType);
+        }
+        $stmt->execute();
         $stmt->close();
-        $con->close();
         header("location:E_edit.php?id=$id");
 ?>

@@ -138,14 +138,13 @@
             <input type="hidden" name="utype" value="<?php echo $utype;?>">
             <input type="submit" class="btn" id="edit" value='Edit Profile'>
         </form>
+    
+            <form action="">
+                <input type="hidden" name="userid" value="">
+                <input type="submit" class="btn" id="delete" value="Delete Profile">
+            </form>
+        </div>
     </body>
-
-        <form action="">
-            <input type="hidden" name="userid" value="">
-            <input type="submit" class="btn" id="delete" value="Delete Profile">
-        </form>
-    </div>
-
     <script>
         let profile = document.getElementById("right");
         console.log("hello");

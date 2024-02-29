@@ -33,10 +33,7 @@ for ($i = 1; $i <= $numSets; $i++) {
     echo "</div>";
 }
 ?>
-<div id="set_1">
-  <div id="div_1_1" class="clickable" onclick="toggleDiv(this); callPHP(1, 1)">Set 1 - Div 1</div>
-  <div id="div_1_2" class="clickable" onclick="toggleDiv(this); callPHP(1, 2)">Set 1 - Div 2</div>
-</div>
+
 <script>
   // Function to toggle div
   function toggleDiv(clickedDiv) {

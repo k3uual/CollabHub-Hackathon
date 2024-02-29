@@ -21,7 +21,7 @@
         $table = 'faculties';
     }
 
-    $query = "select id from $table";
+    $query = "select id from $table order by id";
     $cmd = mysqli_query($con,$query);
 
     while($row = mysqli_fetch_array($cmd)) {
