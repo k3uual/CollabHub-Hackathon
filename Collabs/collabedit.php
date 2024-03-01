@@ -15,6 +15,27 @@
             -webkit-appearance: none;
             margin: 0;
         }
+
+        .member {
+            display: flex;
+            
+        }
+
+        #mininp, #maxinp {
+            width: 90%;
+        }
+
+        .max {
+            margin-right: auto;
+        }
+
+        #rule, #overview {
+            height: 470px;
+        }
+
+        .introinfo, .ruleinfo {
+            margin-bottom: 25px;
+        }
     </style>
     
     <body>
@@ -83,11 +104,30 @@
                 <div class="menuopt lastopt" onclick="document.location.href = '../SignOut.php'"><i class="bi-box-arrow-right micon"></i><div class="opttxt">Sign Out</div></div>
             </div>
         </div>
-        <div action="Login.html" method="post" enctype="multipart/form-data">
+        <?php
+            //include("connect.php");
+            $id = $_GET['id'];
+            //$id = 8001001;
+            
+            include('connect.php');
+            $query = "Select * from `collabs` where id = $id";
+            $cmd = mysqli_query($con,$query);
+            $row = mysqli_fetch_array($cmd);
+        ?>
+        <form action="C_update.php" method="post" enctype="multipart/form-data">
         <div class="infosection" >
             <div class="leftinfo">
                 <div class="pfpcontain">
-                    <img id="pfp" src="../blank-pfp.png" for="pfp" ></img>
+                    <?php
+                    if($row['pic'] != NULL){
+                    ?>
+                    <img id="pfp" src="../display_img.php?userid=<?php echo $id;?>&usertype=collabs" alt="pfp">
+                    <?php 
+                    }
+                    else {
+                    ?>
+                    <img id="pfp" src="../blank-pfp.png" alt="pfp">
+                    <?php }?>
                     <div class="bi bi-pencil-fill" id="chngpic" onclick="openfile()"></div>
                     <input type="file" id="openimg" accept="image/*" name="uimg" onchange="loadFile(event)">
                 </div>
@@ -96,100 +136,87 @@
                     <legend>General</legend>
 
                     <div class="label">Name of Event:</div>
-                    <input type="text" class="inp" name="ename">
-
-                    <div class="label">Type of Event:</div>
-                    <input type="text" class="inp" name="etype">
+                    <input type="text" class="inp" name="ename" value="<?php echo $row['name'];?>">
 
                     <div class="label">Registration Cost:</div>
-                    <input type="number" class="inp" name="regcost">
-
-                    <div class="label">Maximum number of members:</div>
-                    <input type="number" class="inp" name="max">
+                    <input type="number" class="inp" name="regcost" value="<?php echo $row['reg_cost'];?>">
                     
-                    <div class="label">Mininmum number of members:</div>
-                    <input type="number" class="inp" name="min">
-
+                    <?php
+                    $online = 0;
+                    if($row['state'] == 'online'){
+                        $online = 1;
+                    }
+                    ?>
                     <div class="label">Venue of Event:</div>
                     <div class="radios">
                         <label class="radele" for="online">
-                            <input class="type" id="online" type="radio" name="utype" value="online" checked>Online
+                            <input class="type" id="online" type="radio" name="venue" value="online" <?php if($online == 1){ ?>checked<?php } ?>>Online
                         </label>
                         <label class="radele" for="offline">
-                            <input class="type" id="offline" type="radio" name="utype" value="offline">Offline
+                            <input class="type" id="offline" type="radio" name="venue" value="offline" <?php if($online == 0){ ?>checked<?php } ?>>Offline
                         </label>
                     </div>
                     
-                    <div id="state" style="display: none;">
+                    <div id="state" <?php if($online == 1){ ?>style="display: none;"<?php } ?>>
                         <div class="label">State:</div>
-                        <input type="text" class="inp" name="state">
+                        <input type="text" class="inp" name="state" value="<?php echo $row['state'];?>"<?php if($online == 0){?> required <?php }?>>
                     </div>
                     
-                    <div id="city" style="display: none;">
+                    <div id="city" <?php if($online == 1){ ?>style="display: none;"<?php } ?>>
                         <div class="label">City:</div>
-                        <input type="text" class="inp" name="city">
+                        <input type="text" class="inp" name="city" value="<?php echo $row['city'];?>"<?php if($online == 0){?> required <?php }?>>
                     </div>
-                    
-                    <div id="loc" style="display: none;">
+
+                    <div id="loc" <?php if($online == 1){ ?>style="display: none;"<?php } ?>>
                         <div class="label">Address:</div>
-                        <input type="text" class="inp" name="loc">
+                        <input type="text" class="inp" name="loc" value="<?php echo $row['loc'];?>"<?php if($online == 0){?> required <?php }?>>
                     </div>
-
-                </fieldset>
-            
-            
-                <fieldset  class="containinfo prizeinfo">
-                    <legend>Prizes</legend>
-                    
-                    <div class="label">First Prize:</div>
-                    <input type="text" class="inp" name="fprize">
-
-                    <div class="label">Second Prize:</div>
-                    <input type="text" class="inp" name="sprize">
-
-                    <div class="label">Third Prize:</div>
-                    <input type="text" class="inp" name="tprize">
                     
                 </fieldset>
-            </div>
-            <div class="rightinfo">
+
                 <fieldset class="containinfo dateinfo">
                     <legend>Dates</legend>
                     
                     <div class="label">Registration Starts At:</div>
-                    <input type="datetime-local" class="inp" name="regstart">
+                    <input type="datetime-local" class="inp" name="regstart" value="<?php echo $row['reg_start'];?>">
         
                     <div class="label">Registration Ends At:</div>
-                    <input type="datetime-local" class="inp" name="regends">
+                    <input type="datetime-local" class="inp" name="regend" value="<?php echo $row['reg_end'];?>">
         
                     <div class="label">Event Starts At:</div>
-                    <input type="datetime-local" class="inp" name="eventstarts">
+                    <input type="datetime-local" class="inp" name="eventstart" value="<?php echo $row['start'];?>">
         
                     <div class="label">Event Ends At:</div>
-                    <input type="datetime-local" class="inp" name="eventends">
+                    <input type="datetime-local" class="inp" name="eventend" value="<?php echo $row['end'];?>">
                 </fieldset>
+            </div>
+            <div class="rightinfo">
+                
 
                 <fieldset class="containinfo introinfo">
                     <legend>Overview</legend>
                     <div class="label">Overview of Event:</div>
-                    <textarea name="overview" id="overview" cols="30" rows="10"></textarea>
+                    <textarea name="overview" id="overview" cols="30" rows="10"><?php echo $row['desc'];?></textarea>
                 </fieldset>
 
                 <fieldset class="containinfo ruleinfo">
                     <legend>Rules</legend>
                     <div class="label">Rules of Event:</div>
-                    <textarea name="rule" id="rule" cols="30" rows="10"></textarea>
+                    <textarea name="rule" id="rule" cols="30" rows="10"><?php echo $row['rules'];?></textarea>
                 </fieldset>
             </div>
         </div>
         <div class="btncontain">
-            <input type="hidden" name="utype" value="">
-            <input type="submit" class="btn" id="post" value='Post'>
-        </div>
-            
+            <input type="hidden" name="id" value="<?php echo $row['id'];?>">
+            <input type="submit" class="btn" id="edit" value='Edit Event'>
         </form>
-        
-        
+    
+            <form action="../delete.php" method="post">
+                <input type="hidden" name="id" value="<?php echo $row['id'];?>">
+                <input type="hidden" name="table" value="collabs">
+                <input type="submit" class="btn" id="delete" value="Delete Event">
+            </form>
+        </div>
         
     </body>
 
@@ -215,6 +242,38 @@
             let image = document.getElementById("pfp");
             image.src = URL.createObjectURL(event.target.files[0]);
         };
+
+        const online = document.getElementById('online');
+        const offline = document.getElementById('offline');
+        const city = document.getElementById('city');
+        const state = document.getElementById('state');
+        const loc = document.getElementById('loc');
+
+
+        online.addEventListener('change', function() {
+            if (online.checked) {
+                city.style.display = 'none';
+                city.removeAttribute('required','');
+                state.style.display = 'none';
+                state.removeAttribute('required','');
+                loc.style.display = 'none';
+                loc.removeAttribute('required','');
+                city.value = "";
+                state.value = "";
+                loc.value = "";
+            }
+        });
+    
+        offline.addEventListener('change', function() {
+            if (offline.checked) {
+                city.style.display = 'block';
+                city.setAttribute('required','');
+                state.style.display = 'block';
+                state.setAttribute('required','');
+                loc.style.display = 'block';
+                loc.setAttribute('required','');
+            }
+        });
         
     </script>
 </html>

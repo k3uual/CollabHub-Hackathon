@@ -5,11 +5,12 @@
     $table = $_POST['table'];
     
 
-    $query = "delete * from $table where id = $id";
+    $query = "delete from $table where id = $id";
+    echo $query;
     $cmd = mysqli_query($con, $query);
-    $row = mysqli_fetch_array($cmd);
-    if($row)
-        echo "deleted";
+    if($cmd)
+        echo '<script>alert("Deleted Successfully")</script>';
     else
-        echo "not";
+        echo '<script>alert("Error Deleting")</script>';
+    //header("location:index2.php");
 ?>

@@ -2,6 +2,7 @@
 body {
     background-color: #f5f7f7;
     font-family: "Nunito Sans", sans-serif;
+    overflow: visible;
 }
 .toptitle {
     display: flex;
@@ -34,11 +35,12 @@ body {
     display: flex;
     background-color: white;
     flex-direction: column;
-    left: 80%;
-    top: 40%;
+    left: 77%;
+    top: 35%;
     padding: 10px 40px 40px 40px;
     border-radius: 20px;
-    z-index: 10;
+    
+    width: 250px;
 }
 
 .ensec {

@@ -1,0 +1,26 @@
+FOR Comments:
+vote counts(both)
+sol_id
+sol_desc
+s_id/f_id(from sol)
+s_name/f_name(from sol)
+s_img/f_img(from sol)
+s_imgtype/f_imgtype(from sol)
+s_id(from vote)
+vote(of sid)
+issueid
+
+tables:
+sol
+student
+faculty
+votes
+issues
+
+SELECT s.id, s.desc, s.date, s.i_id, s.s_id, s.f_id, sv.sol_id,(SELECT COUNT(sv.s_id) WHERE sv.is_upvote = 1) as upvote, (SELECT COUNT(sv.is_upvote) WHERE sv.is_upvote = 0) as downvote, (SELECT sv.is_upvote WHERE sv.s_id = 1003002) as voted FROM solutions as s INNER JOIN sol_vote as sv ON s.id = sv.sol_id where s.i_id=5003001;
+
+TO DO:
+team manage: lead, members, proj, desc, 
+register option(team and individual)
+COMMENTS(and reply, and vote)
+approvals(event and collab)

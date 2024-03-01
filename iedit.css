@@ -83,7 +83,7 @@ legend {
 .btncontain {
     position: relative;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
 }
 
@@ -106,8 +106,39 @@ legend {
     width: 10%;
 }
 
+#chng {
+    
+    width: 100%;
+    margin: 10px 0 0 0;
+}
+
 .btn:hover {
-    background-color: rgb(11, 21, 165);
+    background-color: rgb(55 112 255);
     transform: translate(0, -3px);
     transition: all 0.5s;
+}
+
+#edit {
+    height: 40px;
+    position: relative;
+    top: -1px;
+    background-color: rgb(55 112 255);
+    width: 200px;
+}
+
+#edit:hover, #chng:hover {
+    background-color: rgb(11, 21, 165);
+}
+
+#delete {
+    background-color: rgb(255, 71, 71);
+    width: 200px;
+    position: relative;
+    top: 6px;
+}
+
+
+
+#delete:hover {
+    background-color: rgb(185, 0, 0);
 }

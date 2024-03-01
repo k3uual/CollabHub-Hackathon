@@ -41,29 +41,43 @@
                 <div class="menuopt lastopt"><i class="bi-box-arrow-right micon"></i><div class="opttxt">Sign Out</div></div>
             </div>
         </div>
-        <form action="I_insert.php" method="post">
+        <?php
+        include("connect.php");
+
+        $id = $_GET['id'];
+        $query = "Select * from issues where id = $id";
+        $cmd = mysqli_query($con, $query);
+        $row = mysqli_fetch_array($cmd);
+        ?>
+        <form action="I_update.php" method="post">
             <div class="icontain">
                 <fieldset>
                     <legend>Title</legend>
-                    <input class="inp" type="text" name="title" placeholder="Title of the issue">
+                    <input class="inp" type="text" name="title" placeholder="Title of the issue" value="<?php echo $row['title']?>">
                 </fieldset>
 
                 <fieldset>
                     <legend>Posting From</legend>
-                    <input class="inp" type="text" name="loc" placeholder="Address">
+                    <input class="inp" type="text" name="loc" placeholder="Address" value="<?php echo $row['loc']?>">
                 </fieldset>
 
                 <fieldset class="infocontain">
                     <legend>Description</legend>
-                    <textarea name="desc" id="info" cols="30" rows="10" placeholder="Describe issue"></textarea>
+                    <textarea name="desc" id="info" cols="30" rows="10" placeholder="Describe issue"><?php echo $row['desc']?></textarea>
                 </fieldset>
 
+                <input type="hidden" name="id" value="<?php echo $row['id']?>">
             </div>
-            <div class="btncontain">
-                <input class="btn" type="submit" value="Post">
-            </div>
-            
+        <div class="btncontain">
+            <input type="hidden" name="id" value="<?php echo $row['id'];?>">
+            <input type="submit" class="btn" id="edit" value='Edit Issue'>
         </form>
+            <form action="../delete.php" method="post">
+                <input type="hidden" name="id" value="<?php echo $row['id'];?>">
+                <input type="hidden" name="table" value="issues">
+                <input type="submit" class="btn" id="delete" value="Delete Issue">
+            </form>
+        </div>
     </body>
     <script>
         let profile = document.getElementById("right");

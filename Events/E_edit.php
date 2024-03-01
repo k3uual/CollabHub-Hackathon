@@ -229,7 +229,7 @@
             </div>
         </div>
         <div class="btncontain">
-            <input type="hidden" name="id" value="<?php $row['id'];?>">
+            <input type="hidden" name="id" value="<?php echo $row['id'];?>">
             <input type="submit" class="btn" id="edit" value='Edit Event'>
         </form>
     

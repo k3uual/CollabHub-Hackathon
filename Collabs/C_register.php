@@ -15,6 +15,19 @@
             -webkit-appearance: none;
             margin: 0;
         }
+
+        .member {
+            display: flex;
+            
+        }
+
+        #rule, #overview {
+            height: 470px;
+        }
+
+        .introinfo, .ruleinfo {
+            margin-bottom: 25px;
+        }
     </style>
     
     <body>
@@ -83,7 +96,7 @@
                 <div class="menuopt lastopt" onclick="document.location.href = '../SignOut.php'"><i class="bi-box-arrow-right micon"></i><div class="opttxt">Sign Out</div></div>
             </div>
         </div>
-        <div action="Login.html" method="post" enctype="multipart/form-data">
+        <form action="C_insert.php" method="post" enctype="multipart/form-data">
         <div class="infosection" >
             <div class="leftinfo">
                 <div class="pfpcontain">
@@ -98,25 +111,16 @@
                     <div class="label">Name of Event:</div>
                     <input type="text" class="inp" name="ename">
 
-                    <div class="label">Type of Event:</div>
-                    <input type="text" class="inp" name="etype">
-
                     <div class="label">Registration Cost:</div>
                     <input type="number" class="inp" name="regcost">
-
-                    <div class="label">Maximum number of members:</div>
-                    <input type="number" class="inp" name="max">
                     
-                    <div class="label">Mininmum number of members:</div>
-                    <input type="number" class="inp" name="min">
-
                     <div class="label">Venue of Event:</div>
                     <div class="radios">
                         <label class="radele" for="online">
-                            <input class="type" id="online" type="radio" name="utype" value="online" checked>Online
+                            <input class="type" id="online" type="radio" name="venue" value="online" checked>Online
                         </label>
                         <label class="radele" for="offline">
-                            <input class="type" id="offline" type="radio" name="utype" value="offline">Offline
+                            <input class="type" id="offline" type="radio" name="venue" value="offline">Offline
                         </label>
                     </div>
                     
@@ -134,40 +138,26 @@
                         <div class="label">Address:</div>
                         <input type="text" class="inp" name="loc">
                     </div>
-
-                </fieldset>
-            
-            
-                <fieldset  class="containinfo prizeinfo">
-                    <legend>Prizes</legend>
-                    
-                    <div class="label">First Prize:</div>
-                    <input type="text" class="inp" name="fprize">
-
-                    <div class="label">Second Prize:</div>
-                    <input type="text" class="inp" name="sprize">
-
-                    <div class="label">Third Prize:</div>
-                    <input type="text" class="inp" name="tprize">
                     
                 </fieldset>
-            </div>
-            <div class="rightinfo">
-                <fieldset class="containinfo dateinfo">
+            <fieldset class="containinfo dateinfo">
                     <legend>Dates</legend>
                     
                     <div class="label">Registration Starts At:</div>
                     <input type="datetime-local" class="inp" name="regstart">
         
                     <div class="label">Registration Ends At:</div>
-                    <input type="datetime-local" class="inp" name="regends">
+                    <input type="datetime-local" class="inp" name="regend">
         
                     <div class="label">Event Starts At:</div>
-                    <input type="datetime-local" class="inp" name="eventstarts">
+                    <input type="datetime-local" class="inp" name="eventstart">
         
                     <div class="label">Event Ends At:</div>
-                    <input type="datetime-local" class="inp" name="eventends">
+                    <input type="datetime-local" class="inp" name="eventend">
                 </fieldset>
+            </div>
+            <div class="rightinfo">
+                
 
                 <fieldset class="containinfo introinfo">
                     <legend>Overview</legend>
@@ -188,8 +178,6 @@
         </div>
             
         </form>
-        
-        
         
     </body>
 
@@ -215,6 +203,38 @@
             let image = document.getElementById("pfp");
             image.src = URL.createObjectURL(event.target.files[0]);
         };
+
+        const online = document.getElementById('online');
+        const offline = document.getElementById('offline');
+        const city = document.getElementById('city');
+        const state = document.getElementById('state');
+        const loc = document.getElementById('loc');
+
+
+        online.addEventListener('change', function() {
+            if (online.checked) {
+                city.style.display = 'none';
+                city.removeAttribute('required','');
+                state.style.display = 'none';
+                state.removeAttribute('required','');
+                loc.style.display = 'none';
+                loc.removeAttribute('required','');
+                city.value = "";
+                state.value = "";
+                loc.value = "";
+            }
+        });
+    
+        offline.addEventListener('change', function() {
+            if (offline.checked) {
+                city.style.display = 'block';
+                city.setAttribute('required','');
+                state.style.display = 'block';
+                state.setAttribute('required','');
+                loc.style.display = 'block';
+                loc.setAttribute('required','');
+            }
+        });
         
     </script>
 </html>
