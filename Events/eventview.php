@@ -75,6 +75,13 @@
         <?php
             include("connect.php");
             
+            if(isset($_GET['stat'])) {
+                $status = $_GET['stat'];
+                if($status == "enrolled")
+                    echo "<script> alert('Already Enrolled'); </script>";
+                else
+                    echo "<script> alert('Successfully Enrolled'); </script>";
+            }
             $id = $_GET['id'];
             $nowcmd = mysqli_query($con,"Select now() as now");
             $runnow = mysqli_fetch_array($nowcmd);
@@ -123,7 +130,7 @@
                 <div class="entxt">Closes in:</div>
                 <div class="entxt2"><?php echo $start.' - '.$end;?></div>
             </div>
-            <button class="enbtn" onclick="">Enroll Now</button>
+            <button class="enbtn" onclick="document.location.href = 'E_enroll.php?id=<?php echo $row['id'];?>'">Enroll Now</button>
         </div>
         <div class="infosec">
             <fieldset>

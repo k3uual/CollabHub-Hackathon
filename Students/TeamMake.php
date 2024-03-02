@@ -1,12 +1,37 @@
 <html>
     <head>
         <title>
-            Manage area - CollabHub
+            Manage Team - CollabHub
         </title>
     </head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../team.css">
     <link rel="stylesheet" href="../topbar.css">
-    <link rel="stylesheet" href="../iedit.css">
+    <style>
+        .addmem {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .txt {
+            font-size: 20px;
+            margin-right: 10px;
+        }
+
+        #num {
+            position: relative;
+            top: 3px;
+            width: 80px;
+        }
+
+        #add {
+            position: relative;
+            top: 1px;
+            margin-left: 20px;
+        }
+    </style>
+        
 
     <body>
     <?php
@@ -17,9 +42,9 @@
                 $id = $_COOKIE['userid'];
                 $utype = $_COOKIE['usertype'];
                 include('connect.php');
-                $topq = "Select * from $utype where id=$id";
-                $topcmd = mysqli_query($con,$topq);
-                $toprow = mysqli_fetch_array($topcmd);
+                $query = "Select * from $utype where id=$id";
+                $cmd = mysqli_query($con,$query);
+                $row = mysqli_fetch_array($cmd);
             }
         ?>
         <div id="topsection">
@@ -48,7 +73,7 @@
                 <div id="right">
 
                     <?php
-                    if($toprow['pic'] != NULL){
+                    if($row['pic'] != NULL){
                         $flag = 1;
                     ?>
                     <img class="pfp" src="../display_img.php?userid=<?php echo $_COOKIE['userid'];?>&usertype=students" alt="pfp">
@@ -75,53 +100,43 @@
             </div>
         </div>
         <?php
-        include("connect.php");
-
-        $id = $_GET['id'];
-        $query = "Select * from issues where id = $id";
-        $cmd = mysqli_query($con, $query);
-        $row = mysqli_fetch_array($cmd);
+            $count = 0;
+            if(isset($_GET['total'])){
+                $count = $_GET['total'];
+            }
         ?>
-        <form action="I_update.php" method="post">
-            <div class="icontain">
-                <fieldset>
-                    <legend>Title</legend>
-                    <input class="inp" type="text" name="title" placeholder="Title of the issue" value="<?php echo $row['title']?>">
-                </fieldset>
-
-                <fieldset>
-                    <legend>Posting From</legend>
-                    <input class="inp" type="text" name="loc" placeholder="Address" value="<?php echo $row['loc']?>">
-                </fieldset>
-
-                <fieldset class="infocontain">
-                    <legend>Description</legend>
-                    <textarea name="desc" id="info" cols="30" rows="10" placeholder="Describe issue"><?php echo $row['desc']?></textarea>
-                </fieldset>
-
-                <input type="hidden" name="id" value="<?php echo $row['id']?>">
-            </div>
-        <div class="btncontain">
-            <input type="hidden" name="id" value="<?php echo $row['id'];?>">
-            <input type="submit" class="btn" id="edit" value='Edit Issue'>
+        <div class="projcontain">
+        <form action="" method="get" class="addmem">
+            <div class="txt">Add Members:</div>
+            <input type="number" name="total" class="inp" id="num" min="0" value="<?php if($count > 0){?><?php echo $count; }else{?>0<?php }?>">
+            <input type="submit" value="Add" class="btn" id="add">
         </form>
-            <form action="../delete.php" method="post">
-                <input type="hidden" name="id" value="<?php echo $row['id'];?>">
-                <input type="hidden" name="table" value="issues">
-                <input type="submit" class="btn" id="delete" value="Delete Issue">
-            </form>
-        </div>
+        <form action="teaminsert.php" method="post">
+            
+                <input type="text" class="inp" name="proj" placeholder="Project Name" required>
+                
+                <input type="number" class="inp" name="lead" placeholder="Leader ID" required>
+            <?php
+            $i = 0;
+            while($count > $i){
+            ?>
+                <input type="number" class="inp" name="mem<?php echo $i;?>" placeholder="Member <?php echo $i + 1;?> ID" min="1" required>
+            <?php
+            $i++;
+            }
+            ?>
+                <input type="number" class="inp" name="guide" placeholder="Guide ID" required>
+
+                <textarea name="idea" id="info" cols="30" rows="10" placeholder="Project Description" required></textarea>
+                
+                <input type="hidden" name="count" value="<?php echo $count;?>">
+
+                <div class="btncontain">
+                    <input type="submit" class="btn" value="Make Team">
+                </div>
+            </div>
+            
+        </form>
     </body>
-    <script>
-        let profile = document.getElementById("right");
-        console.log("hello");
 
-        let profile2 = document.querySelector("#menu");
-        let another = document.getElementById("menu");
-
-        profile.addEventListener("click", function() {
-            console.log("open");
-            profile2.classList.toggle("open");
-        });
-    </script>
 </html>

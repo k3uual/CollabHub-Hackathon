@@ -19,8 +19,12 @@ issues
 
 SELECT s.id, s.desc, s.date, s.i_id, s.s_id, s.f_id, sv.sol_id,(SELECT COUNT(sv.s_id) WHERE sv.is_upvote = 1) as upvote, (SELECT COUNT(sv.is_upvote) WHERE sv.is_upvote = 0) as downvote, (SELECT sv.is_upvote WHERE sv.s_id = 1003002) as voted FROM solutions as s INNER JOIN sol_vote as sv ON s.id = sv.sol_id where s.i_id=5003001;
 
+SELECT m.s_id, t.id, t.proj, t.idea, m.is_leader FROM members m INNER JOIN teams t on t.id = m.t_id WHERE m.s_id = 1003001;
+
 TO DO:
-team manage: lead, members, proj, desc, 
 register option(team and individual)
-COMMENTS(and reply, and vote)
+forget Password
 approvals(event and collab)
+COMMENTS(and reply, and vote)
+profile of everyone that people can visit
+Admin functions

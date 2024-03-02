@@ -9,7 +9,7 @@ input[type="number"]::-webkit-outer-spin-button {
     margin: 0;
 }
 
-.icontain {
+.projcontain {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -19,44 +19,17 @@ input[type="number"]::-webkit-outer-spin-button {
     position: relative;
     margin: auto;
     border-radius: 20px;
-    padding: 40px 0 30px 0;
-}
-
-fieldset {
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    position: relative;
-    width: 80%;
-    border-radius: 10px;
-    border: 2px solid #dddfdd;
-    margin-bottom: 20px;
-}
-
-.infocontain {
-    padding-top: 15px;
-    padding-bottom: 20px;
-}
-
-legend {
-    font-size: 17px;
-    color: #929292;
+    padding: 10px 0 30px 0;
 }
 
 .inp {
     width: 98%;
     padding: 8px;
-    margin: 6px 0 6px 0;
     box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 20px;
     background-color: #fcfcfc;
-    
-
 }
 
 .inp:hover:not(#btn, .readonly) {
@@ -71,6 +44,7 @@ legend {
 
 .inp, #info {
     font-size: 20px;
+    margin: 10px 0 15px 0;
 }
 
 #info {
@@ -103,7 +77,8 @@ legend {
     top: 20px;
     height: 40px;
     background-color: rgb(55 112 255);
-    width: 10%;
+    width: 200px;
+
 }
 
 #chng {
@@ -113,7 +88,7 @@ legend {
 }
 
 .btn:hover {
-    background-color: rgb(55 112 255);
+    background-color: rgb(11, 21, 165);
     transform: translate(0, -3px);
     transition: all 0.5s;
 }

@@ -1,13 +1,38 @@
 <html>
     <head>
-        <title>
-            Manage area - CollabHub
-        </title>
+        <title>Issue - CollabHub</title>
     </head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../icard.css">
     <link rel="stylesheet" href="../topbar.css">
-    <link rel="stylesheet" href="../iedit.css">
+    <style>
+        .icard, .titlecontain {
+            cursor: default;
+        }
 
+        .btn {
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: all 1s;
+            width: 50vh;
+            padding: 8px;
+            margin: 6px 0 6px 0;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 20px;
+            position: relative;
+            background-color: rgb(55 112 255);
+            width: 150px;
+        }
+
+        .btn:hover {
+            background-color: rgb(11, 21, 165);
+            transform: translate(0, -3px);
+            transition: all 0.5s;
+        }
+    </style>
     <body>
     <?php
             if(!isset($_COOKIE['userid'])){
@@ -32,7 +57,7 @@
                 <div id="navcontain">
                     <div class="nav lnav">Events</div>
                     <div class="nav midnav ">Collabs</div>
-                    <div class="nav rnav">Issues</div>
+                    <div class="nav rnav selectednav">Issues</div>
                 </div>
                 <?php
                 if(!$id){
@@ -74,42 +99,27 @@
                 <div class="menuopt lastopt" onclick="document.location.href = '../SignOut.php'"><i class="bi-box-arrow-right micon"></i><div class="opttxt">Sign Out</div></div>
             </div>
         </div>
-        <?php
-        include("connect.php");
 
-        $id = $_GET['id'];
-        $query = "Select * from issues where id = $id";
-        $cmd = mysqli_query($con, $query);
-        $row = mysqli_fetch_array($cmd);
-        ?>
-        <form action="I_update.php" method="post">
-            <div class="icontain">
-                <fieldset>
-                    <legend>Title</legend>
-                    <input class="inp" type="text" name="title" placeholder="Title of the issue" value="<?php echo $row['title']?>">
-                </fieldset>
-
-                <fieldset>
-                    <legend>Posting From</legend>
-                    <input class="inp" type="text" name="loc" placeholder="Address" value="<?php echo $row['loc']?>">
-                </fieldset>
-
-                <fieldset class="infocontain">
-                    <legend>Description</legend>
-                    <textarea name="desc" id="info" cols="30" rows="10" placeholder="Describe issue"><?php echo $row['desc']?></textarea>
-                </fieldset>
-
-                <input type="hidden" name="id" value="<?php echo $row['id']?>">
+        <div class="icardcontain">
+            <?php
+                include("connect.php");
+                $sid = $_COOKIE['userid'];
+                $query = "SELECT m.s_id, t.id, t.proj, t.idea, m.is_leader FROM members m INNER JOIN teams t on t.id = m.t_id WHERE m.s_id = $sid";
+                $cmd = mysqli_query($con, $query);
+                while($row = mysqli_fetch_array($cmd)) {
+                    
+            ?>
+            <div class="icard">
+                <div class="titlecontain">
+                    <div class="title"><?php echo $row['proj'];?></div>
+                </div>
+                <div>
+                    <button class="btn" onclick="document.location.href = 'insert_eid_team.php?tid=<?php echo $row['id'];?>&eid=<?php echo $_GET['id'];?>'">Enroll</button>
+                </div>
             </div>
-        <div class="btncontain">
-            <input type="hidden" name="id" value="<?php echo $row['id'];?>">
-            <input type="submit" class="btn" id="edit" value='Edit Issue'>
-        </form>
-            <form action="../delete.php" method="post">
-                <input type="hidden" name="id" value="<?php echo $row['id'];?>">
-                <input type="hidden" name="table" value="issues">
-                <input type="submit" class="btn" id="delete" value="Delete Issue">
-            </form>
+            <?php
+            }
+            ?>
         </div>
     </body>
     <script>
@@ -124,4 +134,5 @@
             profile2.classList.toggle("open");
         });
     </script>
+
 </html>
