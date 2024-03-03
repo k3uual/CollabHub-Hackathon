@@ -33,7 +33,7 @@
                     <div class="nav rnav" onclick="document.location.href = 'issue.php'">Issues</div>
                 </div>
                 <?php
-                if(!$id){
+                if(!isset($_COOKIE['userid'])){
                     ?>
                 <div id="rightauth">
                     <div id="signinopt" onclick="document.location.href = 'SignIn.php'">Sign In</div>
@@ -69,19 +69,19 @@
                 if(isset($_COOKIE['usertype'])){
                     if($_COOKIE['usertype'] == "faculties"){
                 ?>
-                <div class="menuopt"><i class="bi-calendar-check micon"></i><div class="opttxt">My Events</div></div>
+                <div class="menuopt"><i class="bi-calendar-check micon"></i><div class="opttxt" onclick="document.location.href = 'Events/eventManage.php'">My Events</div></div>
                 <?php
                     }
                     else {
                 ?>
-                <div class="menuopt"><i class="bi-people micon"></i><div class="opttxt">My Collabs</div></div>
+                <div class="menuopt"><i class="bi-people micon"></i><div class="opttxt" onclick="document.location.href = 'Collabs/collabManage.php'">My Collabs</div></div>
                 <div class="menuopt"><i class="bi-person-add micon"></i><div class="opttxt">My Team</div></div>
-                <div class="menuopt"><i class="bi-person-add micon"></i><div class="opttxt">My Issues</div></div>
+                <div class="menuopt"><i class="bi-person-add micon"></i><div class="opttxt" onclick="document.location.href = 'Events/issueManage.php'">My Issues</div></div>
                 <?php
                     }
                 }
                 ?>
-                <div class="menuopt lastopt" onclick="document.location.href = '../SignOut.php'"><i class="bi-box-arrow-right micon"></i><div class="opttxt">Sign Out</div></div>
+                <div class="menuopt lastopt" onclick="document.location.href = 'SignOut.php'"><i class="bi-box-arrow-right micon"></i><div class="opttxt">Sign Out</div></div>
             </div>
         </div>
         

@@ -12,16 +12,19 @@
     $bio = $_POST['bio'];
     $utype = $_POST['utype'];
     $pass = $_POST['pass'];
+    setcookie("username",$uname,time() + (10 * 365 * 24 * 60 * 60));
     echo $utype;
     if($utype == 'students') {
         $uinfo = $_POST['sem'];
         $udata = 'sem';
         $table = 'students';
+        $location = "Students/S_edit.php?id=$id";
     }
     else {
         $uinfo = $_POST['post'];
         $udata = 'post';
         $table = 'faculties';
+        $location = "Faculties/F_edit.php?id=$id";
     }
 
     $query = "select id from $table";
@@ -54,4 +57,6 @@
         }
         $stmt->execute();
         $stmt->close();
+
+        header("location:$location");
 ?>

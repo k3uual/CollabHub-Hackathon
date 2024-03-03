@@ -3,14 +3,9 @@
         <title>CollabHub</title>
     </head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="card.css">
-    <link rel="stylesheet" href="topbar.css">
-    <style>
-        .details {
-            position: relative;
-            top: 10px;
-        }
-    </style>
+    <link rel="stylesheet" href="../card.css">
+    <link rel="stylesheet" href="../topbar.css">
+
     <body>
     <?php
             if(!isset($_COOKIE['userid'])){
@@ -27,22 +22,22 @@
         ?>
         <div id="topsection">
             <div class="topbar">
-                <div id="left" onclick="document.location.href = 'index2.php'">
-                    <img class="logotop" src="Logo.png" alt="Logo">
+                <div id="left" onclick="document.location.href = '../index2.php'">
+                    <img class="logotop" src="../Logo.png" alt="Logo">
                     
                     <span class="webnametop"><b>CollabHub</b></span>
                 </div>
                 <div id="navcontain">
-                    <div class="nav lnav " onclick="document.location.href = 'index2.php'">Events</div>
-                    <div class="nav midnav selectednav">Collabs</div>
-                    <div class="nav rnav" onclick="document.location.href = 'issue.php'">Issues</div>
+                    <div class="nav lnav" onclick="document.location.href = '../index2.php'">Events</div>
+                    <div class="nav midnav" onclick="document.location.href = '../collab.php'">Collabs</div>
+                    <div class="nav rnav" onclick="document.location.href = '../issue.php'">Issues</div>
                 </div>
                 <?php
                 if(!isset($_COOKIE['userid'])){
                     ?>
                 <div id="rightauth">
-                    <div id="signinopt" onclick="document.location.href = 'SignIn.php'">Sign In</div>
-                    <div id="signupopt" onclick="document.location.href = 'SignUp.html'">Sign Up</div>
+                    <div id="signinopt" onclick="document.location.href = '../SignIn.php'">Sign In</div>
+                    <div id="signupopt" onclick="document.location.href = '../SignUp.html'">Sign Up</div>
                 </div>
                 <?php 
                 }
@@ -54,13 +49,13 @@
                     if($toprow['pic'] != NULL){
                         $flag = 1;
                     ?>
-                    <img class="pfp" src="display_img.php?userid=<?php echo $_COOKIE['userid'];?>&usertype=students" alt="pfp">
+                    <img class="pfp" src="../display_img.php?userid=<?php echo $_COOKIE['userid'];?>&usertype=students" alt="pfp">
                     <?php 
                     }
                     else {
                         $flag = 0;
                     ?>
-                    <img class="pfp" src="blank-pfp.png" alt="pfp">
+                    <img class="pfp" src="../blank-pfp.png" alt="pfp">
                     <?php }?>
                     <span class="username"><?php echo $_COOKIE['username'];?></span>
                     <i class="bi-caret-down-fill pfparrow"></i>
@@ -69,7 +64,7 @@
                 } ?>
             </div>
             <div id="menu">
-                <div class="menuopt"><i class="bi-person micon"></i><div class="opttxt" onclick="document.location.href = '<?php if($_COOKIE['usertype'] == 'students'){echo 'Students/S_edit.php';}else{echo 'Faculties/F_edit.php';}?>'">My Profile</div></div>
+                <div class="menuopt"><i class="bi-person micon"></i><div class="opttxt" onclick="document.location.href = '<?php if($_COOKIE['usertype'] == 'students'){echo 'S_edit.php';}else{echo 'F_edit.php';}?>'">My Profile</div></div>
                 <?php
                 if(isset($_COOKIE['usertype'])){
                     if($_COOKIE['usertype'] == "faculties"){
@@ -86,7 +81,7 @@
                     }
                 }
                 ?>
-                <div class="menuopt lastopt" onclick="document.location.href = 'SignOut.php'"><i class="bi-box-arrow-right micon"></i><div class="opttxt">Sign Out</div></div>
+                <div class="menuopt lastopt" onclick="document.location.href = '../SignOut.php'"><i class="bi-box-arrow-right micon"></i><div class="opttxt">Sign Out</div></div>
             </div>
         </div>
         
@@ -97,7 +92,7 @@
         $runnow = mysqli_fetch_array($nowcmd);
         $now = $runnow['now'];
         $query = "Select *,TIMESTAMPDIFF(second,'$now',reg_start) as didstart,TIMESTAMPDIFF(day,'$now',reg_end) as dleft, TIMESTAMPDIFF(hour,'$now',reg_end) as hleft,
-        TIMESTAMPDIFF(minute,'$now',reg_end) as mleft, TIMESTAMPDIFF(second,'$now',reg_end) as sleft from COLLABS;";
+        TIMESTAMPDIFF(minute,'$now',reg_end) as mleft, TIMESTAMPDIFF(second,'$now',reg_end) as sleft from EVENTS where f_id = $id";
         $cmd = mysqli_query($con, $query);
             
         while($row = mysqli_fetch_array($cmd)) {
@@ -129,21 +124,21 @@
             if($diff > 1)
                 $left .= 's';
         ?>
-            <div class="card" onclick="document.location.href = 'Collabs/collabview.php?id=<?php echo $row['id'];?>'">
+            <div class="card" onclick="document.location.href = 'E_edit.php?id=<?php echo $row['id'];?>'">
                 <div class="section imgsec">
                     <?php if($row['pic'] == NULL){?>
-                    <div class="ele" ><img class="eimg" src="blank-pfp.png" alt=""></div>
+                    <div class="ele" ><img class="eimg" src="../blank-pfp.png" alt=""></div>
                     <?php }
                     else {
                     ?>
-                    <img class="eimg" src="display_img.php?userid=<?php echo $row['id'];?>&usertype=collabs" alt="Collab Image">
+                    <img class="eimg" src="../display_img.php?userid=<?php echo $row['id'];?>&usertype=events" alt="Event Image">
                     <?php }?>
                 </div>
                 <div class="section detsec">
                     <div class="ele ename"><b><?php echo $row['name'];?></b></div>
                     <div class="details">
-                        
-                        <div class="ele mode"><i class="bi-geo-alt-fill"></i><?php echo ' '.$row['state'].','.$row['city'].','.$row['loc'];?></div>
+                        <div class="ele etype"><?php echo ' '.$row['type']; ?></div>
+                        <div class="ele mode"><i class="bi-geo-alt-fill"></i><?php echo ' '.$row['loc'];?></div>
                         <?php 
                         if($noclick){
                         ?>
@@ -160,11 +155,14 @@
                         <div class="ele left end">Ended</div>
                         <?php 
                         }
+                        if($row['prize1']){
                         ?>
+                        <div class="ele prize"><i class="bi-trophy-fill"></i><b> <?php echo $row['prize1'];?></b></div>
+                        <?php }?>
                     </div>
                 </div>
                 <div class="section extrasec">
-                    
+                    <div class="ele eby"><i class="bi-flag-fill"></i><?php echo ' '.$row['org'];?></div>
                     <?php 
                         $date1 = strtotime($row['start']);
                         $start = date('d M',$date1);

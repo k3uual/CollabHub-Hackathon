@@ -99,7 +99,11 @@
                     <div class="bi bi-pencil-fill" id="chngpic" onclick="openfile()"></div>
                     <input type="file" id="openimg" accept="image/*" name="uimg" onchange="loadFile(event)">
                 </div>
-
+                <?php
+                    $query = "Select * from faculties where id=$id";
+                    $cmd = mysqli_query($con, $query);
+                    $row = mysqli_fetch_array($cmd);
+                ?>
                 <fieldset class="containinfo gnrinfo">
                     <legend>General</legend>
                     

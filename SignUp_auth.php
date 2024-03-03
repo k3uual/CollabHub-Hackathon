@@ -53,11 +53,11 @@
             setcookie("userid",$uid,time() + (10 * 365 * 24 * 60 * 60));
             setcookie("username",$uname,time() + (10 * 365 * 24 * 60 * 60));
             setcookie("usertype",$utype,time() + (10 * 365 * 24 * 60 * 60));
-            //header('location:index1.html');
+            header('location:index2.php');
         } else {
             $stmt->close();
             $con->close();
-            //header('location:SignUp.html');
+            header('location:SignUp.html');
         }
         // Close statement and database connection
         $stmt->close();

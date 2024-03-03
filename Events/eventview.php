@@ -33,11 +33,11 @@
                     <div class="nav rnav" onclick="document.location.href = '../issue.php'">Issues</div>
                 </div>
                 <?php
-                if(!$id){
+                if(!isset($_COOKIE['userid'])){
                     ?>
                 <div id="rightauth">
-                    <div id="signinopt" onclick="document.location.href = 'SignIn.php'">Sign In</div>
-                    <div id="signupopt" onclick="document.location.href = 'SignUp.html'">Sign Up</div>
+                    <div id="signinopt" onclick="document.location.href = '../SignIn.php'">Sign In</div>
+                    <div id="signupopt" onclick="document.location.href = '../SignUp.html'">Sign Up</div>
                 </div>
                 <?php 
                 }

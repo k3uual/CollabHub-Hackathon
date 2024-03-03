@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>Register</title>
+        <title>Edit</title>
     </head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="../edit.css">
@@ -83,6 +83,11 @@
                 <div class="menuopt lastopt" onclick="document.location.href = '../SignOut.php'"><i class="bi-box-arrow-right micon"></i><div class="opttxt">Sign Out</div></div>
             </div>
         </div>
+        <?php
+        $query = "Select * from students where id=$id";
+        $cmd = mysqli_query($con,$query);
+        $row = mysqli_fetch_array($cmd);
+        ?>
         <form action="../DoEdit.php" method="post" enctype="multipart/form-data">
         <div class="infosection">
             <div class="leftinfo">
@@ -122,7 +127,7 @@
                     <input class="inp" type="text" placeholder="City" value="<?php echo $row['city'];?>" name="city">
                     
                     <div class="passcontain">
-                        <input class="inp" type="password" placeholder="Password" id="typepass" name="pass" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+                        <input class="inp" type="password" placeholder="Password" id="typepass" value="<?php echo $row['pass'];?>" name="pass" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
                         <div id="hidepass" onclick="togglePass()"><i id="eye" class="bi-eye-slash"></i></div>
                     </div>
                 </fieldset>

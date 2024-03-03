@@ -15,6 +15,6 @@
         setcookie("userid",$_POST['uid'],time() + (10 * 365 * 24 * 60 * 60));
         setcookie("username",$row['name'],time() + (10 * 365 * 24 * 60 * 60));
         setcookie("usertype",$type,time() + (10 * 365 * 24 * 60 * 60));
-        //header("location:index1.html");
+        header("location:index2.php");
     }
 ?>
