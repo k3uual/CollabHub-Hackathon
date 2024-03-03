@@ -9,6 +9,19 @@
     <link rel="stylesheet" href="../iedit.css">
 
     <body>
+    <?php
+            if(!isset($_COOKIE['userid'])){
+                //header('location:../index1.html');
+            }
+            else{
+                $id = $_COOKIE['userid'];
+                $utype = $_COOKIE['usertype'];
+                include('connect.php');
+                $topq = "Select * from $utype where id=$id";
+                $topcmd = mysqli_query($con,$topq);
+                $toprow = mysqli_fetch_array($topcmd);
+            }
+        ?>
     <div id="topsection">
             <div class="topbar">
                 <div id="left" onclick="document.location.href = '../index2.php'">

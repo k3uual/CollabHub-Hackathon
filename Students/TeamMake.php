@@ -42,9 +42,9 @@
                 $id = $_COOKIE['userid'];
                 $utype = $_COOKIE['usertype'];
                 include('connect.php');
-                $query = "Select * from $utype where id=$id";
-                $cmd = mysqli_query($con,$query);
-                $row = mysqli_fetch_array($cmd);
+                $topq = "Select * from $utype where id=$id";
+                $topcmd = mysqli_query($con,$topq);
+                $toprow = mysqli_fetch_array($topcmd);
             }
         ?>
         <div id="topsection">
