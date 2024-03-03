@@ -67,7 +67,7 @@
                 <div class="menuopt"><i class="bi-person micon"></i><div class="opttxt" onclick="document.location.href = '<?php if($_COOKIE['usertype'] == 'students'){echo 'Students/S_edit.php';}else{echo 'Faculties/F_edit.php';}?>'">My Profile</div></div>
                 <?php
                 if(isset($_COOKIE['usertype'])){
-                    if($_COOKIE['usertype'] == "faculties"){
+                    if($_COOKIE['usertype'] == "faculties") {
                 ?>
                 <div class="menuopt"><i class="bi-calendar-check micon"></i><div class="opttxt" onclick="document.location.href = 'Events/eventManage.php'">My Events</div></div>
                 <?php
@@ -75,8 +75,8 @@
                     else {
                 ?>
                 <div class="menuopt"><i class="bi-people micon"></i><div class="opttxt" onclick="document.location.href = 'Collabs/collabManage.php'">My Collabs</div></div>
-                <div class="menuopt"><i class="bi-person-add micon"></i><div class="opttxt">My Team</div></div>
-                <div class="menuopt"><i class="bi-person-add micon"></i><div class="opttxt" onclick="document.location.href = 'Events/issueManage.php'">My Issues</div></div>
+                <div class="menuopt"><i class="bi-person-add micon"></i><div class="opttxt" onclick="document.location.href = 'Students/selectTeam.php'">My Team</div></div>
+                <div class="menuopt"><i class="bi-person-add micon"></i><div class="opttxt" onclick="document.location.href = 'Issues/issueManage.php'">My Issues</div></div>
                 <?php
                     }
                 }
