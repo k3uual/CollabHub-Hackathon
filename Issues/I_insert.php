@@ -15,7 +15,7 @@
 
     
     $query = "INSERT INTO issues (id,title,loc,`desc`,`date`,s_id) 
-    VALUES ($id,'$title','$loc','$desc',now(),1003002)";
+    VALUES ($id,'$title','$loc','$desc',now(),$sid)";
     echo $query;
     // Prepare and bind the INSERT statement
     $stmt = $con->prepare($query);

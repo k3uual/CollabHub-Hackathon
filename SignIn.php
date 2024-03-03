@@ -67,7 +67,7 @@
                 </div>
                 <div class="end">
                     <input class="inp" id="btn" type="submit" value="Sign in">
-                    <a id="forget" href=""><b>forget password?</b></a>
+                    
                 </div>
                 
             </form>

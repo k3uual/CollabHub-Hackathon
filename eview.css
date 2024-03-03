@@ -82,14 +82,13 @@ body {
     transition: all 0.5s;
 }
 
-.infosec, .cmtcontain {
+.infosec {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     position: relative;
     top: 30px;
-    width: 100%;
     margin-bottom: 50px;
     height: fit-content;
     background-color: white;
@@ -136,18 +135,43 @@ legend {
     padding-bottom: 20px;
 }
 
-.comment {
+.cmtcontain {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    top: 30px;
+    margin-bottom: 50px;
+    height: fit-content;
+    background-color: white;
+    width: 63%;
+    padding: 20px 50px 30px 50px;
+    border-radius: 20px;
+    position: relative;
+    left: 5%;
+}
+
+.cmt {
     width: 80%;
+    position: relative;
+    left: 15px;
+    font-size: 18px;
+}
+
+.comment {
+    position: relative;
+    margin: 20px 0 20px 0;
+    width: 100%;
 }
 
 .cmttop {
     display: flex;
     align-items: center;
     width: fit-content;
-    border: 2px solid black;
+    position: relative;
+    top: -10px;
 }
 
-.pfp{
+.cmtpfp{
     width: 30px;
     height: 30px;
     border-radius: 50%;
@@ -157,5 +181,16 @@ legend {
     display: flex;
     flex-direction: column;
     position: relative;
-    left: -5px;
+    left: -6px;
+    top: 8px;
+}
+
+.votecount {
+    font-size: 12px;
+    position: relative;
+    right: -1.75px;
+}
+
+#addcmt {
+    width: 100%;
 }

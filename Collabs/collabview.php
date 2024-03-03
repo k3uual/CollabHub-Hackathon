@@ -75,6 +75,14 @@
         <?php
             include("connect.php");
             
+            if(isset($_GET['stat'])) {
+                $status = $_GET['stat'];
+                if($status == "enrolled")
+                    echo "<script> alert('Already Enrolled'); </script>";
+                else
+                    echo "<script> alert('Successfully Enrolled'); </script>";
+            }
+
             $id = $_GET['id'];
             $nowcmd = mysqli_query($con,"Select now() as now");
             $runnow = mysqli_fetch_array($nowcmd);
@@ -123,7 +131,7 @@
                 <div class="entxt">Closes in:</div>
                 <div class="entxt2"><?php echo $start.' - '.$end;?></div>
             </div>
-            <button class="enbtn" onclick="">Enroll Now</button>
+            <button class="enbtn" onclick="document.location.href = 'C_enroll.php?id=<?php echo $row['id'];?>'">Enroll Now</button>
         </div>
         <div class="infosec">
             <fieldset>
@@ -173,19 +181,44 @@
             </fieldset>
         </div>
         <div class="cmtcontain">
-            <div class="comment">
-                <div class="cmttop">
-                    <div class="vote">
-                        <i class="bi-caret-up"></i>
-                        <i class="bi-caret-down"></i>
-                    </div>
-                    <img class="pfp" src="../blank-pfp.png" alt="pfp">
-                    <div class="username">Name</div>
+                <div>
+                    <form action="addcomment.php" method="post">
+                        <textarea name="desc" id="addcmt" cols="30" rows="10"></textarea>
+                        <input type="hidden" name="id" value="<?php echo $row['id'];?>">
+                        <input type="submit" class="inp" value="Post">
+                    </form>
                 </div>
+                <?php
+                    $query = "select sol.id, sol.desc, sol.date, CONCAT_WS('',f.id, s.id) uid,  CONCAT_WS('',f.name, s.name) uname, CONCAT_WS('',f.pic, s.pic) upic, 
+                    CONCAT_WS('',f.imgType, s.imgType) uimgtype from comments sol left outer join students s on sol.s_id = s.id left outer join faculties f on sol.f_id = f.id where sol.c_id = $id";
+                    $cmd = mysqli_query($con, $query);
+                    while($row = mysqli_fetch_array($cmd)){
+                ?>
                 
-                <div class="cmt">afdhakslhfalkshfashflakshjhkjlfhkah</div>
+                <div class="comment">
+                    <div class="cmttop">
+                        <div class="vote">
+                            <i id="up" class="bi-caret-up"></i>
+                            <i id="down" class="bi-caret-down"></i>
+                            <div class="votecount">00</div>
+                        </div>
+                        <?php
+                        if($row['upic'] != ''){        
+                        ?>
+                        <img class="pfp" src="../display_img.php?userid=<?php echo $row['uid'];?>&usertype=<?php if($row['uid']<2000000){echo "students";} else{echo "faculties";}?>" alt="pfp">
+                        <?php
+                        }
+                        ?>
+                        <img class="cmtpfp" src="../blank-pfp.png" alt="pfp">
+                        <div class="username"><?php echo $row['uname'];?></div>
+                    </div>
+
+                    <div class="cmt"><?php echo $row['desc'];?></div>
+                </div>
+                <?php
+                    }
+                ?>
             </div>
-        </div>
     </body>
     <script>
         let profile = document.getElementById("right");

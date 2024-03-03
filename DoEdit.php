@@ -11,6 +11,7 @@
     $city = $_POST['city'];
     $bio = $_POST['bio'];
     $utype = $_POST['utype'];
+    $pass = $_POST['pass'];
     echo $utype;
     if($utype == 'students') {
         $uinfo = $_POST['sem'];
@@ -43,11 +44,11 @@
         
         // Prepare and bind the INSERT statement
         if($image['name'] == ''){
-            $stmt = $con->prepare("UPDATE $utype SET name = '$uname', state = '$state', city = '$city', inst = '$inst', dep = '$dept', 
+            $stmt = $con->prepare("UPDATE $utype SET name = '$uname', pass = '$pass', state = '$state', city = '$city', inst = '$inst', dep = '$dept', 
             email = '$email', mob = $mobno, $udata = '$uinfo', `desc` = '$bio' WHERE id = $id");
         }
         else{
-            $stmt = $con->prepare("UPDATE $utype SET pic = ?, imgType = ?, name = '$uname', state = '$state', city = '$city', inst = '$inst', dep = '$dept', 
+            $stmt = $con->prepare("UPDATE $utype SET pic = ?, imgType = ?, name = '$uname', pass = '$pass', state = '$state', city = '$city', inst = '$inst', dep = '$dept', 
             email = '$email', mob = $mobno, $udata = '$uinfo', `desc` = '$bio' WHERE id = $id");
             $stmt->bind_param("ss", $imageData, $fileType);
         }

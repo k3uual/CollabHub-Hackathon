@@ -49,15 +49,15 @@
         ?>
         <div id="topsection">
             <div class="topbar">
-                <div id="left">
+                <div id="left" onclick="document.location.href = '../index2.php'">
                     <img class="logotop" src="../Logo.png" alt="Logo">
                     
                     <span class="webnametop"><b>CollabHub</b></span>
                 </div>
                 <div id="navcontain">
-                    <div class="nav lnav">Events</div>
-                    <div class="nav midnav ">Collabs</div>
-                    <div class="nav rnav selectednav">Issues</div>
+                    <div class="nav lnav" onclick="document.location.href = '../index2.php'">Events</div>
+                    <div class="nav midnav" onclick="document.location.href = '../collab.php'">Collabs</div>
+                    <div class="nav rnav" onclick="document.location.href = '../issue.php'">Issues</div>
                 </div>
                 <?php
                 if(!$id){
@@ -91,11 +91,23 @@
                 } ?>
             </div>
             <div id="menu">
-                <div class="menuopt"><i class="bi-person micon"></i><div class="opttxt">My Profile</div></div>
+                <div class="menuopt"><i class="bi-person micon"></i><div class="opttxt" onclick="document.location.href = '<?php if($_COOKIE['usertype'] == 'students'){echo 'S_edit.php';}else{echo 'F_edit.php';}?>'">My Profile</div></div>
+                <?php
+                if(isset($_COOKIE['usertype'])){
+                    if($_COOKIE['usertype'] == "faculties"){
+                ?>
                 <div class="menuopt"><i class="bi-calendar-check micon"></i><div class="opttxt">My Events</div></div>
+                <?php
+                    }
+                    else {
+                ?>
                 <div class="menuopt"><i class="bi-people micon"></i><div class="opttxt">My Collabs</div></div>
                 <div class="menuopt"><i class="bi-person-add micon"></i><div class="opttxt">My Team</div></div>
-                <div class="menuopt"><i class="bi-plus-circle micon"></i><div class="opttxt">Organize</div></div>
+                <div class="menuopt"><i class="bi-person-add micon"></i><div class="opttxt">My Issues</div></div>
+                <?php
+                    }
+                }
+                ?>
                 <div class="menuopt lastopt" onclick="document.location.href = '../SignOut.php'"><i class="bi-box-arrow-right micon"></i><div class="opttxt">Sign Out</div></div>
             </div>
         </div>

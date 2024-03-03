@@ -9,36 +9,68 @@
     <link rel="stylesheet" href="../iedit.css">
 
     <body>
-        <div id="topsection">
+    <div id="topsection">
             <div class="topbar">
-                <div id="left">
+                <div id="left" onclick="document.location.href = '../index2.php'">
                     <img class="logotop" src="../Logo.png" alt="Logo">
+                    
                     <span class="webnametop"><b>CollabHub</b></span>
                 </div>
                 <div id="navcontain">
-                    <div class="nav lnav ">Events</div>
-                    <div class="nav midnav ">Collabs</div>
-                    <div class="nav rnav">Issues</div>
+                    <div class="nav lnav" onclick="document.location.href = '../index2.php'">Events</div>
+                    <div class="nav midnav" onclick="document.location.href = '../collab.php'">Collabs</div>
+                    <div class="nav rnav" onclick="document.location.href = '../issue.php'">Issues</div>
                 </div>
-                
-                <!-- <div id="rightauth">
+                <?php
+                if(!$id){
+                    ?>
+                <div id="rightauth">
                     <div id="signinopt" onclick="document.location.href = 'SignIn.php'">Sign In</div>
                     <div id="signupopt" onclick="document.location.href = 'SignUp.html'">Sign Up</div>
-                </div> -->
-
+                </div>
+                <?php 
+                }
+                else {
+                    ?>
                 <div id="right">
+
+                    <?php
+                    if($toprow['pic'] != NULL){
+                        $flag = 1;
+                    ?>
+                    <img class="pfp" src="../display_img.php?userid=<?php echo $_COOKIE['userid'];?>&usertype=students" alt="pfp">
+                    <?php 
+                    }
+                    else {
+                        $flag = 0;
+                    ?>
                     <img class="pfp" src="../blank-pfp.png" alt="pfp">
-                    <span class="username">Name</span>
+                    <?php }?>
+                    <span class="username"><?php echo $_COOKIE['username'];?></span>
                     <i class="bi-caret-down-fill pfparrow"></i>
                 </div>
+                <?php
+                } ?>
             </div>
             <div id="menu">
-                <div class="menuopt"><i class="bi-person micon"></i><div class="opttxt">My Profile</div></div>
+                <div class="menuopt"><i class="bi-person micon"></i><div class="opttxt" onclick="document.location.href = '<?php if($_COOKIE['usertype'] == 'students'){echo 'S_edit.php';}else{echo 'F_edit.php';}?>'">My Profile</div></div>
+                <?php
+                if(isset($_COOKIE['usertype'])){
+                    if($_COOKIE['usertype'] == "faculties"){
+                ?>
                 <div class="menuopt"><i class="bi-calendar-check micon"></i><div class="opttxt">My Events</div></div>
+                <?php
+                    }
+                    else {
+                ?>
                 <div class="menuopt"><i class="bi-people micon"></i><div class="opttxt">My Collabs</div></div>
                 <div class="menuopt"><i class="bi-person-add micon"></i><div class="opttxt">My Team</div></div>
-                <div class="menuopt"><i class="bi-plus-circle micon"></i><div class="opttxt">Organize</div></div>
-                <div class="menuopt lastopt"><i class="bi-box-arrow-right micon"></i><div class="opttxt">Sign Out</div></div>
+                <div class="menuopt"><i class="bi-person-add micon"></i><div class="opttxt">My Issues</div></div>
+                <?php
+                    }
+                }
+                ?>
+                <div class="menuopt lastopt" onclick="document.location.href = '../SignOut.php'"><i class="bi-box-arrow-right micon"></i><div class="opttxt">Sign Out</div></div>
             </div>
         </div>
         <form action="I_insert.php" method="post">

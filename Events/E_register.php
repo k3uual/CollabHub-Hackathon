@@ -15,33 +15,33 @@
             -webkit-appearance: none;
             margin: 0;
         }
+
+        .member {
+            display: flex;
+            
+        }
+
+        #mininp, #maxinp {
+            width: 90%;
+        }
+
+        .max {
+            margin-right: auto;
+        }
     </style>
     
     <body>
-    <?php
-            if(!isset($_COOKIE['userid'])){
-                //header('location:../index1.html');
-            }
-            else{
-                $id = $_COOKIE['userid'];
-                $utype = $_COOKIE['usertype'];
-                include('connect.php');
-                $topq = "Select * from $utype where id=$id";
-                $topcmd = mysqli_query($con,$topq);
-                $toprow = mysqli_fetch_array($topcmd);
-            }
-        ?>
-        <div id="topsection">
+    <div id="topsection">
             <div class="topbar">
-                <div id="left">
+                <div id="left" onclick="document.location.href = '../index2.php'">
                     <img class="logotop" src="../Logo.png" alt="Logo">
                     
                     <span class="webnametop"><b>CollabHub</b></span>
                 </div>
                 <div id="navcontain">
-                    <div class="nav lnav">Events</div>
-                    <div class="nav midnav ">Collabs</div>
-                    <div class="nav rnav">Issues</div>
+                    <div class="nav lnav" onclick="document.location.href = '../index2.php'">Events</div>
+                    <div class="nav midnav" onclick="document.location.href = '../collab.php'">Collabs</div>
+                    <div class="nav rnav" onclick="document.location.href = '../issue.php'">Issues</div>
                 </div>
                 <?php
                 if(!$id){
@@ -75,15 +75,27 @@
                 } ?>
             </div>
             <div id="menu">
-                <div class="menuopt"><i class="bi-person micon"></i><div class="opttxt">My Profile</div></div>
+                <div class="menuopt"><i class="bi-person micon"></i><div class="opttxt" onclick="document.location.href = '<?php if($_COOKIE['usertype'] == 'students'){echo 'S_edit.php';}else{echo 'F_edit.php';}?>'">My Profile</div></div>
+                <?php
+                if(isset($_COOKIE['usertype'])){
+                    if($_COOKIE['usertype'] == "faculties"){
+                ?>
                 <div class="menuopt"><i class="bi-calendar-check micon"></i><div class="opttxt">My Events</div></div>
+                <?php
+                    }
+                    else {
+                ?>
                 <div class="menuopt"><i class="bi-people micon"></i><div class="opttxt">My Collabs</div></div>
                 <div class="menuopt"><i class="bi-person-add micon"></i><div class="opttxt">My Team</div></div>
-                <div class="menuopt"><i class="bi-plus-circle micon"></i><div class="opttxt">Organize</div></div>
+                <div class="menuopt"><i class="bi-person-add micon"></i><div class="opttxt">My Issues</div></div>
+                <?php
+                    }
+                }
+                ?>
                 <div class="menuopt lastopt" onclick="document.location.href = '../SignOut.php'"><i class="bi-box-arrow-right micon"></i><div class="opttxt">Sign Out</div></div>
             </div>
         </div>
-        <div action="Login.html" method="post" enctype="multipart/form-data">
+        <form action="E_insert.php" method="post" enctype="multipart/form-data">
         <div class="infosection" >
             <div class="leftinfo">
                 <div class="pfpcontain">
@@ -103,20 +115,29 @@
 
                     <div class="label">Registration Cost:</div>
                     <input type="number" class="inp" name="regcost">
-
-                    <div class="label">Maximum number of members:</div>
-                    <input type="number" class="inp" name="max">
+                    <div class="member">
+                        <div class="min">
+                            <div class="label">Mininmum no. of members:</div>
+                            <input type="number" id="mininp" class="inp" name="min">
+                        </div>
+                        
+                        <div class="max">
+                            <div class="label">Maximum no. of members:</div>
+                            <input type="number" id="maxinp" class="inp" name="max">
+                        </div>
+                    </div>
                     
-                    <div class="label">Mininmum number of members:</div>
-                    <input type="number" class="inp" name="min">
+                    
+                    <div class="label">Organized By:</div>
+                    <input type="text" class="inp" name="org">
 
                     <div class="label">Venue of Event:</div>
                     <div class="radios">
                         <label class="radele" for="online">
-                            <input class="type" id="online" type="radio" name="utype" value="online" checked>Online
+                            <input class="type" id="online" type="radio" name="venue" value="online" checked>Online
                         </label>
                         <label class="radele" for="offline">
-                            <input class="type" id="offline" type="radio" name="utype" value="offline">Offline
+                            <input class="type" id="offline" type="radio" name="venue" value="offline">Offline
                         </label>
                     </div>
                     
@@ -134,7 +155,7 @@
                         <div class="label">Address:</div>
                         <input type="text" class="inp" name="loc">
                     </div>
-
+                    
                 </fieldset>
             
             
@@ -160,13 +181,13 @@
                     <input type="datetime-local" class="inp" name="regstart">
         
                     <div class="label">Registration Ends At:</div>
-                    <input type="datetime-local" class="inp" name="regends">
+                    <input type="datetime-local" class="inp" name="regend">
         
                     <div class="label">Event Starts At:</div>
-                    <input type="datetime-local" class="inp" name="eventstarts">
+                    <input type="datetime-local" class="inp" name="eventstart">
         
                     <div class="label">Event Ends At:</div>
-                    <input type="datetime-local" class="inp" name="eventends">
+                    <input type="datetime-local" class="inp" name="eventend">
                 </fieldset>
 
                 <fieldset class="containinfo introinfo">
@@ -188,8 +209,6 @@
         </div>
             
         </form>
-        
-        
         
     </body>
 
@@ -215,6 +234,38 @@
             let image = document.getElementById("pfp");
             image.src = URL.createObjectURL(event.target.files[0]);
         };
+
+        const online = document.getElementById('online');
+        const offline = document.getElementById('offline');
+        const city = document.getElementById('city');
+        const state = document.getElementById('state');
+        const loc = document.getElementById('loc');
+
+
+        online.addEventListener('change', function() {
+            if (online.checked) {
+                city.style.display = 'none';
+                city.removeAttribute('required','');
+                state.style.display = 'none';
+                state.removeAttribute('required','');
+                loc.style.display = 'none';
+                loc.removeAttribute('required','');
+                city.value = "";
+                state.value = "";
+                loc.value = "";
+            }
+        });
+    
+        offline.addEventListener('change', function() {
+            if (offline.checked) {
+                city.style.display = 'block';
+                city.setAttribute('required','');
+                state.style.display = 'block';
+                state.setAttribute('required','');
+                loc.style.display = 'block';
+                loc.setAttribute('required','');
+            }
+        });
         
     </script>
 </html>

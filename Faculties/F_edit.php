@@ -21,15 +21,15 @@
         ?>
         <div id="topsection">
             <div class="topbar">
-                <div id="left">
+                <div id="left" onclick="document.location.href = '../index2.php'">
                     <img class="logotop" src="../Logo.png" alt="Logo">
                     
                     <span class="webnametop"><b>CollabHub</b></span>
                 </div>
                 <div id="navcontain">
-                    <div class="nav lnav">Events</div>
-                    <div class="nav midnav ">Collabs</div>
-                    <div class="nav rnav">Issues</div>
+                    <div class="nav lnav" onclick="document.location.href = '../index2.php'">Events</div>
+                    <div class="nav midnav" onclick="document.location.href = '../collab.php'">Collabs</div>
+                    <div class="nav rnav" onclick="document.location.href = '../issue.php'">Issues</div>
                 </div>
                 <?php
                 if(!$id){
@@ -45,7 +45,7 @@
                 <div id="right">
 
                     <?php
-                    if($row['pic'] != NULL){
+                    if($toprow['pic'] != NULL){
                         $flag = 1;
                     ?>
                     <img class="pfp" src="../display_img.php?userid=<?php echo $_COOKIE['userid'];?>&usertype=students" alt="pfp">
@@ -63,11 +63,23 @@
                 } ?>
             </div>
             <div id="menu">
-                <div class="menuopt"><i class="bi-person micon"></i><div class="opttxt">My Profile</div></div>
+                <div class="menuopt"><i class="bi-person micon"></i><div class="opttxt" onclick="document.location.href = '<?php if($_COOKIE['usertype'] == 'students'){echo 'S_edit.php';}else{echo 'F_edit.php';}?>'">My Profile</div></div>
+                <?php
+                if(isset($_COOKIE['usertype'])){
+                    if($_COOKIE['usertype'] == "faculties"){
+                ?>
                 <div class="menuopt"><i class="bi-calendar-check micon"></i><div class="opttxt">My Events</div></div>
+                <?php
+                    }
+                    else {
+                ?>
                 <div class="menuopt"><i class="bi-people micon"></i><div class="opttxt">My Collabs</div></div>
                 <div class="menuopt"><i class="bi-person-add micon"></i><div class="opttxt">My Team</div></div>
-                <div class="menuopt"><i class="bi-plus-circle micon"></i><div class="opttxt">Organize</div></div>
+                <div class="menuopt"><i class="bi-person-add micon"></i><div class="opttxt">My Issues</div></div>
+                <?php
+                    }
+                }
+                ?>
                 <div class="menuopt lastopt" onclick="document.location.href = '../SignOut.php'"><i class="bi-box-arrow-right micon"></i><div class="opttxt">Sign Out</div></div>
             </div>
         </div>
@@ -109,7 +121,10 @@
                     <div class="label lasttxt">City: </div>
                     <input class="inp" type="text" placeholder="City" value="<?php echo $row['city'];?>" name="city">
                     
-                    <input type="button" onclick="document.location.href = '?uid='" class="btn" id="chng" value="Change Password">
+                    <div class="passcontain">
+                        <input class="inp" type="password" placeholder="Password" id="typepass" name="pass" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+                        <div id="hidepass" onclick="togglePass()"><i id="eye" class="bi-eye-slash"></i></div>
+                    </div>
                 </fieldset>
             </div>
             <div class="rightinfo">
@@ -166,6 +181,20 @@
             let image = document.getElementById("pfp");
             image.src = URL.createObjectURL(event.target.files[0]);
         };
+        
+        function togglePass() {
+            let temp = document.getElementById("typepass");
+            let hide = document.getElementById("hidepass");
+
+            if (temp.type === "password") {
+                temp.type = "text";
+                hide.innerHTML = `<i class="bi-eye" id="eye"></i>`;
+            }
+            else {
+                temp.type = "password";
+                hide.innerHTML = `<i class="bi-eye-slash" id="eye"></i>`;
+            }
+        }
         
     </script>
 </html>

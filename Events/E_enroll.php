@@ -19,8 +19,8 @@
             header("location:eventview.php?id=$eid&stat=enrolled");
         }
         else {
-            if($inscmd = mysqli_query($con, "insert into participates values($sid, $eid, 0)"))
-            header("location:eventview.php?id=$eid&stat=success");
+            if($inscmd = mysqli_query($con, "insert into participates(s_id, e_id, approved) values($sid, $eid, 0)"))
+                header("location:eventview.php?id=$eid&stat=success");
         }
     }
 ?>

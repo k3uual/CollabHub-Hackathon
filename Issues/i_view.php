@@ -3,9 +3,109 @@
         <title>Events - CollabHub</title>
     </head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="../eview.css">
     <link rel="stylesheet" href="../topbar.css">
+    <style>
+        body {
+            background-color: #f5f7f7;
+            font-family: "Nunito Sans", sans-serif;
+            overflow: visible;
+        }
 
+        .name {
+            left: 20px;
+            font-size: 28px;
+            text-decoration: underline;
+        }
+
+        .cmtcontain {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            top: 30px;
+            margin-bottom: 50px;
+            height: fit-content;
+            background-color: white;
+            width: 60%;
+            padding: 20px 50px 30px 50px;
+            border-radius: 20px;
+        }
+        .issuesection {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+        .issue {
+            display: flex;
+            background-color: white;
+            align-items: center;
+            width: 70%;
+            padding-bottom: 30px;
+            border-radius: 20px;
+        }
+
+        .ienclose {
+            position: relative;
+            left: 20px;
+            border-left: 2px solid #bababa;
+            top: 15px;
+        }
+        
+        .issuetxt {
+            position: relative;
+            left: 30px;
+            top: -15px;
+        }
+
+        .description {
+            font-size: 24px;
+        }
+        
+        .cmt {
+            width: 80%;
+            position: relative;
+            left: 15px;
+            font-size: 18px;
+        }
+
+        .comment {
+            position: relative;
+            margin: 20px 0 20px 0;
+            width: 100%;
+        }
+
+        .cmttop {
+            display: flex;
+            align-items: center;
+            width: fit-content;
+            position: relative;
+            top: -10px;
+        }
+
+        .cmtpfp{
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+        }
+
+        .vote {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            left: -6px;
+            top: 8px;
+        }
+
+        .votecount {
+            font-size: 12px;
+            position: relative;
+            right: -1.75px;
+        }
+
+        #addcmt {
+            width: 100%;
+        }
+
+    </style>
     <body>
     <?php
             if(!isset($_COOKIE['userid'])){
@@ -85,153 +185,26 @@
             </div>
         </div>
         <?php
-            include("connect.php");
             
-            if(isset($_GET['stat'])) {
-                $status = $_GET['stat'];
-                if($status == "enrolled")
-                    echo "<script> alert('Already Enrolled'); </script>";
-                else
-                    echo "<script> alert('Successfully Enrolled'); </script>";
-            }
             $id = $_GET['id'];
-            $nowcmd = mysqli_query($con,"Select now() as now");
-            $runnow = mysqli_fetch_array($nowcmd);
-            $now = $runnow['now'];
-            $query = "Select *,TIMESTAMPDIFF(second,'$now',reg_start) as didstart,TIMESTAMPDIFF(day,'$now',reg_end) as dleft, 
-            TIMESTAMPDIFF(hour,'$now',reg_end) as hleft, TIMESTAMPDIFF(minute,'$now',reg_end) as mleft, TIMESTAMPDIFF(second,'$now',reg_end) 
-            as sleft from EVENTS where id = $id";
+            
+            $query = "Select * from issues where id = $id";
             $cmd = mysqli_query($con, $query);
             $row = mysqli_fetch_array($cmd);
         ?>
-        <div class="toptitle">
-            <?php 
-            if($row['pic'] != NULL){
-            ?>
-            <img id="epic" src="../display_img.php?userid=<?php echo $row['id'];?>&usertype=events" alt="pfp">
-            <?php
-            }
-            ?>
-            <div class="name"><?php echo $row['name'];?></div>
-        </div>
-        <div class="enroll">
-            <div class="ensec">
-                <div class="entxt">Runs From:</div>
-                <div class="entxt2">00 Feb - 00 Mar</div>
-            </div>
-            <div class="ensec">
-                <div class="entxt">Happening At:</div>
-                <?php
-                if($row['state'] != 'online'){
-                ?>
-                <div class="entxt2"><?php echo $row['state'].', '.$row['city'].', '.$row['loc'];?></div>
-                <?php
-                }
-                else {
-                ?>
-                <div class="entxt2"><?php echo $row['state']?></div>
-                <?php
-                }
-                $fstart = strtotime($row['start']);
-                $start = date("d M",$fstart);
-                $fend = strtotime($row['end']);
-                $end = date("d M",$fend);
-                ?>
-            </div>
-            <div class="ensec">
-                <div class="entxt">Closes in:</div>
-                <div class="entxt2"><?php echo $start.' - '.$end;?></div>
-            </div>
-            <button class="enbtn" onclick="document.location.href = 'E_enroll.php?id=<?php echo $row['id'];?>'">Enroll Now</button>
-        </div>
-        <div class="infosec">
-            <fieldset>
-                <legend>Overview</legend>
-                <div class="info"><?php echo $row['desc'];?></div>
-            </fieldset>
-
-            <fieldset>
-                <legend>General</legend>
-                <div class="label">Type of Event:</div>
-                <div class="info"><?php echo $row['type'];?></div>
-
-                <div class="label">Registration Cost:</div>
-                <?php
-                if($row['reg_cost'] == 0){
-                ?>
-                <div class="info">Nothing.</div>
-                <?php
-                }
-                else {
-                ?>
-                <div class="info"><?php echo $row['reg_cost'];?></div>
-                <?php
-                }
-                ?>
-                <div class="label">Venue:</div>
-                <div class="info"><?php echo $row['state'].', '.$row['city'].', '.$row['loc'];?></div>
-
-                <div class="label">Organized by:</div>
-                <div class="info"><?php echo $row['org'];?></div>
-            </fieldset>
-            <?php
-            if($row['max']>1){
-            ?>
-            <fieldset>
-                <legend>Members required</legend>
-                <div class="member">
-                    <div class="min">
-                        <div class="label">Mininmum:</div>
-                        <div class="info"><?php echo $row['min'];?></div>
-                    </div>
-                    <div class="max">
-                        <div class="label">Maximum:</div>
-                        <div class="info"><?php echo $row['max'];?></div>
+        <div class="issuesection">
+            
+            <div class="issue">
+                <div class="ienclose">
+                    <div class="issuetxt">
+                        <div class="title"><h1><?php echo $row['title'];?></h1></div>
+                        <div class="description"><?php echo $row['desc'];?></div>
                     </div>
                 </div>
-            </fieldset>
-            <?php
-            }
-            if($row['prize1'] != NULL){
-            ?>
-            <fieldset>
-                <legend>Prizes</legend>
-                <div class="label">First Prize:</div>
-                <div class="info"><?php echo $row['prize1'];?></div>
-
-                <div class="label">Second Prize:</div>
-                <div class="info"><?php echo $row['prize2'];?></div>
-
-                <div class="label">Third Prize:</div>
-                <div class="info"><?php echo $row['prize3'];?></div>
-            </fieldset>
-            <?php
-            }
-            ?>
-
-            <fieldset>
-                <legend>Dates</legend>
-                <div class="label">Registration Starts:</div>
-                <div class="info"><?php echo $row['reg_start'];?></div>
-
-                <div class="label">Registration Ends:</div>
-                <div class="info"><?php echo $row['reg_end'];?></div>
-
-                <div class="label">Event Starts:</div>
-                <div class="info"><?php echo $row['start'];?></div>
-
-                <div class="label">Event Ends:</div>
-                <div class="info"><?php echo $row['end'];?></div>
-            </fieldset>
-
-            <fieldset>
-                <legend>Rules</legend>
-                <div class="info"><?php echo $row['rules'];?></div>
-            </fieldset>
-        </div>
-        <div class="cmtcontain">
+            </div>
+            <div class="cmtcontain">
                 <div>
-                    <form action="addcomment.php" method="post">
+                    <form action="addsolution.php" method="post">
                         <textarea name="desc" id="addcmt" cols="30" rows="10"></textarea>
                         <input type="hidden" name="id" value="<?php echo $row['id'];?>">
                         <input type="submit" class="inp" value="Post">
@@ -239,7 +212,7 @@
                 </div>
                 <?php
                     $query = "select sol.id, sol.desc, sol.date, CONCAT_WS('',f.id, s.id) uid,  CONCAT_WS('',f.name, s.name) uname, CONCAT_WS('',f.pic, s.pic) upic, 
-                    CONCAT_WS('',f.imgType, s.imgType) uimgtype from comments sol left outer join students s on sol.s_id = s.id left outer join faculties f on sol.f_id = f.id where sol.e_id = $id";
+                    CONCAT_WS('',f.imgType, s.imgType) uimgtype from solutions sol left outer join students s on sol.s_id = s.id left outer join faculties f on sol.f_id = f.id where sol.i_id = $id";
                     $cmd = mysqli_query($con, $query);
                     while($row = mysqli_fetch_array($cmd)){
                 ?>
@@ -268,6 +241,8 @@
                     }
                 ?>
             </div>
+        </div>
+        
     </body>
     <script>
         let profile = document.getElementById("right");

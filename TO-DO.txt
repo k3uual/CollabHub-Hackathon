@@ -22,9 +22,8 @@ SELECT s.id, s.desc, s.date, s.i_id, s.s_id, s.f_id, sv.sol_id,(SELECT COUNT(sv.
 SELECT m.s_id, t.id, t.proj, t.idea, m.is_leader FROM members m INNER JOIN teams t on t.id = m.t_id WHERE m.s_id = 1003001;
 
 TO DO:
-register option(team and individual)
-forget Password
-approvals(event and collab)
+no enroll btn on over, no open on not started
 COMMENTS(and reply, and vote)
+approvals(event and collab)
 profile of everyone that people can visit
 Admin functions
