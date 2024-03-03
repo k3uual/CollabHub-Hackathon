@@ -64,7 +64,8 @@
                 } ?>
             </div>
             <div id="menu">
-                <div class="menuopt"><i class="bi-person micon"></i><div class="opttxt" onclick="document.location.href = '<?php if($_COOKIE['usertype'] == 'students'){echo 'Students/S_edit.php';}else{echo 'Faculties/F_edit.php';}?>'">My Profile</div></div>
+            <div class="menuopt"><i class="bi-person micon"></i><div class="opttxt" onclick="document.location.href = '<?php if($_COOKIE['usertype'] == 'students'){echo '../Students/S_edit.php';}else{echo '../Faculties/F_edit.php';}?>'">My Profile</div></div>
+
                 <?php
                 if(isset($_COOKIE['usertype'])){
                     if($_COOKIE['usertype'] == "faculties") {
