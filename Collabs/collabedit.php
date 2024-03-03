@@ -234,8 +234,6 @@
 
     <script>
         let profile = document.getElementById("right");
-        console.log("hello");
-
         let profile2 = document.querySelector("#menu");
         let another = document.getElementById("menu");
 

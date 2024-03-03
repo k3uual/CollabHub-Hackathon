@@ -150,5 +150,21 @@
             
         </form>
     </body>
+    <script>
+        let profile = document.getElementById("right");
+        console.log("hello");
 
+        let profile2 = document.querySelector("#menu");
+        let another = document.getElementById("menu");
+
+        profile.addEventListener("click", function() {
+            console.log("open");
+            profile2.classList.toggle("open");
+        });
+
+        // document.addEventListener("click", function() {
+        //     console.log("close");
+        //     profile2.classList.remove("open");
+        // });
+    </script>
 </html>
