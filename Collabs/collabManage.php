@@ -10,6 +10,28 @@
             position: relative;
             top: 10px;
         }
+
+        .btn {
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: all 1s;
+            width: 50vh;
+            padding: 8px;
+            margin: 6px 0 6px 0;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 20px;
+            position: relative;
+            background-color: rgb(55 112 255);
+        }
+
+        .btn:hover {
+            transform: translate(0, -3px);
+            transition: all 0.5s;
+            background-color: rgb(55 112 255);
+        }
     </style>
     <body>
     <?php
@@ -183,7 +205,7 @@
             </div>
             <?php }
             ?>
-            
+            <button class="btn" onclick="document.location.href = 'C_register.php'">Add</button>
         </div>
     </body>
 

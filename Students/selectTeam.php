@@ -133,6 +133,7 @@
             <?php
             }
             ?>
+            <button class="btn" onclick="document.location.href = 'TeamMake.php'">Add</button>
         </div>
     </body>
     <script>

@@ -5,7 +5,29 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="../icard.css">
     <link rel="stylesheet" href="../topbar.css">
+    <style>
+        .btn {
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: all 1s;
+            width: 50vh;
+            padding: 8px;
+            margin: 6px 0 6px 0;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 20px;
+            position: relative;
+            background-color: rgb(55 112 255);
+        }
 
+        .btn:hover {
+            transform: translate(0, -3px);
+            transition: all 0.5s;
+            background-color: rgb(55 112 255);
+        }
+    </style>
     <body>
     <?php
             if(!isset($_COOKIE['userid'])){
@@ -107,6 +129,7 @@
             <?php
             }
             ?>
+            <button class="btn" onclick="document.location.href = 'I_raise.php'">Add</button>
         </div>
     </body>
     <script>
