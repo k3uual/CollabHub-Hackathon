@@ -247,11 +247,11 @@
                 
                 <div class="comment">
                     <div class="cmttop">
-                        <div class="vote">
+                        <!-- <div class="vote">
                             <i id="up" class="bi-caret-up"></i>
                             <i id="down" class="bi-caret-down"></i>
                             <div class="votecount">00</div>
-                        </div>
+                        </div> -->
                         <?php
                         if($row['upic'] != ''){        
                         ?>

@@ -49,7 +49,7 @@
                     if($toprow['pic'] != NULL){
                         $flag = 1;
                     ?>
-                    <img class="pfp" src="../display_img.php?userid=<?php echo $_COOKIE['userid'];?>&usertype=students" alt="pfp">
+                    <img class="pfp" src="../display_img.php?userid=<?php echo $_COOKIE['userid'];?>&usertype=<?php echo $_COOKIE['usertype'];?>" alt="pfp">
                     <?php 
                     }
                     else {
@@ -210,11 +210,11 @@
                 
                 <div class="comment">
                     <div class="cmttop">
-                        <div class="vote">
+                        <!-- <div class="vote">
                             <i id="up" class="bi-caret-up"></i>
                             <i id="down" class="bi-caret-down"></i>
                             <div class="votecount">00</div>
-                        </div>
+                        </div> -->
                         <?php
                         if($row['upic'] != ''){        
                         ?>

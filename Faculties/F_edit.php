@@ -48,7 +48,7 @@
                     if($toprow['pic'] != NULL){
                         $flag = 1;
                     ?>
-                    <img class="pfp" src="../display_img.php?userid=<?php echo $_COOKIE['userid'];?>&usertype=students" alt="pfp">
+                    <img class="pfp" src="../display_img.php?userid=<?php echo $_COOKIE['userid'];?>&usertype=<?php echo $_COOKIE['usertype'];?>" alt="pfp">
                     <?php 
                     }
                     else {
@@ -90,7 +90,7 @@
                     <?php 
                     if($flag){
                     ?>
-                    <img id="pfp" src="../display_img.php?userid=<?php echo $_COOKIE['userid'];?>&usertype=students" alt="pfp">
+                    <img id="pfp" src="../display_img.php?userid=<?php echo $_COOKIE['userid'];?>&usertype=faculties" alt="pfp">
                     <?php }
                     else{
                     ?>
@@ -126,7 +126,7 @@
                     <input class="inp" type="text" placeholder="City" value="<?php echo $row['city'];?>" name="city">
                     
                     <div class="passcontain">
-                        <input class="inp" type="password" placeholder="Password" id="typepass" name="pass" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+                        <input class="inp" type="password" placeholder="Password" id="typepass" name="pass" value="<?php echo $row['pass'];?>" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
                         <div id="hidepass" onclick="togglePass()"><i id="eye" class="bi-eye-slash"></i></div>
                     </div>
                 </fieldset>

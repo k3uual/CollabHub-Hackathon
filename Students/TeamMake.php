@@ -76,7 +76,7 @@
                     if($toprow['pic'] != NULL){
                         $flag = 1;
                     ?>
-                    <img class="pfp" src="../display_img.php?userid=<?php echo $_COOKIE['userid'];?>&usertype=students" alt="pfp">
+                    <img class="pfp" src="../display_img.php?userid=<?php echo $_COOKIE['userid'];?>&usertype=<?php echo $_COOKIE['usertype'];?>" alt="pfp">
                     <?php 
                     }
                     else {

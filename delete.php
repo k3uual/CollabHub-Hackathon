@@ -12,5 +12,5 @@
         echo '<script>alert("Deleted Successfully")</script>';
     else
         echo '<script>alert("Error Deleting")</script>';
-    //header("location:index2.php");
+    header("location:index2.php");
 ?>
