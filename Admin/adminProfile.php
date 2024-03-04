@@ -5,6 +5,11 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="../edit.css">
     <link rel="stylesheet" href="../topbar.css">
+    <style>
+        #chngpic {
+            top: 25%;
+        }
+    </style>
     <body>
         <?php
             if(!isset($_COOKIE['userid'])){
@@ -63,27 +68,14 @@
                 } ?>
             </div>
             <div id="menu">
-                <div class="menuopt"><i class="bi-person micon"></i><div class="opttxt">My Profile</div></div>
-                <?php
-                if(isset($_COOKIE['usertype'])){
-                    if($_COOKIE['usertype'] == "faculties") {
-                ?>
-                <div class="menuopt"><i class="bi-calendar-check micon"></i><div class="opttxt" onclick="document.location.href = '../Events/eventManage.php'">My Events</div></div>
-                <?php
-                    }
-                    else {
-                ?>
-                <div class="menuopt"><i class="bi-people micon"></i><div class="opttxt" onclick="document.location.href = '../Collabs/collabManage.php'">My Collabs</div></div>
-                <div class="menuopt"><i class="bi-person-add micon"></i><div class="opttxt" onclick="document.location.href = '../Students/selectTeam.php'">My Team</div></div>
-                <div class="menuopt"><i class="bi-person-add micon"></i><div class="opttxt" onclick="document.location.href = '../Issues/issueManage.php'">My Issues</div></div>
-                <?php
-                    }
-                }
-                ?>
+                <div class="menuopt"><i class="bi-person micon"></i><div class="opttxt" onclick="document.location.href = 'adminProfile.php'">My Profile</div></div>
+                <div class="menuopt"><i class="bi-person micon"></i><div class="opttxt" onclick="document.location.href = 'studentManage.php'">Students</div></div>
+                <div class="menuopt"><i class="bi-person micon"></i><div class="opttxt" onclick="document.location.href = 'facultyManage.php'">Faculties</div></div>
+                
                 <div class="menuopt lastopt" onclick="document.location.href = '../SignOut.php'"><i class="bi-box-arrow-right micon"></i><div class="opttxt">Sign Out</div></div>
             </div>
         </div>
-        <form action="../DoEdit.php" method="post" enctype="multipart/form-data">
+        <form action="editProfile.php" method="post" enctype="multipart/form-data">
         <div class="infosection">
             <div class="leftinfo">
                 <div class="pfpcontain">
@@ -100,7 +92,8 @@
                     <input type="file" id="openimg" accept="image/*" name="uimg" onchange="loadFile(event)">
                 </div>
                 <?php
-                    $query = "Select * from faculties where id=$id";
+                    $id = $_COOKIE['userid'];
+                    $query = "Select * from admin where id=$id";
                     $cmd = mysqli_query($con, $query);
                     $row = mysqli_fetch_array($cmd);
                 ?>
@@ -108,16 +101,10 @@
                     <legend>General</legend>
                     
                     <div class="label firsttxt">User-ID: </div>
-                    <input class="inp readonly" type="text" name="uid" value="<?php echo $row['id'];?>" readonly>
+                    <input class="inp readonly" type="text" name="uid" value="<?php echo $row['id'];?>">
                     
                     <div class="label firsttxt">Name: </div>
                     <input class="inp" type="text" placeholder="User Name" value="<?php echo $row['name'];?>" name="uname" >
-                    
-                    <div class="label">Institute Name: </div>
-                    <input class="inp" type="text" placeholder="Institute Name" value="<?php echo $row['inst'];?>" name="inst" >
-                    
-                    <div class="label">Department Name: </div>
-                    <input class="inp" type="text" placeholder="Department Name" value="<?php echo $row['dep'];?>" name="dept" >
                     
                     <div class="label">State: </div>
                     <input class="inp" type="text" placeholder="State" value="<?php echo $row['state'];?>" name="state">
@@ -145,8 +132,6 @@
             
                 <fieldset class="containinfo bioinfo">
                     <legend>About you</legend>
-                        <div class="label lasttxt">Post: </div>
-                        <input class="inp" type="text" placeholder="Post" value="<?php echo $row['post'];?>" name="post">
                         
                         <div class="label firsttxt">Bio: </div>
                         <textarea name="bio" id="bioarea" cols="30" rows="10" placeholder="Add a Bio."><?php echo $row['desc'];?></textarea>

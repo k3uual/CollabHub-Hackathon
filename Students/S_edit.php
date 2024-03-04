@@ -159,9 +159,10 @@
             <input type="submit" class="btn" id="edit" value='Edit Profile'>
         </form>
     
-            <form action="">
-                <input type="hidden" name="userid" value="">
-                <input type="submit" class="btn" id="delete" value="Delete Profile">
+        <form action="../delete.php" method="post">
+                <input type="hidden" name="id" value="<?php echo $row['id'];?>">
+                <input type="hidden" name="table" value="issues">
+                <input type="submit" class="btn" id="delete" value="Delete Issue">
             </form>
         </div>
     </body>

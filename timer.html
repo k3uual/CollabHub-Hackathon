@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Multiple JavaScript Timers</title>
+<style>
+  .container {
+    border: 2px solid black;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  .expired {
+    background-color: red;
+  }
+</style>
+</head>
+<body>
+
+<div class="container" id="timers-container">
+    <div>
+        <div>
+            <div class="timer" data-target-date="March 04, 2024 21:26:00"></div>
+        </div>
+    </div>
+    
+    <!-- Add more divs with different target dates as needed -->
+</div>
+<div class="container" id="timers-container">
+    <div class="timer" data-target-date="March 15, 2024 18:00:00"></div>
+</div>
+<div class="container" id="timers-container">
+    <div class="timer" data-target-date="March 20, 2024 08:00:00"></div>
+</div>
+
+<script>
+// Retrieve all timer elements
+const timers = document.querySelectorAll('.timer');
+const container = document.getElementById('timers-container');
+
+// Function to check if any timer has expired
+function checkExpired() {
+    let expired = false;
+    timers.forEach(timerElement => {
+        if (timerElement.innerHTML === "EXPIRED") {
+            expired = true;
+        }
+    });
+    if (expired) {
+        container.classList.add('expired');
+    }
+}
+
+// Loop through each timer
+timers.forEach(timerElement => {
+    // Get the target date for this timer from the data attribute
+    const targetDate = new Date(timerElement.dataset.targetDate).getTime();
+
+    // Update the countdown every second
+    const timerInterval = setInterval(function() {
+        // Get the current date and time
+        const now = new Date().getTime();
+
+        // Calculate the remaining time
+        const distance = targetDate - now;
+
+        // Calculate days, hours, minutes and seconds
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Display the countdown timer for this element
+        timerElement.innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+
+        // If the countdown is over, display a message and clear the interval
+        if (distance < 0) {
+            clearInterval(timerInterval);
+            timerElement.innerHTML = "EXPIRED";
+            checkExpired();
+        }
+    }, 1000); // Update every second
+});
+</script>
+
+</body>
+</html>

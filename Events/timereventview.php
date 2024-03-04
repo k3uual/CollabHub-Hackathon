@@ -118,7 +118,7 @@
         <div class="enroll">
             <div class="ensec">
                 <div class="entxt">Runs From:</div>
-                <div class="entxt2">12 March, 20 April</div>
+                <div class="entxt2">00 Feb - 00 Mar</div>
             </div>
             <div class="ensec">
                 <div class="entxt">Happening At:</div>
@@ -141,7 +141,7 @@
             </div>
             <div class="ensec">
                 <div class="entxt">Closes in:</div>
-                <div class="entxt2"><?php echo $start.' - '.$end;?></div>
+                <div class="entxt2"></div>
             </div>
             <button class="enbtn" onclick="document.location.href = 'E_enroll.php?id=<?php echo $row['id'];?>'">Enroll Now</button>
         </div>

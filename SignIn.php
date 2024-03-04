@@ -64,6 +64,9 @@
                     <label class="radele" for="faculty">
                         <input class="type" id="faculty" type="radio" name="utype" value="faculties">Faculty
                     </label>
+                    <label class="radele" for="Admin">
+                        <input class="type" id="Admin" type="radio" name="utype" value="admin">Admin
+                    </label>
                 </div>
                 <div class="end">
                     <input class="inp" id="btn" type="submit" value="Sign in">

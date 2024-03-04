@@ -38,9 +38,9 @@
     }
 
     if($max == 1 || $min == 1)
-        $is_big = 1;
-    else
         $is_big = 0;
+    else
+        $is_big = 1;
 
     $query = "select id from events order by id";
     $cmd = mysqli_query($con,$query);

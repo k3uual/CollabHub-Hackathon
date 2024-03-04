@@ -63,23 +63,10 @@
                 } ?>
             </div>
             <div id="menu">
-                <div class="menuopt"><i class="bi-person micon"></i><div class="opttxt">My Profile</div></div>
-                <?php
-                if(isset($_COOKIE['usertype'])){
-                    if($_COOKIE['usertype'] == "faculties") {
-                ?>
-                <div class="menuopt"><i class="bi-calendar-check micon"></i><div class="opttxt" onclick="document.location.href = '../Events/eventManage.php'">My Events</div></div>
-                <?php
-                    }
-                    else {
-                ?>
-                <div class="menuopt"><i class="bi-people micon"></i><div class="opttxt" onclick="document.location.href = '../Collabs/collabManage.php'">My Collabs</div></div>
-                <div class="menuopt"><i class="bi-person-add micon"></i><div class="opttxt" onclick="document.location.href = '../Students/selectTeam.php'">My Team</div></div>
-                <div class="menuopt"><i class="bi-person-add micon"></i><div class="opttxt" onclick="document.location.href = '../Issues/issueManage.php'">My Issues</div></div>
-                <?php
-                    }
-                }
-                ?>
+                <div class="menuopt"><i class="bi-person micon"></i><div class="opttxt" onclick="document.location.href = 'adminProfile.php'">My Profile</div></div>
+                <div class="menuopt"><i class="bi-person micon"></i><div class="opttxt" onclick="document.location.href = 'studentManage.php'">Students</div></div>
+                <div class="menuopt"><i class="bi-person micon"></i><div class="opttxt" onclick="document.location.href = 'facultyManage.php'">Faculties</div></div>
+                
                 <div class="menuopt lastopt" onclick="document.location.href = '../SignOut.php'"><i class="bi-box-arrow-right micon"></i><div class="opttxt">Sign Out</div></div>
             </div>
         </div>
@@ -100,6 +87,7 @@
                     <input type="file" id="openimg" accept="image/*" name="uimg" onchange="loadFile(event)">
                 </div>
                 <?php
+                    $id = $_GET['id'];
                     $query = "Select * from faculties where id=$id";
                     $cmd = mysqli_query($con, $query);
                     $row = mysqli_fetch_array($cmd);

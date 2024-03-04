@@ -8,6 +8,7 @@
     echo $query;
     $cmd = mysqli_query($con,$query);
     $row = mysqli_fetch_array($cmd);
+    
     if(!$row) {
         header("location:SignIn.php?status=incorrect");
     }
@@ -15,6 +16,11 @@
         setcookie("userid",$_POST['uid'],time() + (10 * 365 * 24 * 60 * 60));
         setcookie("username",$row['name'],time() + (10 * 365 * 24 * 60 * 60));
         setcookie("usertype",$type,time() + (10 * 365 * 24 * 60 * 60));
-        header("location:index2.php");
+        if($type == 'admin'){
+            header("location:Admin/eventManage.php");
+        }
+        else{
+            header("location:index2.php");
+        }
     }
 ?>
