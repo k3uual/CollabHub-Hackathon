@@ -138,17 +138,17 @@
                     <div class="ele mode"><i class="bi-geo-alt-fill"></i><?php echo ' ' . $row['loc']; ?></div>
                     <?php if ($noclick) { ?>
                         <div class="ele left end">Not Started</div>
-                    <?php } elseif ($diff > 0) { ?>
+                    <?php } elseif ($diff != NULL) { ?>
                         <div class="ele left" id="countdown-<?php echo $row['id']; ?>"><i class="bi-clock-fill"></i><?php echo ' ' . $left; ?> left</div>
                         <script>
                             // Countdown timer script
                             if($flag == 1){
-                                var countdown<?php echo $row['id']; ?> = <?php echo $diff; ?>;
-                                setInterval(function() {
-                                    countdown<?php echo $row['id']; ?>--;
-                                    document.getElementById('countdown-<?php echo $row['id']; ?>').innerHTML = '<i class="bi-clock-fill"></i>' + countdown<?php echo $row['id']; ?> + ' Second left';
-                                }, 1000);
-                            }
+                            var countdown<?php echo $row['id']; ?> = <?php echo $diff; ?>;
+                            setInterval(function() {
+                                countdown<?php echo $row['id']; ?>--;
+                                document.getElementById('countdown-<?php echo $row['id']; ?>').innerHTML = '<i class="bi-clock-fill"></i>' + countdown<?php echo $row['id']; ?> + ' Second left';
+                            }, 1000);
+                        }
                         </script>
                     <?php } else { ?>
                         <div class="ele left end">Ended</div>
