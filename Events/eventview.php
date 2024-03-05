@@ -115,10 +115,17 @@
             ?>
             <div class="name"><?php echo $row['name'];?></div>
         </div>
-        <div class="enroll">
+        <div class="enroll timer-container">
             <div class="ensec">
+                <?php
+                
+                $fstart = strtotime($row['start']);
+                $start = date("d M",$fstart);
+                $fend = strtotime($row['end']);
+                $end = date("d M",$fend);
+                ?>
                 <div class="entxt">Runs From:</div>
-                <div class="entxt2">12 March, 20 April</div>
+                <div class="entxt2"><?php echo $start.', '.$end;?></div>
             </div>
             <div class="ensec">
                 <div class="entxt">Happening At:</div>
@@ -133,15 +140,11 @@
                 <div class="entxt2"><?php echo $row['state']?></div>
                 <?php
                 }
-                $fstart = strtotime($row['start']);
-                $start = date("d M",$fstart);
-                $fend = strtotime($row['end']);
-                $end = date("d M",$fend);
                 ?>
             </div>
             <div class="ensec">
                 <div class="entxt">Closes in:</div>
-                <div class="entxt2"><?php echo $start.' - '.$end;?></div>
+                <div class="entxt2" id="timer" data-endtime="<?php echo $row['reg_end'];?>"></div>
             </div>
             <button class="enbtn" onclick="document.location.href = 'E_enroll.php?id=<?php echo $row['id'];?>'">Enroll Now</button>
         </div>
@@ -281,5 +284,33 @@
             console.log("open");
             profile2.classList.toggle("open");
         });
+
+        function updateTimer() {
+        var timerElement = document.getElementById('timer');
+        var endTime = new Date(timerElement.dataset.endtime).getTime();
+        var now = new Date().getTime();
+        var distance = endTime - now;
+
+        // If the timer has expired, hide its grandparent container
+        if (distance <= 0) {
+            //timerElement.parentNode.parentNode.style.display = "none";
+            document.location.href = "../index2.php";
+            return;
+        }
+
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Display the countdown timer
+        timerElement.innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s";
+    }
+
+    // Update timer every second
+    setInterval(updateTimer, 1000);
+
+    // Initial call to update timer
+    updateTimer();
     </script>
 </html>

@@ -92,7 +92,7 @@
         $runnow = mysqli_fetch_array($nowcmd);
         $now = $runnow['now'];
         $query = "Select *,TIMESTAMPDIFF(second,'$now',reg_start) as didstart,TIMESTAMPDIFF(day,'$now',reg_end) as dleft, TIMESTAMPDIFF(hour,'$now',reg_end) as hleft,
-        TIMESTAMPDIFF(minute,'$now',reg_end) as mleft, TIMESTAMPDIFF(second,'$now',reg_end) as sleft from EVENTS;";
+        TIMESTAMPDIFF(minute,'$now',reg_end) as mleft, TIMESTAMPDIFF(second,'$now',reg_end) as sleft from EVENTS  order by didstart asc";
         $cmd = mysqli_query($con, $query);
             
         while($row = mysqli_fetch_array($cmd)) {
@@ -124,7 +124,7 @@
             if($diff > 1)
                 $left .= 's';
         ?>
-            <div class="card" onclick="document.location.href = 'Events/eventview.php?id=<?php echo $row['id'];?>'">
+            <div class="timer-container card" onclick="document.location.href = 'Events/eventview.php?id=<?php echo $row['id'];?>'">
                 <div class="section imgsec">
                     <?php if($row['pic'] == NULL){?>
                     <div class="ele" ><img class="eimg" src="blank-pfp.png" alt=""></div>
@@ -146,8 +146,10 @@
                         <?php 
                         } 
                         elseif($diff != NULL) {
+                            // $date1 = strtotime($row['reg_end']);
+                            // $end = date('',$date1);
                         ?>
-                        <div class="ele left"><i class="bi-clock-fill"></i><?php echo ' '.$left;?> left</div>
+                        <div class="timer ele" data-endtime="<?php echo $row['reg_end'];?>"> </div>
                         <?php 
                         }
                         else {
@@ -200,5 +202,33 @@
         //     console.log("close");
         //     profile2.classList.remove("open");
         // });
+
+        function updateTimer(timerElement) {
+        var endTime = new Date(timerElement.dataset.endtime).getTime();
+        var now = new Date().getTime();
+        var distance = endTime - now;
+
+        // If the timer has expired, hide its parent container
+        if (distance <= 0) {
+            timerElement.parentNode.parentNode.parentNode.style.display = "none";
+            return;
+        }
+
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Display the countdown timer
+        timerElement.innerHTML =  + days + "d " + hours + "h " + minutes + "m " + seconds + "s";
+    }
+
+    // Update all timers every second
+    var timers = document.querySelectorAll('.timer');
+    setInterval(function () {
+        timers.forEach(function (timer) {
+            updateTimer(timer);
+        });
+    }, 1000);
     </script>
 </html>
