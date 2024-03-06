@@ -231,9 +231,10 @@
                         ?>
                         <img class="pfp" src="../display_img.php?userid=<?php echo $row['uid'];?>&usertype=<?php if($row['uid']<2000000){echo "students";} else{echo "faculties";}?>" alt="pfp">
                         <?php
-                        }
+                        }else{
                         ?>
                         <img class="cmtpfp" src="../blank-pfp.png" alt="pfp">
+                        <?php }?>
                         <div class="username"><?php echo $row['uname'];?></div>
                     </div>
 

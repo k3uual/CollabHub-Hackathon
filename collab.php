@@ -97,7 +97,7 @@
         $runnow = mysqli_fetch_array($nowcmd);
         $now = $runnow['now'];
         $query = "Select *,TIMESTAMPDIFF(second,'$now',reg_start) as didstart,TIMESTAMPDIFF(day,'$now',reg_end) as dleft, TIMESTAMPDIFF(hour,'$now',reg_end) as hleft,
-        TIMESTAMPDIFF(minute,'$now',reg_end) as mleft, TIMESTAMPDIFF(second,'$now',reg_end) as sleft from COLLABS;";
+        TIMESTAMPDIFF(minute,'$now',reg_end) as mleft, TIMESTAMPDIFF(second,'$now',reg_end) as sleft from COLLABS order by reg_end asc";
         $cmd = mysqli_query($con, $query);
             
         while($row = mysqli_fetch_array($cmd)) {

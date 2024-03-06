@@ -49,7 +49,7 @@
                     if($toprow['pic'] != NULL){
                         $flag = 1;
                     ?>
-                    <img class="pfp" src="../display_img.php?userid=<?php echo $_COOKIE['userid'];?>&usertype=<?php echo $_COOKIE['usertype'];?>" alt="pfp">
+                    <img class="pfp" src="display_img.php?userid=<?php echo $_COOKIE['userid'];?>&usertype=<?php echo $_COOKIE['usertype'];?>" alt="pfp">
                     <?php 
                     }
                     else {
@@ -92,7 +92,7 @@
         $runnow = mysqli_fetch_array($nowcmd);
         $now = $runnow['now'];
         $query = "Select *,TIMESTAMPDIFF(second,'$now',reg_start) as didstart,TIMESTAMPDIFF(day,'$now',reg_end) as dleft, TIMESTAMPDIFF(hour,'$now',reg_end) as hleft,
-        TIMESTAMPDIFF(minute,'$now',reg_end) as mleft, TIMESTAMPDIFF(second,'$now',reg_end) as sleft from EVENTS  order by didstart asc";
+        TIMESTAMPDIFF(minute,'$now',reg_end) as mleft, TIMESTAMPDIFF(second,'$now',reg_end) as sleft from EVENTS order by reg_end asc";
         $cmd = mysqli_query($con, $query);
             
         while($row = mysqli_fetch_array($cmd)) {

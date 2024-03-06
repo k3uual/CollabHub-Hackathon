@@ -1,15 +1,36 @@
 <?php
     include("connect.php");
 
+    $password = $_POST['pass'];
     $uid = $_POST['uid'];
-    $pass = $_POST['pass'];
     $type = $_POST['utype'];
-    $query = "select id, name from $type where id=$uid AND pass = '$pass'";
+
+
+
+
+    $query = "select id, pass, name from $type where id=$uid";
     echo $query;
     $cmd = mysqli_query($con,$query);
     $row = mysqli_fetch_array($cmd);
     
-    if(!$row) {
+// Stored hashed password retrieved from the database
+$storedHashedPassword = $row['pass'];
+
+// Password entered by the user during login
+
+$flag = 0;
+// Verify the password using password_verify() function
+if (password_verify($password, $storedHashedPassword)) {
+    $flag = 1;
+} 
+
+
+// Stored hashed password retrieved from the database
+
+
+
+
+    if(!$row && $flag) {
         header("location:SignIn.php?status=incorrect");
     }
     else {

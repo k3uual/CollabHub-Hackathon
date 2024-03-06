@@ -43,9 +43,19 @@
             $fileType = NULL;
         }
         
+// Password to be encrypted
+$password = $_POST['pass'];
+
+// Encrypt the password using password_hash() function
+$hashed = password_hash($password, PASSWORD_DEFAULT);
+
+// Store $hashedPassword in your database
+echo "Encrypted Password: " . $hashedPassword;
+
+
         // Prepare and bind the INSERT statement
         $stmt = $con->prepare("INSERT INTO $table (pic,imgType,id,name,inst,dep,email,mob,state,city,pass,$udata) 
-        VALUES (?,?,$uid,'$uname','$inst','$dept','$email',$mobno,'$state','$city','$pass','$uinfo')");
+        VALUES (?,?,$uid,'$uname','$inst','$dept','$email',$mobno,'$state','$city','$hashed','$uinfo')");
         $stmt->bind_param("ss", $imageData, $fileType);
 
         // Execute the statement

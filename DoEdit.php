@@ -11,7 +11,11 @@
     $city = $_POST['city'];
     $bio = $_POST['bio'];
     $utype = $_POST['utype'];
-    $pass = $_POST['pass'];
+    //$pass = $_POST['pass'];
+    $password = $_POST['pass'];
+
+// Encrypt the password using password_hash() function
+$hashed = password_hash($password, PASSWORD_DEFAULT);
     setcookie("username",$uname,time() + (10 * 365 * 24 * 60 * 60));
     echo $utype;
     if($utype == 'students') {
@@ -47,11 +51,11 @@
         
         // Prepare and bind the INSERT statement
         if($image['name'] == ''){
-            $stmt = $con->prepare("UPDATE $utype SET name = '$uname', pass = '$pass', state = '$state', city = '$city', inst = '$inst', dep = '$dept', 
+            $stmt = $con->prepare("UPDATE $utype SET name = '$uname', pass = '$hashed', state = '$state', city = '$city', inst = '$inst', dep = '$dept', 
             email = '$email', mob = $mobno, $udata = '$uinfo', `desc` = '$bio' WHERE id = $id");
         }
         else{
-            $stmt = $con->prepare("UPDATE $utype SET pic = ?, imgType = ?, name = '$uname', pass = '$pass', state = '$state', city = '$city', inst = '$inst', dep = '$dept', 
+            $stmt = $con->prepare("UPDATE $utype SET pic = ?, imgType = ?, name = '$uname', pass = '$hashed', state = '$state', city = '$city', inst = '$inst', dep = '$dept', 
             email = '$email', mob = $mobno, $udata = '$uinfo', `desc` = '$bio' WHERE id = $id");
             $stmt->bind_param("ss", $imageData, $fileType);
         }

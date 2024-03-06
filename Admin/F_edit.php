@@ -27,9 +27,9 @@
                     <span class="webnametop"><b>CollabHub</b></span>
                 </div>
                 <div id="navcontain">
-                    <div class="nav lnav" onclick="document.location.href = '../index2.php'">Events</div>
-                    <div class="nav midnav" onclick="document.location.href = '../collab.php'">Collabs</div>
-                    <div class="nav rnav" onclick="document.location.href = '../issue.php'">Issues</div>
+                    <div class="nav lnav" onclick="document.location.href = 'eventManage.php'">Events</div>
+                    <div class="nav midnav" onclick="document.location.href = 'collabManage.php'">Collabs</div>
+                    <div class="nav rnav" onclick="document.location.href = 'issueManage.php'">Issues</div>
                 </div>
                 <?php
                 if(!$id){
